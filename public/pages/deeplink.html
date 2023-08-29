@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Template</title>
+</head>
+
+<body>
+	<h1>Loading...</h1>
+	<script type="text/javascript">
+		((options, platform, launchWekitApproach, launchIframeApproach) => {
+			console.log(options);
+			if (platform.isIos()) {
+				if (
+					ua.match(/CriOS/) ||
+					(ua.match(/Safari/) && ua.match(/Version\/(9|10|11)/))
+				) {
+					launchWekitApproach(options.ios, options.fallback);
+				} else {
+					launchIframeApproach(options.ios, options.fallback);
+				}
+			} else if (platform.isAndroid()) {
+				if (ua.match(/Chrome/)) {
+					document.location = '';
+				} else if (ua.match(/Firefox/)) {
+					launchWekitApproach(urls.deepLink, urls.playStoreLink || urls.fallback);
+				} else {
+					launchIframeApproach(url, urls.playStoreLink || urls.fallback);
+				}
+			} else {
+				window.location = options.fallback;
+			}
+		})({
+			ios: `<%= ios %>`,
+			token: `<%= token %>`,
+			android: `<%= android %>`,
+			fallback: `<%= fallback %>`,
+		}, {
+			isAndroid: function () {
+				return /android/i.test(ua);
+			},
+			isIos: function () {
+				return /iPhone|iPad|iPod/i.test(ua);
+			}
+		}, (url, fallback) => {
+			console.log(urls)
+			window.location = url;
+
+			setTimeout(function () {
+				document.location = fallback;
+			}, 1000);
+		}, (url, fallback) => {
+			var iframe = document.createElement('iframe');
+			iframe.style.border = 'none';
+			iframe.style.width = '1px';
+			iframe.style.height = '1px';
+			iframe.onload = function () {
+				document.location = url;
+			};
+			iframe.src = url;
+
+			window.onload = function () {
+				document.body.appendChild(iframe);
+				setTimeout(function () {
+					window.location = fallback;
+				}, 1000);
+			};
+		});
+	</script>
+</body>
+
+</html>

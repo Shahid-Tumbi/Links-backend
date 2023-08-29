@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Welcome</title>
+    <meta charset="utf-8">
+
+    <style>
+        html,
+        body {
+            height: 100%;
+        }
+        
+        img {
+            display: block;
+        }
+        
+        span {
+            font-weight: 600;
+        }
+        
+        .logo {
+                width: 150px;
+        }
+
+        .label {
+            color: #444;
+            width: 120px;
+            padding: 5px 0px;
+            font-weight: bold;
+        }
+        
+        .value {
+            color: #7c8287;
+        }
+    </style>
+</head>
+
+<body style="padding: 0; margin: 0; background-color: #eaeaea;">
+    <table cellpadding="0" cellspacing="0" border="0" style="margin: 0 auto; min-width:320px; max-width:600px; width:100%; font-family: Arial,sans-serif;color: #ffffff;">
+        
+        
+        <tr>
+            <td style="width: 100%">
+                <table cellpadding="0" cellspacing="0" border="0" class="tablecl" style="border-top-left-radius: 4px;border-top-right-radius: 4px;width:100%;background-color:#fff; margin:0; padding: 30px 50px 30px;">
+                    <tr>
+                        <td style="width: 100%">
+                            &nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 100%">
+                            &nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center" class="head" style=" padding: 0 0 20px; font-size: 45px; color: black;  font-weight: 600;">Welcome to </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 100%">
+                            &nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center"><img src="{{ appUrl }}/images/logo.png" width="200" alt="Logo" class="logo"></td>
+                    </tr>
+                    <tr>
+                        <td class="subhead" style="padding: 40px 0 20px; font-size: 24px; font-weight: 600;color:#444444;">Hello {{name}}!</td>
+                    </tr>
+                    <tr>
+                        <td class="para" style="font-size: 19px; font-weight: 500; line-height: 1.9; color: #444444; letter-spacing: 0.4px; padding: 10px 0 20px;">
+                            Congratulations! for becoming a part of {{projectName}}. You can login with the details given below:
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table cellpadding="0" cellspacing="0" border="0" class="tablecl" style="width:100%;">
+                                <tbody>
+                                    <tr>
+                                        <td class="label" style="color: #444 !important;">Email Id: </td>
+                                        <td class="value" style="color: #7c8287 !important;">{{email}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="label" style="color: #444 !important;">Password: </td>
+                                        <td class="value" style="color: #7c8287 !important;">{{password}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-top: 35px;"> 
+                            <button style="margin-bottom: 45px; width: auto; padding: 10px 30px;border: none;border-radius: 5px;background: #0099B8;color: white;cursor: pointer;outline: none; box-shadow: 2px 0px 10px 0px #3129293d;font-size: 18px;">
+                                <a href="{{loginUrl}}" style="text-decoration: none; color: white;">Login Here</a>
+                            </button>
+                        </td>
+                    <tr>
+                    <tr>
+                        <td class="title" style="padding: 20px 0 10px; font-size: 18px; font-weight: 600;color: #444;">Cheers,</td>
+                    </tr>
+                    <tr>
+                        <td class="title" style="padding: 0 0 20px; font-size: 18px; font-weight: 600;color: #444;">{{projectName}} Team </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+
+</html>

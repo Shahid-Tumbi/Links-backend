@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>
+		<%= title; %>
+	</title>
+	<meta property="og:title" content="<%= title; %>">
+	<meta property="og:description" content="<%= description; %>">
+	<meta property="og:image" content="<%= image; %>">
+	<meta property="og:url" content="<%= url; %>">
+	<meta property="og:site_name" content="Links Social, Inc">
+	<meta name="twitter:image:alt" content="No Media Image">
+	<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body>
+	<script>
+		(() => {
+			window._config = {
+				ios: `<%= deeplink.ios %>`,
+				token: `<%= deeplink.token %>`,
+				android: `<%= deeplink.android %>`,
+				fallback: `<%= deeplink.fallback %>`,
+			};
+		})();
+	</script>
+	<script src="../../scripts/deeplink.js" type="text/javascript"></script>
+</body>
+
+</html>
