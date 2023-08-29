@@ -1,0 +1,54 @@
+{
+	"compilerOptions": {
+		"baseUrl": ".",
+		"outDir": "dist/",
+		"skipLibCheck": true,
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"lib": [
+			"es2018"
+		],
+		"module": "commonjs",
+		"moduleResolution": "node",
+		"noImplicitAny": true,
+		"noUnusedLocals": true,
+		"removeComments": false,
+		"sourceMap": false,
+		"resolveJsonModule": true,
+		"target": "es6",
+		"typeRoots": [
+			"./node_modules/@types",
+			"./typings"
+		],
+		"paths": {
+			"@src/*": [
+				"src/*"
+			],
+			"@app/*": [
+				"src/app/*"
+			],
+			"@api/*": [
+				"src/app/api/*"
+			],
+			"@utils/*": [
+				"src/utils/*"
+			],
+			"@database/*": [
+				"src/database/*"
+			],
+			"@constants/*": [
+				"src/app/constants/*"
+			],
+			"@validators/*": [
+				"src/app/validators/*"
+			],
+			"@middlewares/*": [
+				"src/app/middlewares/*"
+			]
+		}
+	},
+	"exclude": [
+		"node_modules",
+		"**/*.spec.ts"
+	]
+}
