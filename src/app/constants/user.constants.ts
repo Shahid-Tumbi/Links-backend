@@ -3,7 +3,6 @@ export enum UserType {
 	User = '1',
 	Admin = '2',
 	Default = '3',
-	PhotoGrapher = '4'
 }
 
 export enum UserStatus {
@@ -70,10 +69,3 @@ export enum GlobalSearchType {
 	Hashtag = '3',
 	Event = '4',
 }
- export enum SmsCred{
-	Sid='ACa01c09d91b96d9d28f5345c9d13d2444',
-	authToken='4540e7e0bb2915d8132e97a63b97930f',
-	messagingSid='MGa1aa9ed38e2ee0406ab256dc107f83d9'
-	// BaseUrl = 'https://api-app2.simpletexting.com/v2/api/messages'
-	
- }

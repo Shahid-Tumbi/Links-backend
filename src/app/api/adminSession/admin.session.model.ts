@@ -1,4 +1,4 @@
-import { LoginType, DeviceType } from '@app/constants/user.constants';
+import { LoginType,} from '@app/constants/user.constants';
 import { model, Schema } from 'mongoose';
 import { SESSION_COLLECTION } from './admin.session.constants';
 
@@ -9,7 +9,6 @@ const adminSessionSchema = new Schema({
 	},
 	deviceType: {
 		type: String,
-		enum: Object.values(DeviceType),
 		required: false
 	},
 	adminId: {

@@ -1,5 +1,5 @@
 // @@ getUserDataById() in user service should have same attributes
-export const UserDataFormat = (data: any) => {
+export const UserDataFormat = (data: any,authData: any) => {
 	return {
 		_id: data._id || '',
 		name: data.name || '',
@@ -19,5 +19,6 @@ export const UserDataFormat = (data: any) => {
 		address:data.address || '',
 		customerId:data.customerId || '',
 		paymentMethod:data.paymentMethod || '',
+		userName:data.userName || ''
 	};
 };

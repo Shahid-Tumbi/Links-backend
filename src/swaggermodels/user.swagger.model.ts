@@ -16,6 +16,13 @@ export class UserRegister {
 	})
 	deviceToken: string;
 	@ApiModelProperty({
+		description: 'A Unique Name',
+		required: true,
+		type: SwaggerDefinitionConstant.STRING,
+		example: 'test_123' as any,
+	})
+	userName:string;
+	@ApiModelProperty({
 		description: 'name of user',
 		required: true,
 		type: SwaggerDefinitionConstant.STRING,
@@ -33,7 +40,7 @@ export class UserRegister {
 		description: 'password',
 		required: false,
 		type: SwaggerDefinitionConstant.STRING,
-		example: 'Admin@@321' as any,
+		example: 'Admin@321' as any,
 	})
 	password: string;
 	@ApiModelProperty({
@@ -62,7 +69,7 @@ export class UserAuthenticate {
 		description: 'user',
 		required: true,
 		type: SwaggerDefinitionConstant.STRING,
-		example: 'test@yopmail.com | 9876543210' as any,
+		example: 'test@yopmail.com' as any,
 	})
 	user: string;
 	@ApiModelProperty({
@@ -90,14 +97,14 @@ export class UserLogin {
 		description: 'user',
 		required: true,
 		type: SwaggerDefinitionConstant.STRING,
-		example: 'test@yopmail.com | 9876543210' as any,
+		example: 'test@yopmail.com | test_123' as any,
 	})
 	user: string;
 	@ApiModelProperty({
 		description: 'password',
 		required: true,
 		type: SwaggerDefinitionConstant.STRING,
-		example: 'Admin@@321' as any,
+		example: 'Admin@321' as any,
 	})
 	password: string;
 	@ApiModelProperty({

@@ -19,14 +19,14 @@ export class AdminLoginData {
 		description: 'user',
 		required: true,
 		type: SwaggerDefinitionConstant.STRING,
-		example: 'test@yopmail.com | 9876543210' as any,
+		example: 'test@yopmail.com' as any,
 	})
 	email: string;
 	@ApiModelProperty({
 		description: 'password',
 		required: true,
 		type: SwaggerDefinitionConstant.STRING,
-		example: 'Admin@@321' as any,
+		example: 'Admin@321' as any,
 	})
 	password: string;
 }

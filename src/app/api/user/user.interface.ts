@@ -4,8 +4,12 @@ import { DeviceType, LoginType, UserGender, UserStatus } from '@app/constants';
 
 export namespace IUser {
 	export interface Doc {
+		userId: string;
+	}
+	export interface Auth {
 		_id: string;
 		name: string;
+		userName: string;
 		email: string;
 		password: string;
 		countryCode: string;
@@ -13,6 +17,13 @@ export namespace IUser {
 		isPhoneVerified: boolean;
 		isEmailVerified: boolean;
 		profileImage:string;
+		status: string;
+		latitude: Number;
+		longitude: Number;
+		pushNotification: boolean;
+		emailNotification: boolean;
+		customerId:string;
+		paymentMethod:string;
 		otp: {
 			otpCode: {
 				type: String;
@@ -21,13 +32,6 @@ export namespace IUser {
 				type: Number;
 			};
 		},
-		status: string;
-		latitude: Number;
-		longitude: Number;
-		pushNotification: boolean;
-		emailNotification: boolean;
-		customerId:string;
-		paymentMethod:string;
 	}
 }
 
@@ -99,6 +103,8 @@ export interface IRegisterData {
 	phoneNumber: string;
 	deviceToken?: string;
 	primaryField: PrimaryField;
+	userName: string;
+	userId: string;
 }
 
 export interface IUserSocialLogin extends IUserSession {

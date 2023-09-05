@@ -14,7 +14,7 @@ export namespace App {
 		language: string;
 		ipAddress: string;
 		deviceId: string;
-		deviceType: DeviceType;
+		deviceType: string;
 		deviceModel: string;
 		iso2: string;
 	}

@@ -46,7 +46,7 @@ class UserController {
     next: NextFunction
   ) {    
     userService
-      .register(req.data, req.client,req.ip)
+      .register(req.data,req)
       .then((result) => {
         res.success('Success', result);
       })
@@ -141,7 +141,7 @@ class UserController {
   login(req: App.Request<ILoginData>, res: App.Response, next: NextFunction) {
     console.info(req.data, req.client);
     userService
-      .login(req.data, req.client)
+      .login(req.data, req)
       .then((result) => {
         res.success('Success', result);
       })
@@ -154,7 +154,7 @@ class UserController {
     path: '/forgot-password',
     parameters: {
       body: {
-        description: 'User Data',
+        description: 'Forgot Password',
         required: true,
         model: 'ForgotPasswordData',
       },
@@ -185,7 +185,7 @@ class UserController {
     path: '/change-password',
     parameters: {
       body: {
-        description: 'User Data',
+        description: 'Change Password',
         required: true,
         model: 'ChangePasswordData',
       },
@@ -221,11 +221,11 @@ class UserController {
       body: {
         description: 'Update User Data',
         required: true,
-        model: 'updateUserData',
+        model: 'UpdateUserData',
       },
     },
     security: {
-      basicAuth: [],
+      bearerAuth: [],
     },
     responses: {
       200: {
@@ -267,7 +267,7 @@ class UserController {
   logout(req: App.Request<ILogoutData>, res: App.Response, next: NextFunction) {
     console.info('req', req.data);
     userService
-      .logout(req.data, req.client)
+      .logout(req.data, req)
       .then((result) => {
         res.success('Success', result);
       })

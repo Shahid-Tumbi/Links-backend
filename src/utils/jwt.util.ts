@@ -126,7 +126,7 @@ class TokenUtil {
 	// 	}
 	// }
 	expireToken(token: string, userType: UserType) {
-		expiredTokens.set(token, userType);
+		expiredTokens.set(token?.replace('Bearer ',''), userType);
 	}
 }
 

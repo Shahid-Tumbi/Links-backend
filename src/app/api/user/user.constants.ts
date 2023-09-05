@@ -277,15 +277,13 @@ export const BY_PASS_OTP = '1234';
 export const passwordKey = '_p';
 
 export const GMAIL_SERVICE = {
-  EMAIL_USER: 'helpie1080p@gmail.com',
-  EMAIL_PASS: 'wialyirgtjkyuurm',
+  EMAIL_USER: 'shahid.tumbi@steadyrabbit.in',
+  EMAIL_PASS: 'lppialxihssqtoae',
   SUBJECT: 'Forget Password',
   WELCOME_SUBJECT: 'Welcome to Links',
   WELCOME_HTML: `<p><h1><b>Welcome to Links</b></h1></p>
 
-    <p>Thanks for signing up! We are excited to have you join us and start photoshoots.</p>
-
-    <p>Just request for a photoshoot, and in no time you will connect with your photographer and you can have your desired photographs whenever you need them.</p>
+    <p>Thanks for signing up! We are excited to have you join us and start your journey with us.</p>
 
     <p>Regards<br>
     Links Team</p>

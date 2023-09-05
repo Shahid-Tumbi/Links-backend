@@ -4,7 +4,7 @@ import { tokenUtil } from '@utils/jwt.util';
 import { UserType } from '@app/constants';
 import { CONSTANT } from '@api/api.constants';
 import { redisUtil } from '@utils/redis.util';
-import { UserModel } from '@api/user/user.model';
+import { Auth } from '@api/user/user.model';
 import { App } from '@src/app/app.interface';
 import { IUserSession } from './admin.session.interface';
 
@@ -47,7 +47,7 @@ class SessionService {
 		try {
 			const isSession = userId && await redisUtil.authorize(userId, sessionId);
 			if (!isSession) {
-				const user = userId && await UserModel.findById(userId, { name: 1 });
+				const user = userId && await Auth.findById(userId, { name: 1 });
 				const count = await AdminSessionModel.countDocuments({
 					status: true, _id: sessionId
 				});

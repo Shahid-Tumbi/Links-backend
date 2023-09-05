@@ -1,7 +1,7 @@
 import { UserType, DeviceType, LoginType } from '@src/app/constants';
 
 export interface IUserSession {
-	deviceType?: DeviceType;
+	deviceType?: string;
 	deviceModel?: string;
 	deviceToken?: string;
 	voipToken?: string;
