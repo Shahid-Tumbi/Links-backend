@@ -1,9 +1,8 @@
 import { App } from '@src/app/app.interface';
 import { NextFunction } from 'express';
-import { ApiOperationGet, ApiOperationPost, ApiPath } from 'swagger-express-ts';
+import { ApiOperationGet, ApiOperationPost, ApiOperationPut, ApiPath } from 'swagger-express-ts';
 import { USER_MESSAGES } from './user.constants';
 import {
-  ILoginData,
   IRegisterData,
   ILogoutData,
   IChangePassword,
@@ -46,7 +45,7 @@ class UserController {
     next: NextFunction
   ) {    
     userService
-      .register(req.data,req)
+      .register(req)
       .then((result) => {
         res.success('Success', result);
       })
@@ -138,10 +137,10 @@ class UserController {
       },
     },
   })
-  login(req: App.Request<ILoginData>, res: App.Response, next: NextFunction) {
+  login(req: App.Request, res: App.Response, next: NextFunction) {
     console.info(req.data, req.client);
     userService
-      .login(req.data, req)
+      .login(req)
       .then((result) => {
         res.success('Success', result);
       })
@@ -213,7 +212,7 @@ class UserController {
       })
       .catch(next);
   }
-  @ApiOperationPost({
+  @ApiOperationPut({
     description: 'Update User Data',
     summary: 'Update User Data',
     path: '/updateUserData',

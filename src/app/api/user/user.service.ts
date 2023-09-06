@@ -19,65 +19,39 @@ import {
 } from './user.constants';
 import {
 	ILoginData,
-	IRegisterData,
 	IUser,
 	ILogoutData,
 	IChangePassword,
 } from './user.interface';
-import { Auth, UserModel } from './user.model';
+import { User, UserDetailModel } from './user.model';
 import { VerifyOtpData } from './user.swagger';
 import { producer, consumer } from '../../../rabbitmq';
 import getImageFromS3 from '@src/utils/getimage.util';
 const useragent = require('express-useragent');
 
-// const fs = require('fs');
-// const path = require('path');
-// const formidable = require('formidable');
-// const AWS = require('aws-sdk');
-// const sharp = require('sharp');
-
-// let allowedFileTypes = [
-// 	'png', 'jpeg',
-// 	'jpg', 'gif',
-// 	'webp'
-// ];
-// let allowedFileTypes = [
-// 	'png', 'jpeg',
-// 	'jpg', 'gif',
-// 	'pdf', 'doc',
-// 	'docx', 'xlsx',
-// 	'mp4', 'mpeg',
-// 	'3gp', 'mov',
-// 	'avi', 'wmv',
-// 	'mkv', 'webm'
-// ];
-// let imageFileTypes = ['png', 'jpeg',
-// 	'jpg', 'gif','webp'];
-// let maxFileSize = 2; //In Megabyte
-
 class UserService {
-	readonly Model = UserModel;
-	readonly AuthModel = Auth;
+	readonly Model = UserDetailModel;
+	readonly UserModel = User;
 
 	async register(
-		{ deviceToken, ...data }: IRegisterData,
 		req?: App.Request,
 	) {
 		try {
+			const data = req.data
 			Console.info(`partial ${JSON.stringify(req.client)}`);
 			// @TODO set limit to 1 to count
 			const { email, phoneNumber, countryCode, userName } = data;
 			const [isEmailExists, isPhoneExists, isUserNameExists] = await Promise.all([
-				this.AuthModel.exists({
+				this.UserModel.exists({
 					email,
 					status: { $ne: UserStatus.Deleted },
 				}),
-				this.AuthModel.exists({
+				this.UserModel.exists({
 					phoneNumber,
 					countryCode,
 					status: { $ne: UserStatus.Deleted },
 				}),
-				this.AuthModel.exists({
+				this.UserModel.exists({
 					userName,
 					status: { $ne: UserStatus.Deleted },
 				}),
@@ -98,9 +72,9 @@ class UserService {
 				);
 			}
 			const password = await passwordUtil.hash(data.password);
-			const otpNumber = randomNumberStringGenerator(4);
+			const otpNumber = randomNumberStringGenerator(6);
 			const otpExpireTime = Date.now() + CONSTANT.OTP.EXP_TIME * 1000;
-			const auth: IUser.Auth = await this.AuthModel.create({
+			const auth: IUser.User = await this.UserModel.create({
 				...data,
 				password,
 				otp: {
@@ -120,7 +94,7 @@ class UserService {
 					ipAddress: req.ip,
 					deviceType: useragent.isMobile ? 'mobile' : 'desktop',
 					deviceModel: useragent?.device ? useragent?.device : req.headers['user-agent'],
-					deviceToken,
+					deviceToken: data.deviceToken,
 					signType: LoginType.Normal,
 					userType: UserType.User,
 				},
@@ -148,7 +122,7 @@ class UserService {
 
 	async verifyOtp(data: VerifyOtpData, { id }: App.User): Promise<any> {
 		try {
-			const result: IUser.Auth | null = await this.AuthModel.findOne(
+			const result: IUser.User | null = await this.UserModel.findOne(
 				{ _id: id },
 				{ otp: 1, email: 1, countryCode: 1, phoneNumber: 1,name: 1}
 			);
@@ -166,7 +140,7 @@ class UserService {
 					isPhoneVerified: true,
 				};
 
-				const isAlreadyUsed = await this.AuthModel.countDocuments(where);
+				const isAlreadyUsed = await this.UserModel.countDocuments(where);
 
 				if (isAlreadyUsed) {
 					return Promise.reject(
@@ -196,7 +170,7 @@ class UserService {
 				);
 			}
 			let message = USER_MESSAGES.VERIFY_OTP.PHONE_VERIFIED;
-			await this.AuthModel.updateOne(
+			await this.UserModel.updateOne(
 				{ _id: id },
 				{ $set: { isPhoneVerified: true } }
 			);
@@ -219,7 +193,7 @@ class UserService {
 	async resendOtp(data: any, { id }: App.User): Promise<void> {
 		try {
 			// Find the user's record in the database using the provided user ID
-			const user = await this.AuthModel.findOne(
+			const user = await this.UserModel.findOne(
 				{ _id: id },
 				{ otp: 1, countryCode: 1, phoneNumber: 1, email: 1, name: 1 }
 			);
@@ -230,11 +204,11 @@ class UserService {
 			}
 
 			// Generate a new OTP code
-			const otpNumber = randomNumberStringGenerator(4);
+			const otpNumber = randomNumberStringGenerator(6);
 			const otpExpireTime = Date.now() + CONSTANT.OTP.EXP_TIME * 1000;
 
 			// Update the user's record in the database with the new OTP code and its expiration time
-			await this.AuthModel.updateOne(
+			await this.UserModel.updateOne(
 				{ _id: id },
 				{ $set: { otp: { otpCode: otpNumber.toString(), expireTime: otpExpireTime } } }
 			);
@@ -254,8 +228,9 @@ class UserService {
 	 * @param client An object containing the client information, such as language, IP address, device ID, device type, device model, and ISO2 country code.
 	 * @returns An object containing the user's profile data and a session token.
 	 */
-	async login(data: ILoginData, req?: App.Request,) {
+	async login(req?: App.Request) {
 		let where = {};
+		const data: ILoginData = req.data
 		if (data.countryCode) {
 			where = {
 				status: { $ne: UserStatus.Deleted },
@@ -273,7 +248,7 @@ class UserService {
 				userName: data.user,
 			};
 		}
-		const result = await this.AuthModel.findOne({ ...where });
+		const result = await this.UserModel.findOne({ ...where });
 
 		if (!result) {
 			const { EMAIL_NOT_FOUND, PHONE_NOT_FOUND,USER_NOT_FOUND } = USER_MESSAGES;
@@ -313,10 +288,10 @@ class UserService {
 			);
 		}
 	}
-	async updateUserData(payload: IUser.Auth, client: Partial<App.Client>) {
+	async updateUserData(payload: IUser.User, client: Partial<App.Client>) {
 		console.log('updateUserData', payload);
 		try {
-			return await this.AuthModel.findByIdAndUpdate(
+			return await this.UserModel.findByIdAndUpdate(
 				{ _id: payload._id },
 				{ $set: payload },
 				{ projection: { password: 0 }, new: true }
@@ -327,11 +302,11 @@ class UserService {
 		}
 	}
 
-	async forgotPassword(payload: IUser.Auth): Promise<any> {
+	async forgotPassword(payload: IUser.User): Promise<any> {
 		try {
 			let sentPassword = DEFAULT_PASSWORD;
 			const password = await passwordUtil.hash(DEFAULT_PASSWORD);
-			let result = await this.AuthModel.findOneAndUpdate(
+			let result = await this.UserModel.findOneAndUpdate(
 				{ email: payload.email },
 				{ $set: { password: password } }
 			);
@@ -360,14 +335,14 @@ class UserService {
 	 */
 	async changePassword(data: IChangePassword): Promise<any> {
 		try {
-			const user = await this.AuthModel.findOne({ _id: data.id });
+			const user = await this.UserModel.findOne({ _id: data.id });
 			const isPasswordVerified = await this.verifyPassword(user, data.old_password);
 			if (!isPasswordVerified) {
 				throw new ResponseError(422, USER_MESSAGES.LOGIN.INVALID);
 			}
 			const password = await passwordUtil.hash(data.new_password);
 
-			await this.AuthModel.updateOne({ _id: data.id }, { password });
+			await this.UserModel.updateOne({ _id: data.id }, { password });
 
 			return {};
 		} catch (error) {

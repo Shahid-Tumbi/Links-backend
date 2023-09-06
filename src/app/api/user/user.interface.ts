@@ -6,7 +6,7 @@ export namespace IUser {
 	export interface Doc {
 		userId: string;
 	}
-	export interface Auth {
+	export interface User {
 		_id: string;
 		name: string;
 		userName: string;

@@ -270,7 +270,10 @@ export const USER_MESSAGES = {
 
 };
 
-export const COLLECTION_NAME = 'user';
+export const COLLECTION_NAME = {
+  user : 'user' ,
+  userDetail : 'user_detail'
+};
 
 export const BY_PASS_OTP = '1234';
 

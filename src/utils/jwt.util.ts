@@ -6,7 +6,6 @@ import { ResponseError } from './error.util';
 import { App } from '@app/app.interface';
 import { Console } from './logger.util';
 import { sessionService } from '@api/session/session.service';
-import { adminSessionService } from '@src/app/api/adminSession';
 
 // redis can be used for it
 const expiredTokens: Map<string, UserType> = new Map();
@@ -46,7 +45,7 @@ class TokenUtil {
 			}
 			let isSessionActive;
 			if (users.includes(UserType.Admin) && verifiedUser.type === UserType.Admin) {
-				isSessionActive = await adminSessionService.isTokenActive(verifiedUser.id, verifiedUser.session);
+				// isSessionActive = await adminSessionService.isTokenActive(verifiedUser.id, verifiedUser.session);
 			} else {
 				isSessionActive = await sessionService.isTokenActive(verifiedUser.id, verifiedUser.session);
 			}
