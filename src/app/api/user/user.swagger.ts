@@ -23,19 +23,12 @@ export class VerifyOtpData {
 	otp: string;
 }
 
-// @ApiModel({
-// description: 'ResendOtpData',
-// name: 'ResendOtpData',
-// })
-// export class ResendOtpData {
-// @ApiModelProperty({
-// 	description: Object.entries(PrimaryField).map((val) => val.join(': ')).join(' | ') + ` (If no type is provided then otp with sent to primary field)`,
-// 	required: false,
-// 	type: SwaggerDefinitionConstant.STRING,
-// 	example: Object.values(PrimaryField).join(' | ') as any,
-// })
-// type?: string;
-// }
+@ApiModel({
+description: 'ResendOtpData',
+name: 'ResendOtpData',
+})
+export class ResendOtpData {
+}
 
 @ApiModel({
 	name: 'ForgotPasswordData',
@@ -46,7 +39,7 @@ export class ForgotPasswordData {
 		description: 'user',
 		required: true,
 		type: SwaggerDefinitionConstant.STRING,
-		example: 'test@yopmail.com | 9876543210' as any,
+		example: 'test@yopmail.com' as any,
 	})
 	email: string;
 }
@@ -145,9 +138,16 @@ export class UserProfileStatusUpdate {
 
 @ApiModel({
 	description: 'Change Password',
-	name: 'ChangePassword',
+	name: 'ChangePasswordData',
 })
 export class PasswordData {
+	@ApiModelProperty({
+		description: 'Id of User',
+		required: true,
+		type: SwaggerDefinitionConstant.STRING,
+		example: '5erre5-refd45yuyu-dsdsfd-43fdd' as any,
+	})
+	id: string;
 	@ApiModelProperty({
 		required: true,
 		type: SwaggerDefinitionConstant.STRING,
@@ -209,4 +209,52 @@ export class UpdatePrivacyData {
 		example: false as any,
 	})
 	is_private!: boolean;
+}
+@ApiModel({
+	name: 'UpdateUserData',
+	description: 'Update User Data',
+})
+export class UpdateUserData {
+	@ApiModelProperty({
+		description: 'name of user',
+		required: false,
+		type: SwaggerDefinitionConstant.STRING,
+		example: 'Test User' as any,
+	})
+	name: string;
+	@ApiModelProperty({
+		description: 'latitude',
+		required: false,
+		type: SwaggerDefinitionConstant.STRING,
+		example: '21.170240' as any,
+	})
+	latitude:string;
+	@ApiModelProperty({
+		description: 'longitude',
+		required: false,
+		type: SwaggerDefinitionConstant.STRING,
+		example: '72.831062' as any,
+	})
+	longitude:string;
+	@ApiModelProperty({
+		type: SwaggerDefinitionConstant.BOOLEAN,
+		required: false,
+		description: 'pushNotification',
+		example: false as any,
+	})
+	pushNotification:string;
+	@ApiModelProperty({
+		type: SwaggerDefinitionConstant.BOOLEAN,
+		required: false,
+		description: 'emailNotification',
+		example: false as any,
+	})
+	emailNotification:string;
+	@ApiModelProperty({
+		type: SwaggerDefinitionConstant.STRING,
+		required: false,
+		description: 'profileImage',
+		example: "" as any,
+	})
+	profileImage:string;
 }

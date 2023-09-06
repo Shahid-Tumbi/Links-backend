@@ -4,7 +4,7 @@ import { tokenUtil } from '@utils/jwt.util';
 import { UserType } from '@app/constants';
 import { CONSTANT } from '@api/api.constants';
 import { redisUtil } from '@utils/redis.util';
-import { UserModel } from '@api/user/user.model';
+import { User } from '@api/user/user.model';
 import { App } from '@src/app/app.interface';
 import { IUserSession } from './session.interface';
 
@@ -14,7 +14,7 @@ class SessionService {
 		try {
 			const isSession = userId && await redisUtil.authorize(userId, sessionId);
 			if (!isSession) {
-				const user = userId && await UserModel.findById(userId, { name: 1 });
+				const user = userId && await User.findById(userId, { name: 1 });
 				const count = await SessionModel.countDocuments({
 					status: true, _id: sessionId
 				});
@@ -118,7 +118,7 @@ class SessionService {
 		await this.Model.updateMany(where, { deviceToken });
 	}
 	async logout(id: string) {
-		const sessionData = await this.Model.findOneAndUpdate({ _id: id }, { status: false }, { new: true });
+		const sessionData = await this.Model.findOneAndUpdate({ userId: id }, { status: false }, { new: true });
 		await redisUtil.expireSession(sessionData.userId, sessionData._id);
 		return sessionData;
 	}

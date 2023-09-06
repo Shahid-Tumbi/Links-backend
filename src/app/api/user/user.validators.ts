@@ -32,8 +32,9 @@ const JUser = Joi.object({
 	name: JName.required(),
 	password: JPassword.required(),
 	deviceToken: JString.optional().allow(""),
-	latitude:JNumber.optional().allow(""),
-	longitude:JNumber.optional().allow(""),
+	latitude: JNumber.optional().allow(""),
+	longitude: JNumber.optional().allow(""),
+	userName: JUserName.required()
 });
 
 const JDeviceToken = JString;

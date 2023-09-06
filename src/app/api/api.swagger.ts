@@ -1,7 +1,5 @@
 import { SwaggerDefinitionConstant } from 'swagger-express-ts';
 export * from './user/user.swagger';
-export * from './admin/admin.swagger';
-export * from './adminFaq/faq.swagger';
 
 export const SListOptions = {
 	page: {

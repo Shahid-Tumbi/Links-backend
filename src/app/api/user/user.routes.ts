@@ -70,7 +70,7 @@ router.get(
   '/file/:bucketPath?/:fileName',
   session([UserType.User]) ||
     adminSession([UserType.Admin]) ||
-    session([UserType.PhotoGrapher]),
+    session([UserType.Default]),
   userController.getImageFromS3
 );
 

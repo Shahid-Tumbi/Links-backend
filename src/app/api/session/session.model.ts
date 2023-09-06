@@ -1,4 +1,4 @@
-import { UserType, LoginType, DeviceType } from '@app/constants/user.constants';
+import { UserType, LoginType, } from '@app/constants/user.constants';
 import { Model, model, Schema } from 'mongoose';
 import { SESSION_COLLECTION } from './session.constants';
 import { IUserSession } from './session.interface';
@@ -10,7 +10,6 @@ const sessionSchema = new Schema<IUserSession, Model<IUserSession>>({
 	},
 	deviceType: {
 		type: String,
-		enum: Object.values(DeviceType),
 		required: false
 	},
 	userId: {
