@@ -275,7 +275,7 @@ export const COLLECTION_NAME = {
   userDetail : 'user_detail'
 };
 
-export const BY_PASS_OTP = '1234';
+export const BY_PASS_OTP = '123456';
 
 export const passwordKey = '_p';
 

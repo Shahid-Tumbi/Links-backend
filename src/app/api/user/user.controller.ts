@@ -1,6 +1,6 @@
 import { App } from '@src/app/app.interface';
 import { NextFunction } from 'express';
-import { ApiOperationGet, ApiOperationPost, ApiOperationPut, ApiPath } from 'swagger-express-ts';
+import { ApiOperationGet, ApiOperationPost, ApiOperationPut, ApiPath, SwaggerDefinitionConstant } from 'swagger-express-ts';
 import { USER_MESSAGES } from './user.constants';
 import {
   IRegisterData,
@@ -215,12 +215,19 @@ class UserController {
   @ApiOperationPut({
     description: 'Update User Data',
     summary: 'Update User Data',
-    path: '/updateUserData',
+    path: '/updateUserData/{_id}',
     parameters: {
       body: {
         description: 'Update User Data',
         required: true,
         model: 'UpdateUserData',
+      },
+      path: {
+        _id: {
+          required: true,
+          type: SwaggerDefinitionConstant.STRING,
+          description: 'mongoID',
+        },
       },
     },
     security: {
@@ -254,7 +261,7 @@ class UserController {
       },
     },
     security: {
-      basicAuth: [],
+      bearerAuth: [],
     },
     responses: {
       200: {
@@ -297,27 +304,6 @@ class UserController {
     // console.info("req",req)
     userService
       .upload(req, req.client)
-      .then((result) => {
-        res.success('Success', result);
-      })
-      .catch(next);
-  }
-  @ApiOperationPost({
-    description: 'Get User Constants ',
-    summary: 'Get User Constants',
-    path: '/getConstant',
-    parameters: {},
-    responses: {
-      200: {
-        description: 'Success',
-        type: 'String',
-      },
-    },
-  })
-  cosnstantApi(req: App.Request, res: App.Response, next: NextFunction) {
-    // console.info("req",req)
-    userService
-      .constantData(req.client)
       .then((result) => {
         res.success('Success', result);
       })

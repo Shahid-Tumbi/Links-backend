@@ -155,7 +155,7 @@ class UserService {
 			if (
 				!data.otp ||
 				(result.otp.otpCode.toString() !== data.otp.toString() &&
-					data.otp !== '1234')
+					data.otp !== '123456')
 			) {
 				return Promise.reject(
 					new ResponseError(400, USER_MESSAGES.VERIFY_OTP.INVALID)

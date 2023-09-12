@@ -28,8 +28,6 @@ const userSchema = new Schema({
 	pushNotification:{ type: Schema.Types.Boolean, default: false },
 	emailNotification:{ type: Schema.Types.Boolean, default: false },
 	address:{ type: Schema.Types.String },
-	customerId:{type: Schema.Types.String},
-	paymentMethod:{type: Schema.Types.String},
   },
   {
 	  timestamps: true,

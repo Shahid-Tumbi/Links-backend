@@ -22,8 +22,6 @@ export namespace IUser {
 		longitude: Number;
 		pushNotification: boolean;
 		emailNotification: boolean;
-		customerId:string;
-		paymentMethod:string;
 		otp: {
 			otpCode: {
 				type: String;

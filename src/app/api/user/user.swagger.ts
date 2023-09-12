@@ -14,10 +14,10 @@ import { ApiModel, ApiModelProperty, SwaggerDefinitionConstant } from 'swagger-e
 })
 export class VerifyOtpData {
 	@ApiModelProperty({
-		description: '4 Digit Otp Code',
+		description: '6 Digit Otp Code',
 		required: true,
 		type: SwaggerDefinitionConstant.STRING,
-		example: '1234' as any,
+		example: '123456' as any,
 	})
 	otp: string;
 }
@@ -118,4 +118,24 @@ export class UpdateUserData {
 		example: "" as any,
 	})
 	profileImage:string;
+}
+@ApiModel({
+	description: 'Logout User',
+	name: 'LogoutData',
+})
+export class LogoutData {
+	@ApiModelProperty({
+		description: 'Device Token to send notifications',
+		required: false,
+		type: SwaggerDefinitionConstant.STRING,
+		example: 'device token' as any,
+	})
+	deviceToken: string;
+	@ApiModelProperty({
+		description: 'Id of User',
+		required: true,
+		type: SwaggerDefinitionConstant.STRING,
+		example: '5erre5-refd45yuyu-dsdsfd-43fdd' as any,
+	})
+	userId: string;
 }
