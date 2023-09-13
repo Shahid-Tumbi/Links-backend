@@ -284,7 +284,7 @@ export const CONSTANT = {
 		},
 	},
 	OTP: {
-		BY_PASS: '1234',
+		BY_PASS: '123456',
 		EXP_TIME: 300,
 		PHONE_EXP_TIME: 300, // seconds
 		EMAIL_EXP_TIME: 300,
