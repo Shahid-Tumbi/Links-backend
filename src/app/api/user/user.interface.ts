@@ -5,6 +5,8 @@ import { DeviceType, LoginType, UserGender, UserStatus } from '@app/constants';
 export namespace IUser {
 	export interface Doc {
 		userId: string;
+		totalFollowers :  number,
+		totalFollowings :  number
 	}
 	export interface User {
 		_id: string;
@@ -32,6 +34,7 @@ export namespace IUser {
 				type: Number;
 			};
 		},
+		isPrivate: boolean;
 	}
 }
 
@@ -216,4 +219,8 @@ export enum UserDashboard {
 export interface ILogoutData {
 	userId: string;
 	deviceToken?: string;
+}
+export interface FollowData {
+	followerId: string;
+	followingId: string;
 }

@@ -1,6 +1,7 @@
 /* tslint:disable:max-classes-per-file */
 
 import { ApiModel, ApiModelProperty, SwaggerDefinitionConstant } from 'swagger-express-ts';
+import { BY_PASS_OTP } from './user.constants';
 // import { IPoint } from '../api.interface';
 
 // export * from './banner/banner.swagger';
@@ -17,7 +18,7 @@ export class VerifyOtpData {
 		description: '4 Digit Otp Code',
 		required: true,
 		type: SwaggerDefinitionConstant.STRING,
-		example: '1234' as any,
+		example: BY_PASS_OTP as any,
 	})
 	otp: string;
 }
@@ -118,4 +119,51 @@ export class UpdateUserData {
 		example: "" as any,
 	})
 	profileImage:string;
+	@ApiModelProperty({
+		type: SwaggerDefinitionConstant.BOOLEAN,
+		required: false,
+		description: 'User profile is private or public',
+		example: false as any,
+	})
+	isPrivate:string;
+}
+@ApiModel({
+	description: 'Logout User',
+	name: 'LogoutData',
+})
+export class LogoutData {
+	@ApiModelProperty({
+		description: 'Device Token to send notifications',
+		required: false,
+		type: SwaggerDefinitionConstant.STRING,
+		example: 'device token' as any,
+	})
+	deviceToken: string;
+	@ApiModelProperty({
+		description: 'Id of User',
+		required: true,
+		type: SwaggerDefinitionConstant.STRING,
+		example: '5erre5-refd45yuyu-dsdsfd-43fdd' as any,
+	})
+	userId: string;
+}
+@ApiModel({
+	description: 'Follow User',
+	name: 'FollowUser',
+})
+export class FollowUser {
+	@ApiModelProperty({
+		description: 'Id of User that Follow someone',
+		required: true,
+		type: SwaggerDefinitionConstant.STRING,
+		example: '5erre5-refd45yuyu-dsdsfd-43fdd' as any,
+	})
+	followerId: string;
+	@ApiModelProperty({
+		description: 'Id of User that follow by someone',
+		required: true,
+		type: SwaggerDefinitionConstant.STRING,
+		example: '5erre5-refd45yuyu-dsdsfd-43fdd' as any,
+	})
+	followingId: string;
 }

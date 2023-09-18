@@ -1,6 +1,7 @@
 const amqp = require("amqplib");
-const producerQueue = "notification"
-async function pushTask(data: any) {
+
+async function pushTask(data: any,queueName:string) {
+  const producerQueue = queueName
     console.log("data",JSON.stringify(data))
  const msgBuffer = Buffer.from(JSON.stringify(data));
  try {

@@ -1,4 +1,4 @@
-import { UserStatus } from '@src/app/constants';
+import { RequestStatus, UserStatus } from '@src/app/constants';
 import { model, Schema } from 'mongoose';
 import { COLLECTION_NAME } from './user.constants';
 import { IUser } from './user.interface';
@@ -28,22 +28,51 @@ const userSchema = new Schema({
 	pushNotification:{ type: Schema.Types.Boolean, default: false },
 	emailNotification:{ type: Schema.Types.Boolean, default: false },
 	address:{ type: Schema.Types.String },
-	customerId:{type: Schema.Types.String},
-	paymentMethod:{type: Schema.Types.String},
+	isPrivate: { type: Schema.Types.Boolean, default: false },
   },
   {
 	  timestamps: true,
-	  collection: COLLECTION_NAME.user,
   });
   
   export const User = model<IUser.User>(COLLECTION_NAME.user, userSchema);
 
   const userDetailSchema = new Schema(
 	{
-		userId: {type: Schema.Types.String},
+		userId: {type: Schema.Types.String, index: true},
+		totalFollowers :  { type: Schema.Types.Number , default: 0},
+		totalFollowings :  { type: Schema.Types.Number , default: 0}
 	},
 	{
 		timestamps: true,
 		collection: COLLECTION_NAME.userDetail,
 	},);
 export const UserDetailModel = model<IUser.Doc>(COLLECTION_NAME.userDetail, userDetailSchema);
+
+const followSchema = new Schema(
+	{
+		followerId: {type: Schema.Types.ObjectId, index: true},		//User that want follow someone
+		followingId: {type: Schema.Types.ObjectId, index: true},	//User that follow by someone
+		followRequestDate: {type: Schema.Types.Date},
+		is_deleted: { type: Boolean, default: false },
+	},
+	{
+		timestamps: true,
+		collection: COLLECTION_NAME.follow,
+	},);
+export const FollowModel = model<IUser.Doc>(COLLECTION_NAME.follow, followSchema);
+
+const followRequestSchema = new Schema(
+	{
+		followerId: {type: Schema.Types.ObjectId, index: true},		//User that want follow someone
+		followingId: {type: Schema.Types.ObjectId, index: true},	//User that follow by someone
+		status: {
+			type: Schema.Types.String,
+			enum: Object.values(RequestStatus),
+			default: RequestStatus.Pending,
+		},
+	},
+	{
+		timestamps: true,
+		collection: COLLECTION_NAME.followRequest,
+	},);
+export const FollowRequestModel = model<IUser.Doc>(COLLECTION_NAME.followRequest, followRequestSchema);

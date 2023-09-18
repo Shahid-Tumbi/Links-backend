@@ -1,11 +1,12 @@
 import { App } from '@src/app/app.interface';
 import { NextFunction } from 'express';
-import { ApiOperationGet, ApiOperationPost, ApiOperationPut, ApiPath } from 'swagger-express-ts';
+import { ApiOperationGet, ApiOperationPost, ApiOperationPut, ApiPath, SwaggerDefinitionConstant } from 'swagger-express-ts';
 import { USER_MESSAGES } from './user.constants';
 import {
   IRegisterData,
   ILogoutData,
   IChangePassword,
+  FollowData,
 } from './user.interface';
 import { userService } from './user.service';
 import { VerifyOtpData } from './user.swagger';
@@ -234,7 +235,6 @@ class UserController {
     },
   })
   updateUserData(req: App.Request, res: App.Response, next: NextFunction) {
-    console.log('updateUserData', req.data);
     userService
       .updateUserData(req.data, req.client)
       .then((result) => {
@@ -364,6 +364,167 @@ class UserController {
       .getImageFromS3(req, res)
       .then((result) => {
         return result;
+      })
+      .catch(next);
+  }
+  @ApiOperationPost({
+    description: 'Follow User',
+    summary: 'Follow User',
+    path: '/follow',
+    parameters: {
+      body: {
+        description: 'Follow User',
+        required: true,
+        model: 'FollowUser',
+      },
+    },
+    security: {
+      bearerAuth: [],
+    },
+    responses: {
+      200: {
+        description: 'Success',
+        type: 'String',
+      },
+    },
+  })
+  follow(req: App.Request<FollowData>, res: App.Response, next: NextFunction) {
+    // console.info("req",req)
+    userService
+      .follow(req, req.user)
+      .then((result) => {
+        // console.info("res",res)
+
+        res.success('Success', result);
+      })
+      .catch(next);
+  }
+  @ApiOperationGet({
+    description: 'Follower List',
+    summary: 'Follower List',
+    path: '/followers/{_id}',
+    parameters: {
+      path: {
+        _id: {
+          required: true,
+          type: SwaggerDefinitionConstant.STRING,
+          description: 'mongoID',
+        },
+      },
+      query: {
+        page: {
+          required: false,
+          type: SwaggerDefinitionConstant.NUMBER,
+          description: 'Page No',
+          default: 1,
+        },
+        limit: {
+          required: false,
+          type: SwaggerDefinitionConstant.NUMBER,
+          description: 'Limit',
+          default: 5,
+        },
+      },
+    },
+    security: {
+        bearerAuth: [],
+    },
+    responses: {
+      200: {
+        description: 'Success',
+        type: 'String',
+      },
+    },
+  })
+  followerList(req: App.Request<FollowData>, res: App.Response, next: NextFunction) {
+    // console.info("req",req)
+    userService
+      .getUserFollowList(req)
+      .then((result) => {
+        // console.info("res",res)
+
+        res.success('Success', result);
+      })
+      .catch(next);
+  }
+
+  @ApiOperationGet({
+    description: 'Following List',
+    summary: 'Following List',
+    path: '/following/{_id}',
+    parameters: {
+      path: {
+        _id: {
+          required: true,
+          type: SwaggerDefinitionConstant.STRING,
+          description: 'mongoID',
+        },
+      },
+      query: {
+        page: {
+          required: false,
+          type: SwaggerDefinitionConstant.NUMBER,
+          description: 'Page No',
+          default: 1,
+        },
+        limit: {
+          required: false,
+          type: SwaggerDefinitionConstant.NUMBER,
+          description: 'Limit',
+          default: 5,
+        },
+      },
+    },
+    security: {
+        bearerAuth: [],
+    },
+    responses: {
+      200: {
+        description: 'Success',
+        type: 'String',
+      },
+    },
+  })
+  followingList(req: App.Request<FollowData>, res: App.Response, next: NextFunction) {
+    // console.info("req",req)
+    userService
+      .getUserFollowList(req)
+      .then((result) => {
+        // console.info("res",res)
+
+        res.success('Success', result);
+      })
+      .catch(next);
+  }
+  @ApiOperationPost({
+    description: 'Unfollow User',
+    summary: 'Unfollow User',
+    path: '/unfollow',
+    parameters: {
+      body: {
+        description: 'Unfollow User',
+        required: true,
+        model: 'FollowUser',
+      },
+    },
+    security: {
+      bearerAuth: [],
+    },
+    responses: {
+      200: {
+        description: 'Success',
+        type: 'String',
+      },
+    },
+  })
+  unfollow(req: App.Request<FollowData>, res: App.Response, next: NextFunction) {
+    // console.info("req",req)
+    userService
+      .unfollow(req, req.user)
+      .then((result) => {
+        // console.info("res",res)
+
+        res.success('Success', result);
       })
       .catch(next);
   }

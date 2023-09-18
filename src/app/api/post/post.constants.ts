@@ -7,5 +7,6 @@ export const COLLECTION_NAME ={
 
 export const POST_MESSAGES = {
     DATA_NOT_FOUND : 'No Data Found !!',
-    INVALID_RATING : "Invalid rating. Rating must be between 0 and 10."
+    INVALID_RATING : "Invalid rating. Rating must be between 0 and 10.",
+    NO_POST_FOUND : "No Post Found !!"
 }

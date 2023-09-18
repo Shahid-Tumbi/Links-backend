@@ -19,6 +19,7 @@ export const UserDataFormat = (data: any,authData: any) => {
 		address:data.address || '',
 		customerId:data.customerId || '',
 		paymentMethod:data.paymentMethod || '',
-		userName:data.userName || ''
+		userName:data.userName || '',
+		isPrivate: data.isPrivate || false
 	};
 };
