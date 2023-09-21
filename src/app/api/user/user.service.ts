@@ -4,6 +4,7 @@ import {
 	Console,
 	passwordUtil,
 	randomNumberStringGenerator,
+	randomStringGenerator,
 	ResponseError,
 	tokenUtil,
 } from '@src/utils';
@@ -75,9 +76,20 @@ class UserService {
 					new ResponseError(422, USER_MESSAGES.USER_NAME.TAKEN)
 				);
 			}
+			if(data.referrer){
+				const countRefferUsage = await this.Model.countDocuments({
+					referrer : data.referrer
+				});
+				if(countRefferUsage >= CONSTANT.REFERRAL_USAGE_COUNT.COUNT){
+					return Promise.reject(
+						new ResponseError(422, USER_MESSAGES.REFERRAL.USAGE_LIMIT)
+					);
+				}
+			}
 			const password = await passwordUtil.hash(data.password);
 			const otpNumber = randomNumberStringGenerator(6);
 			const otpExpireTime = Date.now() + CONSTANT.OTP.EXP_TIME * 1000;
+			const referralCode = randomStringGenerator(6);			
 			const auth: IUser.User = await this.UserModel.create({
 				...data,
 				password,
@@ -85,10 +97,13 @@ class UserService {
 					otpCode: otpNumber,
 					expireTime: otpExpireTime,
 				},
-				name: data.name
+				name: data.name,
+				status: data.referrer ? UserStatus.Active : UserStatus.New
 			});
 			const profile: IUser.Doc = await this.Model.create({
-				userId: auth._id
+				userId: auth._id,
+				referralCode: referralCode,
+				referrer: data.referrer
 			});
 			
 			// create session to login

@@ -9,6 +9,8 @@ export enum UserStatus {
 	Active = '1',
 	InActive = '2',
 	Deleted = '3',
+	New = '4',
+	Block = '5'
 }
 
 export enum UserGender {

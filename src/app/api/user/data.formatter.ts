@@ -20,6 +20,8 @@ export const UserDataFormat = (data: any,authData: any) => {
 		customerId:data.customerId || '',
 		paymentMethod:data.paymentMethod || '',
 		userName:data.userName || '',
-		isPrivate: data.isPrivate || false
+		isPrivate: data.isPrivate || false,
+		referrer: authData?.referrer || '',
+		referralCode: authData?.referralCode || ''
 	};
 };

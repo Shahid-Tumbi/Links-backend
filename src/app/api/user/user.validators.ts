@@ -34,7 +34,9 @@ const JUser = Joi.object({
 	deviceToken: JString.optional().allow(""),
 	latitude: JNumber.optional().allow(""),
 	longitude: JNumber.optional().allow(""),
-	userName: JUserName.required()
+	userName: JUserName.required(),
+	referralCode: JString.optional().allow(""),
+	referrer: JString.optional().allow("")
 });
 
 const JDeviceToken = JString;

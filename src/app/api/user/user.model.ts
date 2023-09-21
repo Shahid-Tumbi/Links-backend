@@ -32,6 +32,7 @@ const userSchema = new Schema({
   },
   {
 	  timestamps: true,
+	  collection: COLLECTION_NAME.user,
   });
   
   export const User = model<IUser.User>(COLLECTION_NAME.user, userSchema);
@@ -40,7 +41,9 @@ const userSchema = new Schema({
 	{
 		userId: {type: Schema.Types.String, index: true},
 		totalFollowers :  { type: Schema.Types.Number , default: 0},
-		totalFollowings :  { type: Schema.Types.Number , default: 0}
+		totalFollowings :  { type: Schema.Types.Number , default: 0},
+		referralCode: {type: Schema.Types.String},
+		referrer: {type: Schema.Types.String}
 	},
 	{
 		timestamps: true,
