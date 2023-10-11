@@ -267,12 +267,19 @@ export const USER_MESSAGES = {
 			'Some Error occured while deleteing the USer Account'
 		),
 	},
-
+  REQUEST:{
+    SEND: defineMessage('Follow request send'),
+  },
+  REFERRAL:{
+    USAGE_LIMIT : "Refferal code usage limit has been reached."
+  }
 };
 
 export const COLLECTION_NAME = {
   user : 'user' ,
-  userDetail : 'user_detail'
+  userDetail : 'user_detail',
+  follow : 'follows',
+  followRequest : 'followRequest'
 };
 
 export const BY_PASS_OTP = '1234';
@@ -280,8 +287,8 @@ export const BY_PASS_OTP = '1234';
 export const passwordKey = '_p';
 
 export const GMAIL_SERVICE = {
-  EMAIL_USER: 'shahid.tumbi@steadyrabbit.in',
-  EMAIL_PASS: 'lppialxihssqtoae',
+  EMAIL_USER: 'dev@nksqr.com',
+  EMAIL_PASS: 'gbxoquqepcjlerty',
   SUBJECT: 'Forget Password',
   WELCOME_SUBJECT: 'Welcome to Links',
   WELCOME_HTML: `<p><h1><b>Welcome to Links</b></h1></p>
@@ -302,3 +309,9 @@ export const LinksConstant = {
   // S3BucketUrl : 'https://profileimageuploadbyhelpie.s3.amazonaws.com/HelpieUser/',
   S3BucketUrl: 'https://web.helpiephoto.com/v1/users/file/HelpieUser/',
 };
+
+export const QueueName = {
+  notification: "notification",
+  follow: "follow",
+  unfollow: "unfollow"
+}

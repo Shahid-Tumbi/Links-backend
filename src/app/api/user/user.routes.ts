@@ -53,7 +53,7 @@ router.post(
 
 router.post(
   '/logout',
-  session([UserType.User]),
+  session([UserType.Default]),
   userValidators.logout,
   userController.logout
 );
@@ -74,27 +74,23 @@ router.get(
   userController.getImageFromS3
 );
 
-router.get('/getConstant', userController.cosnstantApi);
-
-// router.post(
-//     '/reset-password',
-//     session([UserType.Default]),
-//     userValidators.resetPassword,
-//     userController.resetPassword,
-// );
-
-// router.post(
-//     '/forgot-password/resend',
-//     session([UserType.Default]),
-//     userValidators.resendPasswordOtp,
-//     userController.resendPasswordOtp,
-// );
-
-// router.post(
-//     '/forgot-password/verify',
-//     session([UserType.Default]),
-//     userValidators.forgotPasswordOtp,
-//     userController.verifyForgetOtp,
-// );
-
+//Followers management Module 
+router.post('/follow',
+ session([UserType.User]),
+ userValidators.follow,
+ userController.follow
+ );
+router.get('/followers/:_id',
+ session([UserType.User]),
+ userController.followerList
+ );
+router.get('/following/:_id',
+ session([UserType.User]),
+ userController.followingList
+ );
+router.post('/unfollow',
+ session([UserType.User]),
+ userValidators.follow,
+ userController.unfollow
+ );
 export const userV1Routes = { path: '/users', router };

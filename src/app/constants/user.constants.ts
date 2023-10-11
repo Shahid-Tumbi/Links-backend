@@ -9,6 +9,8 @@ export enum UserStatus {
 	Active = '1',
 	InActive = '2',
 	Deleted = '3',
+	New = '4',
+	Block = '5'
 }
 
 export enum UserGender {
@@ -68,4 +70,11 @@ export enum GlobalSearchType {
 	Pet = '2',
 	Hashtag = '3',
 	Event = '4',
+}
+
+export const ratingRange = [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+export enum RequestStatus {
+	Pending = '1',
+	Archived = '2',
 }

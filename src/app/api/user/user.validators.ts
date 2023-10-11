@@ -34,7 +34,9 @@ const JUser = Joi.object({
 	deviceToken: JString.optional().allow(""),
 	latitude: JNumber.optional().allow(""),
 	longitude: JNumber.optional().allow(""),
-	userName: JUserName.required()
+	userName: JUserName.required(),
+	referralCode: JString.optional().allow(""),
+	referrer: JString.optional().allow("")
 });
 
 const JDeviceToken = JString;
@@ -104,8 +106,7 @@ export const userValidators = {
 		profileImage:JString.optional(),
 		deviceToken:JString.optional(),
 		address:JString.optional(),
-		customerId:JString.optional(),
-		paymentMethod:JString.optional(),
+		isPrivate:Joi.boolean().optional()
 	}),'body'),
 	updateUserDataSchemas:validateSchema(Joi.object({
 		_id: JString.required()
@@ -196,5 +197,9 @@ export const userValidators = {
 	logout : validateSchema(Joi.object({
 		deviceToken: JString.optional(),
 		userId: JString.required()
+	}),'body'),
+	follow : validateSchema(Joi.object({
+		followerId: JString.required(),
+		followingId: JString.required()
 	}),'body')
 };

@@ -71,6 +71,9 @@ class PostService {
           { $set: payload },
           { new: true }
         );
+        if(!updatedPost){
+          return POST_MESSAGES.NO_POST_FOUND
+        }
         return updatedPost;
       } catch (error) {
         console.error('Error in user Update post service', error);
@@ -88,7 +91,6 @@ class PostService {
         const deletedPost = await this.Model.findByIdAndUpdate(
           { _id: payload._id },
           { $set: { is_deleted: true } },
-          { new: true }
         );
         return deletedPost;
       } catch (error) {

@@ -4,6 +4,7 @@ import {
 	Console,
 	passwordUtil,
 	randomNumberStringGenerator,
+	randomStringGenerator,
 	ResponseError,
 	tokenUtil,
 } from '@src/utils';
@@ -16,6 +17,8 @@ import {
 	LinksConstant,
 	USER_MESSAGES,
 	DEFAULT_PASSWORD,
+	BY_PASS_OTP,
+	QueueName
 } from './user.constants';
 import {
 	ILoginData,
@@ -23,10 +26,12 @@ import {
 	ILogoutData,
 	IChangePassword,
 } from './user.interface';
-import { User, UserDetailModel } from './user.model';
+import { FollowModel, FollowRequestModel, User, UserDetailModel } from './user.model';
 import { VerifyOtpData } from './user.swagger';
 import { producer, consumer } from '../../../rabbitmq';
 import getImageFromS3 from '@src/utils/getimage.util';
+import { ObjectId } from 'mongodb';
+import { DAO } from '@src/database';
 const useragent = require('express-useragent');
 
 class UserService {
@@ -71,9 +76,20 @@ class UserService {
 					new ResponseError(422, USER_MESSAGES.USER_NAME.TAKEN)
 				);
 			}
+			if(data.referrer){
+				const countRefferUsage = await this.Model.countDocuments({
+					referrer : data.referrer
+				});
+				if(countRefferUsage >= CONSTANT.REFERRAL_USAGE_COUNT.COUNT){
+					return Promise.reject(
+						new ResponseError(422, USER_MESSAGES.REFERRAL.USAGE_LIMIT)
+					);
+				}
+			}
 			const password = await passwordUtil.hash(data.password);
 			const otpNumber = randomNumberStringGenerator(6);
 			const otpExpireTime = Date.now() + CONSTANT.OTP.EXP_TIME * 1000;
+			const referralCode = randomStringGenerator(6);			
 			const auth: IUser.User = await this.UserModel.create({
 				...data,
 				password,
@@ -81,10 +97,13 @@ class UserService {
 					otpCode: otpNumber,
 					expireTime: otpExpireTime,
 				},
-				name: data.name
+				name: data.name,
+				status: data.referrer ? UserStatus.Active : UserStatus.New
 			});
 			const profile: IUser.Doc = await this.Model.create({
-				userId: auth._id
+				userId: auth._id,
+				referralCode: referralCode,
+				referrer: data.referrer
 			});
 			
 			// create session to login
@@ -155,7 +174,7 @@ class UserService {
 			if (
 				!data.otp ||
 				(result.otp.otpCode.toString() !== data.otp.toString() &&
-					data.otp !== '1234')
+					data.otp !== BY_PASS_OTP)
 			) {
 				return Promise.reject(
 					new ResponseError(400, USER_MESSAGES.VERIFY_OTP.INVALID)
@@ -289,7 +308,6 @@ class UserService {
 		}
 	}
 	async updateUserData(payload: IUser.User, client: Partial<App.Client>) {
-		console.log('updateUserData', payload);
 		try {
 			return await this.UserModel.findByIdAndUpdate(
 				{ _id: payload._id },
@@ -368,8 +386,8 @@ class UserService {
 	async notification(req: any, res: any) {
 		console.log('reqBody', req.body);
 		try {
-			await producer(req.body);
-			await consumer();
+			await producer(req.body,QueueName.notification);
+			await consumer(QueueName.notification);
 		} catch (err) {
 			return err;
 		}
@@ -394,6 +412,96 @@ class UserService {
 	async getImageFromS3(req: any, res: any) {
 		try {
 			return getImageFromS3(req, res);
+		} catch (error) {
+			Console.error('Error in  service', error);
+			return Promise.reject(new ResponseError(422, error));
+		}
+	}
+	async follow(req:App.Request, user:App.User){
+		try {
+			const followExist = await FollowModel.find(req.body)			
+			if(followExist.length > 0 ){
+				return Promise.reject(
+					new ResponseError(400, USER_MESSAGES.FOLLOW.ALREADY)
+				);
+			}
+			const { followingId } = req.body
+			const isProfilePrivate = await this.UserModel.findById(followingId)
+			if(isProfilePrivate?.isPrivate){
+				await FollowRequestModel.create(req.body)
+				return USER_MESSAGES.REQUEST.SEND.EN
+			}
+			await FollowModel.create({
+				...req.body,
+				followRequestDate:new Date()
+			});
+			producer(req.body,QueueName.follow)
+			consumer(QueueName.follow)
+        	return  USER_MESSAGES.FOLLOW.SUCCESS.EN
+		} catch (error) {
+			Console.error('Error in  service', error);
+			return Promise.reject(new ResponseError(422, error));
+		}
+	}
+	async getUserFollowList(req: App.Request) {
+		try {
+		  const userId = new ObjectId(req.params._id);
+		  const page = parseInt(req.query.page?.toString()) || 1;
+          const limit = parseInt(req.query.limit?.toString()) || 10;
+		  let matchCriteria;
+	  
+		  if (req.path.includes('/followers/')) {
+			matchCriteria = { followingId: userId };
+		  } else if (req.path.includes('/following/')) {
+			matchCriteria = { followerId: userId };
+		  } else {
+			return Promise.reject(new ResponseError(400, 'Invalid endpoint'));
+		  }
+	  
+		  const pipeline = [
+			{
+			  $match: matchCriteria,
+			},
+			{
+			  $lookup: {
+				from: 'user',
+				localField: req.path.includes('/followers/') ? 'followerId' : 'followingId',
+				foreignField: '_id',
+				as: 'followerInfo',
+			  },
+			},
+			{
+			  $unwind: '$followerInfo',
+			},
+			{
+			  $project: {
+				_id: 0,
+				'followerInfo._id': 1,
+				'followerInfo.name': 1,
+				'followerInfo.profileImage': 1,
+			  },
+			},
+		  ];
+		  return await DAO.paginateWithNextHit(FollowModel, pipeline, limit, page);
+		} catch (error) {
+		  console.error('Error in service', error);
+		  return Promise.reject(new ResponseError(422, error));
+		}
+	  }
+	  
+	async unfollow(req:App.Request, user:App.User){
+		try {
+			const { followerId, followingId } = req.body
+			const result = await FollowModel.deleteOne({ followerId, followingId });
+        	if (result.deletedCount === 1) {
+				producer(req.body,QueueName.unfollow)
+				consumer(QueueName.unfollow)
+				return USER_MESSAGES.UNFOLLOW.SUCCESS.EN;
+			  } else {
+				return Promise.reject(
+					new ResponseError(401,USER_MESSAGES.UNFOLLOW.ALREADY)
+				);
+			  }
 		} catch (error) {
 			Console.error('Error in  service', error);
 			return Promise.reject(new ResponseError(422, error));
