@@ -16,6 +16,7 @@ export const postValidators = {
         content: JString,
         link: JString,
         gpt_summary: JString,
+        commentsEnable: Joi.boolean().optional().default(false)
 
     }), 'body'),
 
