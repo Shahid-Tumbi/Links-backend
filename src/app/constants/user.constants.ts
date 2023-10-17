@@ -6,10 +6,10 @@ export enum UserType {
 }
 
 export enum UserStatus {
-	Active = '1',
+	Active = '1',  // Creator User
 	InActive = '2',
 	Deleted = '3',
-	New = '4',
+	New = '4',     // Audience User
 	Block = '5'
 }
 

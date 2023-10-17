@@ -26,6 +26,17 @@ const postSchema = new Schema(
     gpt_summary: {
       type: String,
     },
+    tags : {
+      type: Array
+    },
+    likes: {
+      type: Number,
+    },
+    dislikes: {
+      type: Number,
+    },
+    mod_review : { type: Boolean, default: false },
+    commentsEnable : { type: Boolean, default: false },
     is_deleted: { type: Boolean, default: false },
   },
   { timestamps: true });

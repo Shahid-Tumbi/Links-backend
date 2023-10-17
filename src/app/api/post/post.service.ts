@@ -1,5 +1,6 @@
 import { App } from '@src/app/app.interface';
 import {
+  DbLogger,
 	ResponseError,
 } from '@src/utils';
 import { CommentModel, LikeModel, PostModel, ShareModel } from './post.model';
@@ -7,8 +8,11 @@ import { ICreatePostData, IDeletePostData,  IPost,  IPostDetail,  IUpdatePostDat
 import { POST_MESSAGES } from './post.constants';
 import { DAO } from '@src/database';
 import { User } from '../user';
-import { USER_MESSAGES } from '../user/user.constants';
+import { QueueName, USER_MESSAGES } from '../user/user.constants';
 import { ObjectId } from 'mongodb';
+import { consumer, producer } from '@src/rabbitmq';
+const axios = require('axios');
+const contentTypeParser = require('content-type');
 
 class PostService {
 	readonly Model = PostModel;
@@ -22,15 +26,29 @@ class PostService {
     async createPost(data: ICreatePostData) {
       try {
         const user = await this.UserModel.findById(data.userId)
-        if(!user){
+        if (!user) {
           return Promise.reject(
-            new ResponseError(422,USER_MESSAGES.USER_NOT_FOUND)
-        )
+            new ResponseError(422, USER_MESSAGES.USER_NOT_FOUND)
+          )
         }
-        console.log('USER==',user);
-        
-        const result = await this.Model.create(data);
-        return result;
+        const response = await axios.get(data.link).catch((error: any) => {
+          console.error('An error occurred:', error);
+          throw error;
+        });
+        const contentType = response.headers['content-type'];
+        const { type } = contentTypeParser.parse(contentType);
+        if (type === 'text/html') {
+          const postCreated = await this.Model.create({
+            ...data
+          });
+          DbLogger.info('Gpt process start')
+          producer({postId:postCreated._id,postData:response.data},QueueName.gptprocess)
+          consumer(QueueName.gptprocess)
+          return postCreated;
+        } else {
+          console.log('URL does not point to an HTML page');
+          return Promise.reject(new ResponseError(422, POST_MESSAGES.INVALID_LINK_TYPE));
+        }
       } catch (error) {
         console.error('Error in post create service', error);
         return Promise.reject(new ResponseError(422, error));
@@ -110,6 +128,7 @@ class PostService {
   
       const pipeline = [
         { $match: { is_deleted: false } },
+        { $sort: { createdAt: -1 } },
       ];
   
       return await DAO.paginateWithNextHit(this.Model, pipeline, limit, page);

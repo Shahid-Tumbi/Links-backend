@@ -313,5 +313,6 @@ export const LinksConstant = {
 export const QueueName = {
   notification: "notification",
   follow: "follow",
-  unfollow: "unfollow"
+  unfollow: "unfollow",
+  gptprocess: "gpt-processing"
 }
