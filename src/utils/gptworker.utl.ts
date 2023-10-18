@@ -49,7 +49,7 @@ const gptWorker = async (data:any) => {
           { _id: data.postId },{
           gpt_summary: summary.choices[0].message.content,
           tags: trimmedArray,
-          
+          mod_review: true          
         });
         return result
       
