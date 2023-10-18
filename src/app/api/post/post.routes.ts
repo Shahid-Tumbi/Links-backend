@@ -44,6 +44,12 @@ router.put(
     postValidators.likePost,
     postController.likePost
   );
+  router.post(
+    '/dislike',
+    session([UserType.User]),
+    postValidators.likePost,
+    postController.dislikePost
+  );
   
   router.post(
     '/comment',

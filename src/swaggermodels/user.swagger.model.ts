@@ -84,12 +84,5 @@ export class UserLogin {
 		example: 'Admin@321' as any,
 	})
 	password: string;
-	@ApiModelProperty({
-		description: 'Dial Code',
-		required: false,
-		type: SwaggerDefinitionConstant.OBJECT,
-		example: '+91' as any,
-	})
-	countryCode: string;
 }
 

@@ -314,5 +314,7 @@ export const QueueName = {
   notification: "notification",
   follow: "follow",
   unfollow: "unfollow",
-  gptprocess: "gpt-processing"
+  gptprocess: "gpt-processing",
+  like:'like',
+  dislike:'dislike'
 }

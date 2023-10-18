@@ -231,6 +231,39 @@ class PostController {
       })
       .catch(next);
   }
+  @ApiOperationPost({
+    description: 'Dislike Post',
+    summary: 'Dislike Post',
+    path: '/dislike',
+    parameters: {
+      body: {
+        description: 'Create',
+        required: true,
+        model: 'LikePost',
+      },
+    },
+    security: {
+        bearerAuth: [],
+    },
+    responses: {
+      200: {
+        description: 'Success',
+        type: 'String',
+      },
+    },
+  })
+  dislikePost(
+    req: App.Request,
+    res: App.Response,
+    next: NextFunction
+  ) {        
+    postService
+      .dislikePost(req)
+      .then((result) => {
+        res.success('Success', result);
+      })
+      .catch(next);
+  }
 
   @ApiOperationPost({
     description: 'Comment Post',

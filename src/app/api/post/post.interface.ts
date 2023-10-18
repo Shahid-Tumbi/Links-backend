@@ -10,7 +10,6 @@ export namespace IPost {
     export interface Like {
         userId: string,
         postId: string,
-        rating: number
     }
     export interface Comment {
         userId: string,

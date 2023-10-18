@@ -3,7 +3,7 @@ import {
   DbLogger,
 	ResponseError,
 } from '@src/utils';
-import { CommentModel, LikeModel, PostModel, ShareModel } from './post.model';
+import { CommentModel, DislikeModel, LikeModel, PostModel, ShareModel } from './post.model';
 import { ICreatePostData, IDeletePostData,  IPost,  IPostDetail,  IUpdatePostData } from './post.interface';
 import { POST_MESSAGES } from './post.constants';
 import { DAO } from '@src/database';
@@ -149,29 +149,40 @@ class PostService {
      */
     async likePost(req: App.Request<IPost.Like>) {
       try {
-        const { postId, userId, rating } = req.body;
-  
-        // Ensure that the rating is within the valid percentage range
-        if (rating < 0 || rating > 10) {
-          throw new ResponseError(422, POST_MESSAGES.INVALID_RATING);
-        }
-  
+        const { postId, userId } = req.body;
         const existingLike = await LikeModel.findOne({ postId, userId });
-  
         if (existingLike) {
-          // If the like already exists, update the rating
-          return LikeModel.findOneAndUpdate(
-            { postId, userId },
-            { rating },
-            { new: true, upsert: true }
-          );
+          return Promise.reject(new ResponseError(422, POST_MESSAGES.ALREADY_LIKED));
         }
-  
-        // Create a new like
         const result = await LikeModel.create(req.body);
+        producer({ postId, userId },QueueName.like)
+        consumer(QueueName.like)
         return result;
       } catch (error) {
           console.error('Error in post like service', error);
+          return Promise.reject(new ResponseError(422, error));
+        }
+      }
+    /**
+     * Dislikes a post.
+     * 
+     * @param req - The request object containing the postId and userId.
+     * @returns A promise that resolves with the newly created dislike record or rejects with an error if the user has already disliked the post.
+     */
+    async dislikePost(req: App.Request<IPost.Like>) {
+      try {
+        const { postId, userId } = req.body
+        const existingDislike = await DislikeModel.findOne({ postId, userId });
+  
+        if (existingDislike) {
+          return Promise.reject(new ResponseError(422, POST_MESSAGES.ALREADY_DISLIKED));
+        }
+        const result = await DislikeModel.create(req.body);
+        producer({ postId, userId },QueueName.dislike)
+        consumer(QueueName.dislike)
+        return result;
+      } catch (error) {
+          console.error('Error in post dislike service', error);
           return Promise.reject(new ResponseError(422, error));
         }
       }

@@ -78,6 +78,13 @@ export class PasswordData {
 })
 export class UpdateUserData {
 	@ApiModelProperty({
+		description: 'Device Token to send notifications',
+		required: false,
+		type: SwaggerDefinitionConstant.STRING,
+		example: 'device token' as any,
+	})
+	deviceToken: string;
+	@ApiModelProperty({
 		description: 'name of user',
 		required: false,
 		type: SwaggerDefinitionConstant.STRING,

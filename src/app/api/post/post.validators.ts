@@ -1,7 +1,6 @@
 import * as Joi from 'joi';
 import { validateSchema } from '@middlewares/validator';
 import {
-    JNumber,
 	JString,
 } from '@validators/index';
 export const postValidators = {
@@ -34,7 +33,6 @@ export const postValidators = {
     likePost: validateSchema(Joi.object({
         userId: JString.required(),
         postId: JString.required(),
-        rating: JNumber.required()
     }),'body'),
 
     commentPost: validateSchema(Joi.object({
