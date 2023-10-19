@@ -1,0 +1,3411 @@
+[
+    {
+        "name": "",
+        "englishName": "English",
+        "isoCode": "en",
+        "iso6391": "en",
+        "iso6392": "eng"
+    },
+    {
+        "name": "",
+        "englishName": "Hindi",
+        "isoCode": "hi",
+        "iso6391": "hi",
+        "iso6392": "hin"
+    },
+    {
+        "name": "",
+        "englishName": "Achinese",
+        "isoCode": "ace",
+        "iso6391": null,
+        "iso6392": "ace"
+    },
+    {
+        "name": "",
+        "englishName": "Acoli",
+        "isoCode": "ach",
+        "iso6391": null,
+        "iso6392": "ach"
+    },
+    {
+        "name": "",
+        "englishName": "Adangme",
+        "isoCode": "ada",
+        "iso6391": null,
+        "iso6392": "ada"
+    },
+    {
+        "name": "",
+        "englishName": "Adyghe; Adygei",
+        "isoCode": "ady",
+        "iso6391": null,
+        "iso6392": "ady"
+    },
+    {
+        "name": "",
+        "englishName": "Afro-Asiatic languages",
+        "isoCode": "afa",
+        "iso6391": null,
+        "iso6392": "afa"
+    },
+    {
+        "name": "",
+        "englishName": "Afrihili",
+        "isoCode": "afh",
+        "iso6391": null,
+        "iso6392": "afh"
+    },
+    {
+        "name": "",
+        "englishName": "Afrikaans",
+        "isoCode": "af",
+        "iso6391": "af",
+        "iso6392": "afr"
+    },
+    {
+        "name": "",
+        "englishName": "Ainu",
+        "isoCode": "ain",
+        "iso6391": null,
+        "iso6392": "ain"
+    },
+    {
+        "name": "",
+        "englishName": "Akan",
+        "isoCode": "ak",
+        "iso6391": "ak",
+        "iso6392": "aka"
+    },
+    {
+        "name": "",
+        "englishName": "Akkadian",
+        "isoCode": "akk",
+        "iso6391": null,
+        "iso6392": "akk"
+    },
+    {
+        "name": "",
+        "englishName": "Albanian",
+        "isoCode": "sq",
+        "iso6391": "sq",
+        "iso6392": "alb"
+    },
+    {
+        "name": "",
+        "englishName": "Aleut",
+        "isoCode": "ale",
+        "iso6391": null,
+        "iso6392": "ale"
+    },
+    {
+        "name": "",
+        "englishName": "Algonquian languages",
+        "isoCode": "alg",
+        "iso6391": null,
+        "iso6392": "alg"
+    },
+    {
+        "name": "",
+        "englishName": "Southern Altai",
+        "isoCode": "alt",
+        "iso6391": null,
+        "iso6392": "alt"
+    },
+    {
+        "name": "",
+        "englishName": "Amharic",
+        "isoCode": "am",
+        "iso6391": "am",
+        "iso6392": "amh"
+    },
+    {
+        "name": "",
+        "englishName": "English, Old (ca.450-1100)",
+        "isoCode": "ang",
+        "iso6391": null,
+        "iso6392": "ang"
+    },
+    {
+        "name": "",
+        "englishName": "Angika",
+        "isoCode": "anp",
+        "iso6391": null,
+        "iso6392": "anp"
+    },
+    {
+        "name": "",
+        "englishName": "Apache languages",
+        "isoCode": "apa",
+        "iso6391": null,
+        "iso6392": "apa"
+    },
+    {
+        "name": "",
+        "englishName": "Arabic",
+        "isoCode": "ar",
+        "iso6391": "ar",
+        "iso6392": "ara"
+    },
+    {
+        "name": "",
+        "englishName": "Official Aramaic (700-300 BCE); Imperial Aramaic (700-300 BCE)",
+        "isoCode": "arc",
+        "iso6391": null,
+        "iso6392": "arc"
+    },
+    {
+        "name": "",
+        "englishName": "Aragonese",
+        "isoCode": "an",
+        "iso6391": "an",
+        "iso6392": "arg"
+    },
+    {
+        "name": "",
+        "englishName": "Armenian",
+        "isoCode": "hy",
+        "iso6391": "hy",
+        "iso6392": "arm"
+    },
+    {
+        "name": "",
+        "englishName": "Mapudungun; Mapuche",
+        "isoCode": "arn",
+        "iso6391": null,
+        "iso6392": "arn"
+    },
+    {
+        "name": "",
+        "englishName": "Arapaho",
+        "isoCode": "arp",
+        "iso6391": null,
+        "iso6392": "arp"
+    },
+    {
+        "name": "",
+        "englishName": "Artificial languages",
+        "isoCode": "art",
+        "iso6391": null,
+        "iso6392": "art"
+    },
+    {
+        "name": "",
+        "englishName": "Arawak",
+        "isoCode": "arw",
+        "iso6391": null,
+        "iso6392": "arw"
+    },
+    {
+        "name": "",
+        "englishName": "Assamese",
+        "isoCode": "as",
+        "iso6391": "as",
+        "iso6392": "asm"
+    },
+    {
+        "name": "",
+        "englishName": "Asturian; Bable; Leonese; Asturleonese",
+        "isoCode": "ast",
+        "iso6391": null,
+        "iso6392": "ast"
+    },
+    {
+        "name": "",
+        "englishName": "Athapascan languages",
+        "isoCode": "ath",
+        "iso6391": null,
+        "iso6392": "ath"
+    },
+    {
+        "name": "",
+        "englishName": "Australian languages",
+        "isoCode": "aus",
+        "iso6391": null,
+        "iso6392": "aus"
+    },
+    {
+        "name": "",
+        "englishName": "Avaric",
+        "isoCode": "av",
+        "iso6391": "av",
+        "iso6392": "ava"
+    },
+    {
+        "name": "",
+        "englishName": "Avestan",
+        "isoCode": "ae",
+        "iso6391": "ae",
+        "iso6392": "ave"
+    },
+    {
+        "name": "",
+        "englishName": "Awadhi",
+        "isoCode": "awa",
+        "iso6391": null,
+        "iso6392": "awa"
+    },
+    {
+        "name": "",
+        "englishName": "Aymara",
+        "isoCode": "ay",
+        "iso6391": "ay",
+        "iso6392": "aym"
+    },
+    {
+        "name": "",
+        "englishName": "Azerbaijani",
+        "isoCode": "az",
+        "iso6391": "az",
+        "iso6392": "aze"
+    },
+    {
+        "name": "",
+        "englishName": "Banda languages",
+        "isoCode": "bad",
+        "iso6391": null,
+        "iso6392": "bad"
+    },
+    {
+        "name": "",
+        "englishName": "Bamileke languages",
+        "isoCode": "bai",
+        "iso6391": null,
+        "iso6392": "bai"
+    },
+    {
+        "name": "",
+        "englishName": "Bashkir",
+        "isoCode": "ba",
+        "iso6391": "ba",
+        "iso6392": "bak"
+    },
+    {
+        "name": "",
+        "englishName": "Baluchi",
+        "isoCode": "bal",
+        "iso6391": null,
+        "iso6392": "bal"
+    },
+    {
+        "name": "",
+        "englishName": "Bambara",
+        "isoCode": "bm",
+        "iso6391": "bm",
+        "iso6392": "bam"
+    },
+    {
+        "name": "",
+        "englishName": "Balinese",
+        "isoCode": "ban",
+        "iso6391": null,
+        "iso6392": "ban"
+    },
+    {
+        "name": "",
+        "englishName": "Basque",
+        "isoCode": "eu",
+        "iso6391": "eu",
+        "iso6392": "baq"
+    },
+    {
+        "name": "",
+        "englishName": "Basa",
+        "isoCode": "bas",
+        "iso6391": null,
+        "iso6392": "bas"
+    },
+    {
+        "name": "",
+        "englishName": "Baltic languages",
+        "isoCode": "bat",
+        "iso6391": null,
+        "iso6392": "bat"
+    },
+    {
+        "name": "",
+        "englishName": "Beja; Bedawiyet",
+        "isoCode": "bej",
+        "iso6391": null,
+        "iso6392": "bej"
+    },
+    {
+        "name": "",
+        "englishName": "Belarusian",
+        "isoCode": "be",
+        "iso6391": "be",
+        "iso6392": "bel"
+    },
+    {
+        "name": "",
+        "englishName": "Bemba",
+        "isoCode": "bem",
+        "iso6391": null,
+        "iso6392": "bem"
+    },
+    {
+        "name": "",
+        "englishName": "Bengali",
+        "isoCode": "bn",
+        "iso6391": "bn",
+        "iso6392": "ben"
+    },
+    {
+        "name": "",
+        "englishName": "Berber languages",
+        "isoCode": "ber",
+        "iso6391": null,
+        "iso6392": "ber"
+    },
+    {
+        "name": "",
+        "englishName": "Bhojpuri",
+        "isoCode": "bho",
+        "iso6391": null,
+        "iso6392": "bho"
+    },
+    {
+        "name": "",
+        "englishName": "Bihari languages",
+        "isoCode": "bh",
+        "iso6391": "bh",
+        "iso6392": "bih"
+    },
+    {
+        "name": "",
+        "englishName": "Bikol",
+        "isoCode": "bik",
+        "iso6391": null,
+        "iso6392": "bik"
+    },
+    {
+        "name": "",
+        "englishName": "Bini; Edo",
+        "isoCode": "bin",
+        "iso6391": null,
+        "iso6392": "bin"
+    },
+    {
+        "name": "",
+        "englishName": "Bislama",
+        "isoCode": "bi",
+        "iso6391": "bi",
+        "iso6392": "bis"
+    },
+    {
+        "name": "",
+        "englishName": "Siksika",
+        "isoCode": "bla",
+        "iso6391": null,
+        "iso6392": "bla"
+    },
+    {
+        "name": "",
+        "englishName": "Bantu (Other)",
+        "isoCode": "bnt",
+        "iso6391": null,
+        "iso6392": "bnt"
+    },
+    {
+        "name": "",
+        "englishName": "Bosnian",
+        "isoCode": "bs",
+        "iso6391": "bs",
+        "iso6392": "bos"
+    },
+    {
+        "name": "",
+        "englishName": "Braj",
+        "isoCode": "bra",
+        "iso6391": null,
+        "iso6392": "bra"
+    },
+    {
+        "name": "",
+        "englishName": "Breton",
+        "isoCode": "br",
+        "iso6391": "br",
+        "iso6392": "bre"
+    },
+    {
+        "name": "",
+        "englishName": "Batak languages",
+        "isoCode": "btk",
+        "iso6391": null,
+        "iso6392": "btk"
+    },
+    {
+        "name": "",
+        "englishName": "Buriat",
+        "isoCode": "bua",
+        "iso6391": null,
+        "iso6392": "bua"
+    },
+    {
+        "name": "",
+        "englishName": "Buginese",
+        "isoCode": "bug",
+        "iso6391": null,
+        "iso6392": "bug"
+    },
+    {
+        "name": "",
+        "englishName": "Bulgarian",
+        "isoCode": "bg",
+        "iso6391": "bg",
+        "iso6392": "bul"
+    },
+    {
+        "name": "",
+        "englishName": "Burmese",
+        "isoCode": "my",
+        "iso6391": "my",
+        "iso6392": "bur"
+    },
+    {
+        "name": "",
+        "englishName": "Blin; Bilin",
+        "isoCode": "byn",
+        "iso6391": null,
+        "iso6392": "byn"
+    },
+    {
+        "name": "",
+        "englishName": "Caddo",
+        "isoCode": "cad",
+        "iso6391": null,
+        "iso6392": "cad"
+    },
+    {
+        "name": "",
+        "englishName": "Central American Indian languages",
+        "isoCode": "cai",
+        "iso6391": null,
+        "iso6392": "cai"
+    },
+    {
+        "name": "",
+        "englishName": "Galibi Carib",
+        "isoCode": "car",
+        "iso6391": null,
+        "iso6392": "car"
+    },
+    {
+        "name": "",
+        "englishName": "Catalan; Valencian",
+        "isoCode": "ca",
+        "iso6391": "ca",
+        "iso6392": "cat"
+    },
+    {
+        "name": "",
+        "englishName": "Caucasian languages",
+        "isoCode": "cau",
+        "iso6391": null,
+        "iso6392": "cau"
+    },
+    {
+        "name": "",
+        "englishName": "Cebuano",
+        "isoCode": "ceb",
+        "iso6391": null,
+        "iso6392": "ceb"
+    },
+    {
+        "name": "",
+        "englishName": "Celtic languages",
+        "isoCode": "cel",
+        "iso6391": null,
+        "iso6392": "cel"
+    },
+    {
+        "name": "",
+        "englishName": "Chamorro",
+        "isoCode": "ch",
+        "iso6391": "ch",
+        "iso6392": "cha"
+    },
+    {
+        "name": "",
+        "englishName": "Chibcha",
+        "isoCode": "chb",
+        "iso6391": null,
+        "iso6392": "chb"
+    },
+    {
+        "name": "",
+        "englishName": "Chechen",
+        "isoCode": "ce",
+        "iso6391": "ce",
+        "iso6392": "che"
+    },
+    {
+        "name": "",
+        "englishName": "Chagatai",
+        "isoCode": "chg",
+        "iso6391": null,
+        "iso6392": "chg"
+    },
+    {
+        "name": "",
+        "englishName": "Chinese",
+        "isoCode": "zh",
+        "iso6391": "zh",
+        "iso6392": "chi"
+    },
+    {
+        "name": "",
+        "englishName": "Chuukese",
+        "isoCode": "chk",
+        "iso6391": null,
+        "iso6392": "chk"
+    },
+    {
+        "name": "",
+        "englishName": "Mari",
+        "isoCode": "chm",
+        "iso6391": null,
+        "iso6392": "chm"
+    },
+    {
+        "name": "",
+        "englishName": "Chinook jargon",
+        "isoCode": "chn",
+        "iso6391": null,
+        "iso6392": "chn"
+    },
+    {
+        "name": "",
+        "englishName": "Choctaw",
+        "isoCode": "cho",
+        "iso6391": null,
+        "iso6392": "cho"
+    },
+    {
+        "name": "",
+        "englishName": "Chipewyan; Dene Suline",
+        "isoCode": "chp",
+        "iso6391": null,
+        "iso6392": "chp"
+    },
+    {
+        "name": "",
+        "englishName": "Cherokee",
+        "isoCode": "chr",
+        "iso6391": null,
+        "iso6392": "chr"
+    },
+    {
+        "name": "",
+        "englishName": "Church Slavic; Old Slavonic; Church Slavonic; Old Bulgarian; Old Church Slavonic",
+        "isoCode": "cu",
+        "iso6391": "cu",
+        "iso6392": "chu"
+    },
+    {
+        "name": "",
+        "englishName": "Chuvash",
+        "isoCode": "cv",
+        "iso6391": "cv",
+        "iso6392": "chv"
+    },
+    {
+        "name": "",
+        "englishName": "Cheyenne",
+        "isoCode": "chy",
+        "iso6391": null,
+        "iso6392": "chy"
+    },
+    {
+        "name": "",
+        "englishName": "Chamic languages",
+        "isoCode": "cmc",
+        "iso6391": null,
+        "iso6392": "cmc"
+    },
+    {
+        "name": "",
+        "englishName": "Montenegrin",
+        "isoCode": "cnr",
+        "iso6391": null,
+        "iso6392": "cnr"
+    },
+    {
+        "name": "",
+        "englishName": "Coptic",
+        "isoCode": "cop",
+        "iso6391": null,
+        "iso6392": "cop"
+    },
+    {
+        "name": "",
+        "englishName": "Cornish",
+        "isoCode": "kw",
+        "iso6391": "kw",
+        "iso6392": "cor"
+    },
+    {
+        "name": "",
+        "englishName": "Corsican",
+        "isoCode": "co",
+        "iso6391": "co",
+        "iso6392": "cos"
+    },
+    {
+        "name": "",
+        "englishName": "Creoles and pidgins, English based",
+        "isoCode": "cpe",
+        "iso6391": null,
+        "iso6392": "cpe"
+    },
+    {
+        "name": "",
+        "englishName": "Creoles and pidgins, French-based",
+        "isoCode": "cpf",
+        "iso6391": null,
+        "iso6392": "cpf"
+    },
+    {
+        "name": "",
+        "englishName": "Creoles and pidgins, Portuguese-based",
+        "isoCode": "cpp",
+        "iso6391": null,
+        "iso6392": "cpp"
+    },
+    {
+        "name": "",
+        "englishName": "Cree",
+        "isoCode": "cr",
+        "iso6391": "cr",
+        "iso6392": "cre"
+    },
+    {
+        "name": "",
+        "englishName": "Crimean Tatar; Crimean Turkish",
+        "isoCode": "crh",
+        "iso6391": null,
+        "iso6392": "crh"
+    },
+    {
+        "name": "",
+        "englishName": "Creoles and pidgins",
+        "isoCode": "crp",
+        "iso6391": null,
+        "iso6392": "crp"
+    },
+    {
+        "name": "",
+        "englishName": "Kashubian",
+        "isoCode": "csb",
+        "iso6391": null,
+        "iso6392": "csb"
+    },
+    {
+        "name": "",
+        "englishName": "Cushitic languages",
+        "isoCode": "cus",
+        "iso6391": null,
+        "iso6392": "cus"
+    },
+    {
+        "name": "",
+        "englishName": "Czech",
+        "isoCode": "cs",
+        "iso6391": "cs",
+        "iso6392": "cze"
+    },
+    {
+        "name": "",
+        "englishName": "Dakota",
+        "isoCode": "dak",
+        "iso6391": null,
+        "iso6392": "dak"
+    },
+    {
+        "name": "",
+        "englishName": "Danish",
+        "isoCode": "da",
+        "iso6391": "da",
+        "iso6392": "dan"
+    },
+    {
+        "name": "",
+        "englishName": "Dargwa",
+        "isoCode": "dar",
+        "iso6391": null,
+        "iso6392": "dar"
+    },
+    {
+        "name": "",
+        "englishName": "Land Dayak languages",
+        "isoCode": "day",
+        "iso6391": null,
+        "iso6392": "day"
+    },
+    {
+        "name": "",
+        "englishName": "Delaware",
+        "isoCode": "del",
+        "iso6391": null,
+        "iso6392": "del"
+    },
+    {
+        "name": "",
+        "englishName": "Slave (Athapascan)",
+        "isoCode": "den",
+        "iso6391": null,
+        "iso6392": "den"
+    },
+    {
+        "name": "",
+        "englishName": "Dogrib",
+        "isoCode": "dgr",
+        "iso6391": null,
+        "iso6392": "dgr"
+    },
+    {
+        "name": "",
+        "englishName": "Dinka",
+        "isoCode": "din",
+        "iso6391": null,
+        "iso6392": "din"
+    },
+    {
+        "name": "",
+        "englishName": "Divehi; Dhivehi; Maldivian",
+        "isoCode": "dv",
+        "iso6391": "dv",
+        "iso6392": "div"
+    },
+    {
+        "name": "",
+        "englishName": "Dogri",
+        "isoCode": "doi",
+        "iso6391": null,
+        "iso6392": "doi"
+    },
+    {
+        "name": "",
+        "englishName": "Dravidian languages",
+        "isoCode": "dra",
+        "iso6391": null,
+        "iso6392": "dra"
+    },
+    {
+        "name": "",
+        "englishName": "Lower Sorbian",
+        "isoCode": "dsb",
+        "iso6391": null,
+        "iso6392": "dsb"
+    },
+    {
+        "name": "",
+        "englishName": "Duala",
+        "isoCode": "dua",
+        "iso6391": null,
+        "iso6392": "dua"
+    },
+    {
+        "name": "",
+        "englishName": "Dutch, Middle (ca.1050-1350)",
+        "isoCode": "dum",
+        "iso6391": null,
+        "iso6392": "dum"
+    },
+    {
+        "name": "",
+        "englishName": "Dutch; Flemish",
+        "isoCode": "nl",
+        "iso6391": "nl",
+        "iso6392": "dut"
+    },
+    {
+        "name": "",
+        "englishName": "Dyula",
+        "isoCode": "dyu",
+        "iso6391": null,
+        "iso6392": "dyu"
+    },
+    {
+        "name": "",
+        "englishName": "Dzongkha",
+        "isoCode": "dz",
+        "iso6391": "dz",
+        "iso6392": "dzo"
+    },
+    {
+        "name": "",
+        "englishName": "Efik",
+        "isoCode": "efi",
+        "iso6391": null,
+        "iso6392": "efi"
+    },
+    {
+        "name": "",
+        "englishName": "Egyptian (Ancient)",
+        "isoCode": "egy",
+        "iso6391": null,
+        "iso6392": "egy"
+    },
+    {
+        "name": "",
+        "englishName": "Ekajuk",
+        "isoCode": "eka",
+        "iso6391": null,
+        "iso6392": "eka"
+    },
+    {
+        "name": "",
+        "englishName": "Elamite",
+        "isoCode": "elx",
+        "iso6391": null,
+        "iso6392": "elx"
+    },
+    {
+        "name": "",
+        "englishName": "English, Middle (1100-1500)",
+        "isoCode": "enm",
+        "iso6391": null,
+        "iso6392": "enm"
+    },
+    {
+        "name": "",
+        "englishName": "Esperanto",
+        "isoCode": "eo",
+        "iso6391": "eo",
+        "iso6392": "epo"
+    },
+    {
+        "name": "",
+        "englishName": "Estonian",
+        "isoCode": "et",
+        "iso6391": "et",
+        "iso6392": "est"
+    },
+    {
+        "name": "",
+        "englishName": "Ewe",
+        "isoCode": "ee",
+        "iso6391": "ee",
+        "iso6392": "ewe"
+    },
+    {
+        "name": "",
+        "englishName": "Ewondo",
+        "isoCode": "ewo",
+        "iso6391": null,
+        "iso6392": "ewo"
+    },
+    {
+        "name": "",
+        "englishName": "Fang",
+        "isoCode": "fan",
+        "iso6391": null,
+        "iso6392": "fan"
+    },
+    {
+        "name": "",
+        "englishName": "Faroese",
+        "isoCode": "fo",
+        "iso6391": "fo",
+        "iso6392": "fao"
+    },
+    {
+        "name": "",
+        "englishName": "Fanti",
+        "isoCode": "fat",
+        "iso6391": null,
+        "iso6392": "fat"
+    },
+    {
+        "name": "",
+        "englishName": "Fijian",
+        "isoCode": "fj",
+        "iso6391": "fj",
+        "iso6392": "fij"
+    },
+    {
+        "name": "",
+        "englishName": "Filipino; Pilipino",
+        "isoCode": "fil",
+        "iso6391": null,
+        "iso6392": "fil"
+    },
+    {
+        "name": "",
+        "englishName": "Finnish",
+        "isoCode": "fi",
+        "iso6391": "fi",
+        "iso6392": "fin"
+    },
+    {
+        "name": "",
+        "englishName": "Finno-Ugrian languages",
+        "isoCode": "fiu",
+        "iso6391": null,
+        "iso6392": "fiu"
+    },
+    {
+        "name": "",
+        "englishName": "Fon",
+        "isoCode": "fon",
+        "iso6391": null,
+        "iso6392": "fon"
+    },
+    {
+        "name": "",
+        "englishName": "French",
+        "isoCode": "fr",
+        "iso6391": "fr",
+        "iso6392": "fre"
+    },
+    {
+        "name": "",
+        "englishName": "French, Middle (ca.1400-1600)",
+        "isoCode": "frm",
+        "iso6391": null,
+        "iso6392": "frm"
+    },
+    {
+        "name": "",
+        "englishName": "French, Old (842-ca.1400)",
+        "isoCode": "fro",
+        "iso6391": null,
+        "iso6392": "fro"
+    },
+    {
+        "name": "",
+        "englishName": "Northern Frisian",
+        "isoCode": "frr",
+        "iso6391": null,
+        "iso6392": "frr"
+    },
+    {
+        "name": "",
+        "englishName": "Eastern Frisian",
+        "isoCode": "frs",
+        "iso6391": null,
+        "iso6392": "frs"
+    },
+    {
+        "name": "",
+        "englishName": "Western Frisian",
+        "isoCode": "fy",
+        "iso6391": "fy",
+        "iso6392": "fry"
+    },
+    {
+        "name": "",
+        "englishName": "Fulah",
+        "isoCode": "ff",
+        "iso6391": "ff",
+        "iso6392": "ful"
+    },
+    {
+        "name": "",
+        "englishName": "Friulian",
+        "isoCode": "fur",
+        "iso6391": null,
+        "iso6392": "fur"
+    },
+    {
+        "name": "",
+        "englishName": "Ga",
+        "isoCode": "gaa",
+        "iso6391": null,
+        "iso6392": "gaa"
+    },
+    {
+        "name": "",
+        "englishName": "Gayo",
+        "isoCode": "gay",
+        "iso6391": null,
+        "iso6392": "gay"
+    },
+    {
+        "name": "",
+        "englishName": "Gbaya",
+        "isoCode": "gba",
+        "iso6391": null,
+        "iso6392": "gba"
+    },
+    {
+        "name": "",
+        "englishName": "Germanic languages",
+        "isoCode": "gem",
+        "iso6391": null,
+        "iso6392": "gem"
+    },
+    {
+        "name": "",
+        "englishName": "Georgian",
+        "isoCode": "ka",
+        "iso6391": "ka",
+        "iso6392": "geo"
+    },
+    {
+        "name": "",
+        "englishName": "German",
+        "isoCode": "de",
+        "iso6391": "de",
+        "iso6392": "ger"
+    },
+    {
+        "name": "",
+        "englishName": "Geez",
+        "isoCode": "gez",
+        "iso6391": null,
+        "iso6392": "gez"
+    },
+    {
+        "name": "",
+        "englishName": "Gilbertese",
+        "isoCode": "gil",
+        "iso6391": null,
+        "iso6392": "gil"
+    },
+    {
+        "name": "",
+        "englishName": "Gaelic; Scottish Gaelic",
+        "isoCode": "gd",
+        "iso6391": "gd",
+        "iso6392": "gla"
+    },
+    {
+        "name": "",
+        "englishName": "Irish",
+        "isoCode": "ga",
+        "iso6391": "ga",
+        "iso6392": "gle"
+    },
+    {
+        "name": "",
+        "englishName": "Galician",
+        "isoCode": "gl",
+        "iso6391": "gl",
+        "iso6392": "glg"
+    },
+    {
+        "name": "",
+        "englishName": "Manx",
+        "isoCode": "gv",
+        "iso6391": "gv",
+        "iso6392": "glv"
+    },
+    {
+        "name": "",
+        "englishName": "German, Middle High (ca.1050-1500)",
+        "isoCode": "gmh",
+        "iso6391": null,
+        "iso6392": "gmh"
+    },
+    {
+        "name": "",
+        "englishName": "German, Old High (ca.750-1050)",
+        "isoCode": "goh",
+        "iso6391": null,
+        "iso6392": "goh"
+    },
+    {
+        "name": "",
+        "englishName": "Gondi",
+        "isoCode": "gon",
+        "iso6391": null,
+        "iso6392": "gon"
+    },
+    {
+        "name": "",
+        "englishName": "Gorontalo",
+        "isoCode": "gor",
+        "iso6391": null,
+        "iso6392": "gor"
+    },
+    {
+        "name": "",
+        "englishName": "Gothic",
+        "isoCode": "got",
+        "iso6391": null,
+        "iso6392": "got"
+    },
+    {
+        "name": "",
+        "englishName": "Grebo",
+        "isoCode": "grb",
+        "iso6391": null,
+        "iso6392": "grb"
+    },
+    {
+        "name": "",
+        "englishName": "Greek, Ancient (to 1453)",
+        "isoCode": "grc",
+        "iso6391": null,
+        "iso6392": "grc"
+    },
+    {
+        "name": "",
+        "englishName": "Greek, Modern (1453-)",
+        "isoCode": "el",
+        "iso6391": "el",
+        "iso6392": "gre"
+    },
+    {
+        "name": "",
+        "englishName": "Guarani",
+        "isoCode": "gn",
+        "iso6391": "gn",
+        "iso6392": "grn"
+    },
+    {
+        "name": "",
+        "englishName": "Swiss German; Alemannic; Alsatian",
+        "isoCode": "gsw",
+        "iso6391": null,
+        "iso6392": "gsw"
+    },
+    {
+        "name": "",
+        "englishName": "Gujarati",
+        "isoCode": "gu",
+        "iso6391": "gu",
+        "iso6392": "guj"
+    },
+    {
+        "name": "",
+        "englishName": "Gwich'in",
+        "isoCode": "gwi",
+        "iso6391": null,
+        "iso6392": "gwi"
+    },
+    {
+        "name": "",
+        "englishName": "Haida",
+        "isoCode": "hai",
+        "iso6391": null,
+        "iso6392": "hai"
+    },
+    {
+        "name": "",
+        "englishName": "Haitian; Haitian Creole",
+        "isoCode": "ht",
+        "iso6391": "ht",
+        "iso6392": "hat"
+    },
+    {
+        "name": "",
+        "englishName": "Hausa",
+        "isoCode": "ha",
+        "iso6391": "ha",
+        "iso6392": "hau"
+    },
+    {
+        "name": "",
+        "englishName": "Hawaiian",
+        "isoCode": "haw",
+        "iso6391": null,
+        "iso6392": "haw"
+    },
+    {
+        "name": "",
+        "englishName": "Hebrew",
+        "isoCode": "he",
+        "iso6391": "he",
+        "iso6392": "heb"
+    },
+    {
+        "name": "",
+        "englishName": "Herero",
+        "isoCode": "hz",
+        "iso6391": "hz",
+        "iso6392": "her"
+    },
+    {
+        "name": "",
+        "englishName": "Hiligaynon",
+        "isoCode": "hil",
+        "iso6391": null,
+        "iso6392": "hil"
+    },
+    {
+        "name": "",
+        "englishName": "Himachali languages; Western Pahari languages",
+        "isoCode": "him",
+        "iso6391": null,
+        "iso6392": "him"
+    },
+    {
+        "name": "",
+        "englishName": "Hittite",
+        "isoCode": "hit",
+        "iso6391": null,
+        "iso6392": "hit"
+    },
+    {
+        "name": "",
+        "englishName": "Hmong; Mong",
+        "isoCode": "hmn",
+        "iso6391": null,
+        "iso6392": "hmn"
+    },
+    {
+        "name": "",
+        "englishName": "Hiri Motu",
+        "isoCode": "ho",
+        "iso6391": "ho",
+        "iso6392": "hmo"
+    },
+    {
+        "name": "",
+        "englishName": "Croatian",
+        "isoCode": "hr",
+        "iso6391": "hr",
+        "iso6392": "hrv"
+    },
+    {
+        "name": "",
+        "englishName": "Upper Sorbian",
+        "isoCode": "hsb",
+        "iso6391": null,
+        "iso6392": "hsb"
+    },
+    {
+        "name": "",
+        "englishName": "Hungarian",
+        "isoCode": "hu",
+        "iso6391": "hu",
+        "iso6392": "hun"
+    },
+    {
+        "name": "",
+        "englishName": "Hupa",
+        "isoCode": "hup",
+        "iso6391": null,
+        "iso6392": "hup"
+    },
+    {
+        "name": "",
+        "englishName": "Iban",
+        "isoCode": "iba",
+        "iso6391": null,
+        "iso6392": "iba"
+    },
+    {
+        "name": "",
+        "englishName": "Igbo",
+        "isoCode": "ig",
+        "iso6391": "ig",
+        "iso6392": "ibo"
+    },
+    {
+        "name": "",
+        "englishName": "Icelandic",
+        "isoCode": "is",
+        "iso6391": "is",
+        "iso6392": "ice"
+    },
+    {
+        "name": "",
+        "englishName": "Ido",
+        "isoCode": "io",
+        "iso6391": "io",
+        "iso6392": "ido"
+    },
+    {
+        "name": "",
+        "englishName": "Sichuan Yi; Nuosu",
+        "isoCode": "ii",
+        "iso6391": "ii",
+        "iso6392": "iii"
+    },
+    {
+        "name": "",
+        "englishName": "Ijo languages",
+        "isoCode": "ijo",
+        "iso6391": null,
+        "iso6392": "ijo"
+    },
+    {
+        "name": "",
+        "englishName": "Inuktitut",
+        "isoCode": "iu",
+        "iso6391": "iu",
+        "iso6392": "iku"
+    },
+    {
+        "name": "",
+        "englishName": "Interlingue; Occidental",
+        "isoCode": "ie",
+        "iso6391": "ie",
+        "iso6392": "ile"
+    },
+    {
+        "name": "",
+        "englishName": "Iloko",
+        "isoCode": "ilo",
+        "iso6391": null,
+        "iso6392": "ilo"
+    },
+    {
+        "name": "",
+        "englishName": "Interlingua (International Auxiliary Language Association)",
+        "isoCode": "ia",
+        "iso6391": "ia",
+        "iso6392": "ina"
+    },
+    {
+        "name": "",
+        "englishName": "Indic languages",
+        "isoCode": "inc",
+        "iso6391": null,
+        "iso6392": "inc"
+    },
+    {
+        "name": "",
+        "englishName": "Indonesian",
+        "isoCode": "id",
+        "iso6391": "id",
+        "iso6392": "ind"
+    },
+    {
+        "name": "",
+        "englishName": "Indo-European languages",
+        "isoCode": "ine",
+        "iso6391": null,
+        "iso6392": "ine"
+    },
+    {
+        "name": "",
+        "englishName": "Ingush",
+        "isoCode": "inh",
+        "iso6391": null,
+        "iso6392": "inh"
+    },
+    {
+        "name": "",
+        "englishName": "Inupiaq",
+        "isoCode": "ik",
+        "iso6391": "ik",
+        "iso6392": "ipk"
+    },
+    {
+        "name": "",
+        "englishName": "Iranian languages",
+        "isoCode": "ira",
+        "iso6391": null,
+        "iso6392": "ira"
+    },
+    {
+        "name": "",
+        "englishName": "Iroquoian languages",
+        "isoCode": "iro",
+        "iso6391": null,
+        "iso6392": "iro"
+    },
+    {
+        "name": "",
+        "englishName": "Italian",
+        "isoCode": "it",
+        "iso6391": "it",
+        "iso6392": "ita"
+    },
+    {
+        "name": "",
+        "englishName": "Javanese",
+        "isoCode": "jv",
+        "iso6391": "jv",
+        "iso6392": "jav"
+    },
+    {
+        "name": "",
+        "englishName": "Lojban",
+        "isoCode": "jbo",
+        "iso6391": null,
+        "iso6392": "jbo"
+    },
+    {
+        "name": "",
+        "englishName": "Japanese",
+        "isoCode": "ja",
+        "iso6391": "ja",
+        "iso6392": "jpn"
+    },
+    {
+        "name": "",
+        "englishName": "Judeo-Persian",
+        "isoCode": "jpr",
+        "iso6391": null,
+        "iso6392": "jpr"
+    },
+    {
+        "name": "",
+        "englishName": "Judeo-Arabic",
+        "isoCode": "jrb",
+        "iso6391": null,
+        "iso6392": "jrb"
+    },
+    {
+        "name": "",
+        "englishName": "Kara-Kalpak",
+        "isoCode": "kaa",
+        "iso6391": null,
+        "iso6392": "kaa"
+    },
+    {
+        "name": "",
+        "englishName": "Kabyle",
+        "isoCode": "kab",
+        "iso6391": null,
+        "iso6392": "kab"
+    },
+    {
+        "name": "",
+        "englishName": "Kachin; Jingpho",
+        "isoCode": "kac",
+        "iso6391": null,
+        "iso6392": "kac"
+    },
+    {
+        "name": "",
+        "englishName": "Kalaallisut; Greenlandic",
+        "isoCode": "kl",
+        "iso6391": "kl",
+        "iso6392": "kal"
+    },
+    {
+        "name": "",
+        "englishName": "Kamba",
+        "isoCode": "kam",
+        "iso6391": null,
+        "iso6392": "kam"
+    },
+    {
+        "name": "",
+        "englishName": "Kannada",
+        "isoCode": "kn",
+        "iso6391": "kn",
+        "iso6392": "kan"
+    },
+    {
+        "name": "",
+        "englishName": "Karen languages",
+        "isoCode": "kar",
+        "iso6391": null,
+        "iso6392": "kar"
+    },
+    {
+        "name": "",
+        "englishName": "Kashmiri",
+        "isoCode": "ks",
+        "iso6391": "ks",
+        "iso6392": "kas"
+    },
+    {
+        "name": "",
+        "englishName": "Kanuri",
+        "isoCode": "kr",
+        "iso6391": "kr",
+        "iso6392": "kau"
+    },
+    {
+        "name": "",
+        "englishName": "Kawi",
+        "isoCode": "kaw",
+        "iso6391": null,
+        "iso6392": "kaw"
+    },
+    {
+        "name": "",
+        "englishName": "Kazakh",
+        "isoCode": "kk",
+        "iso6391": "kk",
+        "iso6392": "kaz"
+    },
+    {
+        "name": "",
+        "englishName": "Kabardian",
+        "isoCode": "kbd",
+        "iso6391": null,
+        "iso6392": "kbd"
+    },
+    {
+        "name": "",
+        "englishName": "Khasi",
+        "isoCode": "kha",
+        "iso6391": null,
+        "iso6392": "kha"
+    },
+    {
+        "name": "",
+        "englishName": "Khoisan languages",
+        "isoCode": "khi",
+        "iso6391": null,
+        "iso6392": "khi"
+    },
+    {
+        "name": "",
+        "englishName": "Central Khmer",
+        "isoCode": "km",
+        "iso6391": "km",
+        "iso6392": "khm"
+    },
+    {
+        "name": "",
+        "englishName": "Khotanese; Sakan",
+        "isoCode": "kho",
+        "iso6391": null,
+        "iso6392": "kho"
+    },
+    {
+        "name": "",
+        "englishName": "Kikuyu; Gikuyu",
+        "isoCode": "ki",
+        "iso6391": "ki",
+        "iso6392": "kik"
+    },
+    {
+        "name": "",
+        "englishName": "Kinyarwanda",
+        "isoCode": "rw",
+        "iso6391": "rw",
+        "iso6392": "kin"
+    },
+    {
+        "name": "",
+        "englishName": "Kirghiz; Kyrgyz",
+        "isoCode": "ky",
+        "iso6391": "ky",
+        "iso6392": "kir"
+    },
+    {
+        "name": "",
+        "englishName": "Kimbundu",
+        "isoCode": "kmb",
+        "iso6391": null,
+        "iso6392": "kmb"
+    },
+    {
+        "name": "",
+        "englishName": "Konkani",
+        "isoCode": "kok",
+        "iso6391": null,
+        "iso6392": "kok"
+    },
+    {
+        "name": "",
+        "englishName": "Komi",
+        "isoCode": "kv",
+        "iso6391": "kv",
+        "iso6392": "kom"
+    },
+    {
+        "name": "",
+        "englishName": "Kongo",
+        "isoCode": "kg",
+        "iso6391": "kg",
+        "iso6392": "kon"
+    },
+    {
+        "name": "",
+        "englishName": "Korean",
+        "isoCode": "ko",
+        "iso6391": "ko",
+        "iso6392": "kor"
+    },
+    {
+        "name": "",
+        "englishName": "Kosraean",
+        "isoCode": "kos",
+        "iso6391": null,
+        "iso6392": "kos"
+    },
+    {
+        "name": "",
+        "englishName": "Kpelle",
+        "isoCode": "kpe",
+        "iso6391": null,
+        "iso6392": "kpe"
+    },
+    {
+        "name": "",
+        "englishName": "Karachay-Balkar",
+        "isoCode": "krc",
+        "iso6391": null,
+        "iso6392": "krc"
+    },
+    {
+        "name": "",
+        "englishName": "Karelian",
+        "isoCode": "krl",
+        "iso6391": null,
+        "iso6392": "krl"
+    },
+    {
+        "name": "",
+        "englishName": "Kru languages",
+        "isoCode": "kro",
+        "iso6391": null,
+        "iso6392": "kro"
+    },
+    {
+        "name": "",
+        "englishName": "Kurukh",
+        "isoCode": "kru",
+        "iso6391": null,
+        "iso6392": "kru"
+    },
+    {
+        "name": "",
+        "englishName": "Kuanyama; Kwanyama",
+        "isoCode": "kj",
+        "iso6391": "kj",
+        "iso6392": "kua"
+    },
+    {
+        "name": "",
+        "englishName": "Kumyk",
+        "isoCode": "kum",
+        "iso6391": null,
+        "iso6392": "kum"
+    },
+    {
+        "name": "",
+        "englishName": "Kurdish",
+        "isoCode": "ku",
+        "iso6391": "ku",
+        "iso6392": "kur"
+    },
+    {
+        "name": "",
+        "englishName": "Kutenai",
+        "isoCode": "kut",
+        "iso6391": null,
+        "iso6392": "kut"
+    },
+    {
+        "name": "",
+        "englishName": "Ladino",
+        "isoCode": "lad",
+        "iso6391": null,
+        "iso6392": "lad"
+    },
+    {
+        "name": "",
+        "englishName": "Lahnda",
+        "isoCode": "lah",
+        "iso6391": null,
+        "iso6392": "lah"
+    },
+    {
+        "name": "",
+        "englishName": "Lamba",
+        "isoCode": "lam",
+        "iso6391": null,
+        "iso6392": "lam"
+    },
+    {
+        "name": "",
+        "englishName": "Lao",
+        "isoCode": "lo",
+        "iso6391": "lo",
+        "iso6392": "lao"
+    },
+    {
+        "name": "",
+        "englishName": "Latin",
+        "isoCode": "la",
+        "iso6391": "la",
+        "iso6392": "lat"
+    },
+    {
+        "name": "",
+        "englishName": "Latvian",
+        "isoCode": "lv",
+        "iso6391": "lv",
+        "iso6392": "lav"
+    },
+    {
+        "name": "",
+        "englishName": "Lezghian",
+        "isoCode": "lez",
+        "iso6391": null,
+        "iso6392": "lez"
+    },
+    {
+        "name": "",
+        "englishName": "Limburgan; Limburger; Limburgish",
+        "isoCode": "li",
+        "iso6391": "li",
+        "iso6392": "lim"
+    },
+    {
+        "name": "",
+        "englishName": "Lingala",
+        "isoCode": "ln",
+        "iso6391": "ln",
+        "iso6392": "lin"
+    },
+    {
+        "name": "",
+        "englishName": "Lithuanian",
+        "isoCode": "lt",
+        "iso6391": "lt",
+        "iso6392": "lit"
+    },
+    {
+        "name": "",
+        "englishName": "Mongo",
+        "isoCode": "lol",
+        "iso6391": null,
+        "iso6392": "lol"
+    },
+    {
+        "name": "",
+        "englishName": "Lozi",
+        "isoCode": "loz",
+        "iso6391": null,
+        "iso6392": "loz"
+    },
+    {
+        "name": "",
+        "englishName": "Luxembourgish; Letzeburgesch",
+        "isoCode": "lb",
+        "iso6391": "lb",
+        "iso6392": "ltz"
+    },
+    {
+        "name": "",
+        "englishName": "Luba-Lulua",
+        "isoCode": "lua",
+        "iso6391": null,
+        "iso6392": "lua"
+    },
+    {
+        "name": "",
+        "englishName": "Luba-Katanga",
+        "isoCode": "lu",
+        "iso6391": "lu",
+        "iso6392": "lub"
+    },
+    {
+        "name": "",
+        "englishName": "Ganda",
+        "isoCode": "lg",
+        "iso6391": "lg",
+        "iso6392": "lug"
+    },
+    {
+        "name": "",
+        "englishName": "Luiseno",
+        "isoCode": "lui",
+        "iso6391": null,
+        "iso6392": "lui"
+    },
+    {
+        "name": "",
+        "englishName": "Lunda",
+        "isoCode": "lun",
+        "iso6391": null,
+        "iso6392": "lun"
+    },
+    {
+        "name": "",
+        "englishName": "Luo (Kenya and Tanzania)",
+        "isoCode": "luo",
+        "iso6391": null,
+        "iso6392": "luo"
+    },
+    {
+        "name": "",
+        "englishName": "Lushai",
+        "isoCode": "lus",
+        "iso6391": null,
+        "iso6392": "lus"
+    },
+    {
+        "name": "",
+        "englishName": "Macedonian",
+        "isoCode": "mk",
+        "iso6391": "mk",
+        "iso6392": "mac"
+    },
+    {
+        "name": "",
+        "englishName": "Madurese",
+        "isoCode": "mad",
+        "iso6391": null,
+        "iso6392": "mad"
+    },
+    {
+        "name": "",
+        "englishName": "Magahi",
+        "isoCode": "mag",
+        "iso6391": null,
+        "iso6392": "mag"
+    },
+    {
+        "name": "",
+        "englishName": "Marshallese",
+        "isoCode": "mh",
+        "iso6391": "mh",
+        "iso6392": "mah"
+    },
+    {
+        "name": "",
+        "englishName": "Maithili",
+        "isoCode": "mai",
+        "iso6391": null,
+        "iso6392": "mai"
+    },
+    {
+        "name": "",
+        "englishName": "Makasar",
+        "isoCode": "mak",
+        "iso6391": null,
+        "iso6392": "mak"
+    },
+    {
+        "name": "",
+        "englishName": "Malayalam",
+        "isoCode": "ml",
+        "iso6391": "ml",
+        "iso6392": "mal"
+    },
+    {
+        "name": "",
+        "englishName": "Mandingo",
+        "isoCode": "man",
+        "iso6391": null,
+        "iso6392": "man"
+    },
+    {
+        "name": "",
+        "englishName": "Maori",
+        "isoCode": "mi",
+        "iso6391": "mi",
+        "iso6392": "mao"
+    },
+    {
+        "name": "",
+        "englishName": "Austronesian languages",
+        "isoCode": "map",
+        "iso6391": null,
+        "iso6392": "map"
+    },
+    {
+        "name": "",
+        "englishName": "Marathi",
+        "isoCode": "mr",
+        "iso6391": "mr",
+        "iso6392": "mar"
+    },
+    {
+        "name": "",
+        "englishName": "Masai",
+        "isoCode": "mas",
+        "iso6391": null,
+        "iso6392": "mas"
+    },
+    {
+        "name": "",
+        "englishName": "Malay",
+        "isoCode": "ms",
+        "iso6391": "ms",
+        "iso6392": "may"
+    },
+    {
+        "name": "",
+        "englishName": "Moksha",
+        "isoCode": "mdf",
+        "iso6391": null,
+        "iso6392": "mdf"
+    },
+    {
+        "name": "",
+        "englishName": "Mandar",
+        "isoCode": "mdr",
+        "iso6391": null,
+        "iso6392": "mdr"
+    },
+    {
+        "name": "",
+        "englishName": "Mende",
+        "isoCode": "men",
+        "iso6391": null,
+        "iso6392": "men"
+    },
+    {
+        "name": "",
+        "englishName": "Irish, Middle (900-1200)",
+        "isoCode": "mga",
+        "iso6391": null,
+        "iso6392": "mga"
+    },
+    {
+        "name": "",
+        "englishName": "Mi'kmaq; Micmac",
+        "isoCode": "mic",
+        "iso6391": null,
+        "iso6392": "mic"
+    },
+    {
+        "name": "",
+        "englishName": "Minangkabau",
+        "isoCode": "min",
+        "iso6391": null,
+        "iso6392": "min"
+    },
+    {
+        "name": "",
+        "englishName": "Uncoded languages",
+        "isoCode": "mis",
+        "iso6391": null,
+        "iso6392": "mis"
+    },
+    {
+        "name": "",
+        "englishName": "Mon-Khmer languages",
+        "isoCode": "mkh",
+        "iso6391": null,
+        "iso6392": "mkh"
+    },
+    {
+        "name": "",
+        "englishName": "Malagasy",
+        "isoCode": "mg",
+        "iso6391": "mg",
+        "iso6392": "mlg"
+    },
+    {
+        "name": "",
+        "englishName": "Maltese",
+        "isoCode": "mt",
+        "iso6391": "mt",
+        "iso6392": "mlt"
+    },
+    {
+        "name": "",
+        "englishName": "Manchu",
+        "isoCode": "mnc",
+        "iso6391": null,
+        "iso6392": "mnc"
+    },
+    {
+        "name": "",
+        "englishName": "Manipuri",
+        "isoCode": "mni",
+        "iso6391": null,
+        "iso6392": "mni"
+    },
+    {
+        "name": "",
+        "englishName": "Manobo languages",
+        "isoCode": "mno",
+        "iso6391": null,
+        "iso6392": "mno"
+    },
+    {
+        "name": "",
+        "englishName": "Mohawk",
+        "isoCode": "moh",
+        "iso6391": null,
+        "iso6392": "moh"
+    },
+    {
+        "name": "",
+        "englishName": "Mongolian",
+        "isoCode": "mn",
+        "iso6391": "mn",
+        "iso6392": "mon"
+    },
+    {
+        "name": "",
+        "englishName": "Mossi",
+        "isoCode": "mos",
+        "iso6391": null,
+        "iso6392": "mos"
+    },
+    {
+        "name": "",
+        "englishName": "Multiple languages",
+        "isoCode": "mul",
+        "iso6391": null,
+        "iso6392": "mul"
+    },
+    {
+        "name": "",
+        "englishName": "Munda languages",
+        "isoCode": "mun",
+        "iso6391": null,
+        "iso6392": "mun"
+    },
+    {
+        "name": "",
+        "englishName": "Creek",
+        "isoCode": "mus",
+        "iso6391": null,
+        "iso6392": "mus"
+    },
+    {
+        "name": "",
+        "englishName": "Mirandese",
+        "isoCode": "mwl",
+        "iso6391": null,
+        "iso6392": "mwl"
+    },
+    {
+        "name": "",
+        "englishName": "Marwari",
+        "isoCode": "mwr",
+        "iso6391": null,
+        "iso6392": "mwr"
+    },
+    {
+        "name": "",
+        "englishName": "Mayan languages",
+        "isoCode": "myn",
+        "iso6391": null,
+        "iso6392": "myn"
+    },
+    {
+        "name": "",
+        "englishName": "Erzya",
+        "isoCode": "myv",
+        "iso6391": null,
+        "iso6392": "myv"
+    },
+    {
+        "name": "",
+        "englishName": "Nahuatl languages",
+        "isoCode": "nah",
+        "iso6391": null,
+        "iso6392": "nah"
+    },
+    {
+        "name": "",
+        "englishName": "North American Indian languages",
+        "isoCode": "nai",
+        "iso6391": null,
+        "iso6392": "nai"
+    },
+    {
+        "name": "",
+        "englishName": "Neapolitan",
+        "isoCode": "nap",
+        "iso6391": null,
+        "iso6392": "nap"
+    },
+    {
+        "name": "",
+        "englishName": "Nauru",
+        "isoCode": "na",
+        "iso6391": "na",
+        "iso6392": "nau"
+    },
+    {
+        "name": "",
+        "englishName": "Navajo; Navaho",
+        "isoCode": "nv",
+        "iso6391": "nv",
+        "iso6392": "nav"
+    },
+    {
+        "name": "",
+        "englishName": "Ndebele, South; South Ndebele",
+        "isoCode": "nr",
+        "iso6391": "nr",
+        "iso6392": "nbl"
+    },
+    {
+        "name": "",
+        "englishName": "Ndebele, North; North Ndebele",
+        "isoCode": "nd",
+        "iso6391": "nd",
+        "iso6392": "nde"
+    },
+    {
+        "name": "",
+        "englishName": "Ndonga",
+        "isoCode": "ng",
+        "iso6391": "ng",
+        "iso6392": "ndo"
+    },
+    {
+        "name": "",
+        "englishName": "Low German; Low Saxon; German, Low; Saxon, Low",
+        "isoCode": "nds",
+        "iso6391": null,
+        "iso6392": "nds"
+    },
+    {
+        "name": "",
+        "englishName": "Nepali",
+        "isoCode": "ne",
+        "iso6391": "ne",
+        "iso6392": "nep"
+    },
+    {
+        "name": "",
+        "englishName": "Nepal Bhasa; Newari",
+        "isoCode": "new",
+        "iso6391": null,
+        "iso6392": "new"
+    },
+    {
+        "name": "",
+        "englishName": "Nias",
+        "isoCode": "nia",
+        "iso6391": null,
+        "iso6392": "nia"
+    },
+    {
+        "name": "",
+        "englishName": "Niger-Kordofanian languages",
+        "isoCode": "nic",
+        "iso6391": null,
+        "iso6392": "nic"
+    },
+    {
+        "name": "",
+        "englishName": "Niuean",
+        "isoCode": "niu",
+        "iso6391": null,
+        "iso6392": "niu"
+    },
+    {
+        "name": "",
+        "englishName": "Norwegian Nynorsk; Nynorsk, Norwegian",
+        "isoCode": "nn",
+        "iso6391": "nn",
+        "iso6392": "nno"
+    },
+    {
+        "name": "",
+        "englishName": "Bokmål, Norwegian; Norwegian Bokmål",
+        "isoCode": "nb",
+        "iso6391": "nb",
+        "iso6392": "nob"
+    },
+    {
+        "name": "",
+        "englishName": "Nogai",
+        "isoCode": "nog",
+        "iso6391": null,
+        "iso6392": "nog"
+    },
+    {
+        "name": "",
+        "englishName": "Norse, Old",
+        "isoCode": "non",
+        "iso6391": null,
+        "iso6392": "non"
+    },
+    {
+        "name": "",
+        "englishName": "Norwegian",
+        "isoCode": "no",
+        "iso6391": "no",
+        "iso6392": "nor"
+    },
+    {
+        "name": "",
+        "englishName": "N'Ko",
+        "isoCode": "nqo",
+        "iso6391": null,
+        "iso6392": "nqo"
+    },
+    {
+        "name": "",
+        "englishName": "Pedi; Sepedi; Northern Sotho",
+        "isoCode": "nso",
+        "iso6391": null,
+        "iso6392": "nso"
+    },
+    {
+        "name": "",
+        "englishName": "Nubian languages",
+        "isoCode": "nub",
+        "iso6391": null,
+        "iso6392": "nub"
+    },
+    {
+        "name": "",
+        "englishName": "Classical Newari; Old Newari; Classical Nepal Bhasa",
+        "isoCode": "nwc",
+        "iso6391": null,
+        "iso6392": "nwc"
+    },
+    {
+        "name": "",
+        "englishName": "Chichewa; Chewa; Nyanja",
+        "isoCode": "ny",
+        "iso6391": "ny",
+        "iso6392": "nya"
+    },
+    {
+        "name": "",
+        "englishName": "Nyamwezi",
+        "isoCode": "nym",
+        "iso6391": null,
+        "iso6392": "nym"
+    },
+    {
+        "name": "",
+        "englishName": "Nyankole",
+        "isoCode": "nyn",
+        "iso6391": null,
+        "iso6392": "nyn"
+    },
+    {
+        "name": "",
+        "englishName": "Nyoro",
+        "isoCode": "nyo",
+        "iso6391": null,
+        "iso6392": "nyo"
+    },
+    {
+        "name": "",
+        "englishName": "Nzima",
+        "isoCode": "nzi",
+        "iso6391": null,
+        "iso6392": "nzi"
+    },
+    {
+        "name": "",
+        "englishName": "Occitan (post 1500); Provençal",
+        "isoCode": "oc",
+        "iso6391": "oc",
+        "iso6392": "oci"
+    },
+    {
+        "name": "",
+        "englishName": "Ojibwa",
+        "isoCode": "oj",
+        "iso6391": "oj",
+        "iso6392": "oji"
+    },
+    {
+        "name": "",
+        "englishName": "Oriya",
+        "isoCode": "or",
+        "iso6391": "or",
+        "iso6392": "ori"
+    },
+    {
+        "name": "",
+        "englishName": "Oromo",
+        "isoCode": "om",
+        "iso6391": "om",
+        "iso6392": "orm"
+    },
+    {
+        "name": "",
+        "englishName": "Osage",
+        "isoCode": "osa",
+        "iso6391": null,
+        "iso6392": "osa"
+    },
+    {
+        "name": "",
+        "englishName": "Ossetian; Ossetic",
+        "isoCode": "os",
+        "iso6391": "os",
+        "iso6392": "oss"
+    },
+    {
+        "name": "",
+        "englishName": "Turkish, Ottoman (1500-1928)",
+        "isoCode": "ota",
+        "iso6391": null,
+        "iso6392": "ota"
+    },
+    {
+        "name": "",
+        "englishName": "Otomian languages",
+        "isoCode": "oto",
+        "iso6391": null,
+        "iso6392": "oto"
+    },
+    {
+        "name": "",
+        "englishName": "Papuan languages",
+        "isoCode": "paa",
+        "iso6391": null,
+        "iso6392": "paa"
+    },
+    {
+        "name": "",
+        "englishName": "Pangasinan",
+        "isoCode": "pag",
+        "iso6391": null,
+        "iso6392": "pag"
+    },
+    {
+        "name": "",
+        "englishName": "Pahlavi",
+        "isoCode": "pal",
+        "iso6391": null,
+        "iso6392": "pal"
+    },
+    {
+        "name": "",
+        "englishName": "Pampanga; Kapampangan",
+        "isoCode": "pam",
+        "iso6391": null,
+        "iso6392": "pam"
+    },
+    {
+        "name": "",
+        "englishName": "Panjabi; Punjabi",
+        "isoCode": "pa",
+        "iso6391": "pa",
+        "iso6392": "pan"
+    },
+    {
+        "name": "",
+        "englishName": "Papiamento",
+        "isoCode": "pap",
+        "iso6391": null,
+        "iso6392": "pap"
+    },
+    {
+        "name": "",
+        "englishName": "Palauan",
+        "isoCode": "pau",
+        "iso6391": null,
+        "iso6392": "pau"
+    },
+    {
+        "name": "",
+        "englishName": "Persian, Old (ca.600-400 B.C.)",
+        "isoCode": "peo",
+        "iso6391": null,
+        "iso6392": "peo"
+    },
+    {
+        "name": "",
+        "englishName": "Persian",
+        "isoCode": "fa",
+        "iso6391": "fa",
+        "iso6392": "per"
+    },
+    {
+        "name": "",
+        "englishName": "Philippine languages",
+        "isoCode": "phi",
+        "iso6391": null,
+        "iso6392": "phi"
+    },
+    {
+        "name": "",
+        "englishName": "Phoenician",
+        "isoCode": "phn",
+        "iso6391": null,
+        "iso6392": "phn"
+    },
+    {
+        "name": "",
+        "englishName": "Pali",
+        "isoCode": "pi",
+        "iso6391": "pi",
+        "iso6392": "pli"
+    },
+    {
+        "name": "",
+        "englishName": "Polish",
+        "isoCode": "pl",
+        "iso6391": "pl",
+        "iso6392": "pol"
+    },
+    {
+        "name": "",
+        "englishName": "Pohnpeian",
+        "isoCode": "pon",
+        "iso6391": null,
+        "iso6392": "pon"
+    },
+    {
+        "name": "",
+        "englishName": "Portuguese",
+        "isoCode": "pt",
+        "iso6391": "pt",
+        "iso6392": "por"
+    },
+    {
+        "name": "",
+        "englishName": "Prakrit languages",
+        "isoCode": "pra",
+        "iso6391": null,
+        "iso6392": "pra"
+    },
+    {
+        "name": "",
+        "englishName": "Provençal, Old (to 1500)",
+        "isoCode": "pro",
+        "iso6391": null,
+        "iso6392": "pro"
+    },
+    {
+        "name": "",
+        "englishName": "Pushto; Pashto",
+        "isoCode": "ps",
+        "iso6391": "ps",
+        "iso6392": "pus"
+    },
+    {
+        "name": "",
+        "englishName": "Reserved for local use",
+        "isoCode": "qaa-qtz",
+        "iso6391": null,
+        "iso6392": "qaa-qtz"
+    },
+    {
+        "name": "",
+        "englishName": "Quechua",
+        "isoCode": "qu",
+        "iso6391": "qu",
+        "iso6392": "que"
+    },
+    {
+        "name": "",
+        "englishName": "Rajasthani",
+        "isoCode": "raj",
+        "iso6391": null,
+        "iso6392": "raj"
+    },
+    {
+        "name": "",
+        "englishName": "Rapanui",
+        "isoCode": "rap",
+        "iso6391": null,
+        "iso6392": "rap"
+    },
+    {
+        "name": "",
+        "englishName": "Rarotongan; Cook Islands Maori",
+        "isoCode": "rar",
+        "iso6391": null,
+        "iso6392": "rar"
+    },
+    {
+        "name": "",
+        "englishName": "Romance languages",
+        "isoCode": "roa",
+        "iso6391": null,
+        "iso6392": "roa"
+    },
+    {
+        "name": "",
+        "englishName": "Romansh",
+        "isoCode": "rm",
+        "iso6391": "rm",
+        "iso6392": "roh"
+    },
+    {
+        "name": "",
+        "englishName": "Romany",
+        "isoCode": "rom",
+        "iso6391": null,
+        "iso6392": "rom"
+    },
+    {
+        "name": "",
+        "englishName": "Romanian; Moldavian; Moldovan",
+        "isoCode": "ro",
+        "iso6391": "ro",
+        "iso6392": "rum"
+    },
+    {
+        "name": "",
+        "englishName": "Rundi",
+        "isoCode": "rn",
+        "iso6391": "rn",
+        "iso6392": "run"
+    },
+    {
+        "name": "",
+        "englishName": "Aromanian; Arumanian; Macedo-Romanian",
+        "isoCode": "rup",
+        "iso6391": null,
+        "iso6392": "rup"
+    },
+    {
+        "name": "",
+        "englishName": "Russian",
+        "isoCode": "ru",
+        "iso6391": "ru",
+        "iso6392": "rus"
+    },
+    {
+        "name": "",
+        "englishName": "Sandawe",
+        "isoCode": "sad",
+        "iso6391": null,
+        "iso6392": "sad"
+    },
+    {
+        "name": "",
+        "englishName": "Sango",
+        "isoCode": "sg",
+        "iso6391": "sg",
+        "iso6392": "sag"
+    },
+    {
+        "name": "",
+        "englishName": "Yakut",
+        "isoCode": "sah",
+        "iso6391": null,
+        "iso6392": "sah"
+    },
+    {
+        "name": "",
+        "englishName": "South American Indian (Other)",
+        "isoCode": "sai",
+        "iso6391": null,
+        "iso6392": "sai"
+    },
+    {
+        "name": "",
+        "englishName": "Salishan languages",
+        "isoCode": "sal",
+        "iso6391": null,
+        "iso6392": "sal"
+    },
+    {
+        "name": "",
+        "englishName": "Samaritan Aramaic",
+        "isoCode": "sam",
+        "iso6391": null,
+        "iso6392": "sam"
+    },
+    {
+        "name": "",
+        "englishName": "Sanskrit",
+        "isoCode": "sa",
+        "iso6391": "sa",
+        "iso6392": "san"
+    },
+    {
+        "name": "",
+        "englishName": "Sasak",
+        "isoCode": "sas",
+        "iso6391": null,
+        "iso6392": "sas"
+    },
+    {
+        "name": "",
+        "englishName": "Santali",
+        "isoCode": "sat",
+        "iso6391": null,
+        "iso6392": "sat"
+    },
+    {
+        "name": "",
+        "englishName": "Sicilian",
+        "isoCode": "scn",
+        "iso6391": null,
+        "iso6392": "scn"
+    },
+    {
+        "name": "",
+        "englishName": "Scots",
+        "isoCode": "sco",
+        "iso6391": null,
+        "iso6392": "sco"
+    },
+    {
+        "name": "",
+        "englishName": "Selkup",
+        "isoCode": "sel",
+        "iso6391": null,
+        "iso6392": "sel"
+    },
+    {
+        "name": "",
+        "englishName": "Semitic languages",
+        "isoCode": "sem",
+        "iso6391": null,
+        "iso6392": "sem"
+    },
+    {
+        "name": "",
+        "englishName": "Irish, Old (to 900)",
+        "isoCode": "sga",
+        "iso6391": null,
+        "iso6392": "sga"
+    },
+    {
+        "name": "",
+        "englishName": "Sign Languages",
+        "isoCode": "sgn",
+        "iso6391": null,
+        "iso6392": "sgn"
+    },
+    {
+        "name": "",
+        "englishName": "Shan",
+        "isoCode": "shn",
+        "iso6391": null,
+        "iso6392": "shn"
+    },
+    {
+        "name": "",
+        "englishName": "Sidamo",
+        "isoCode": "sid",
+        "iso6391": null,
+        "iso6392": "sid"
+    },
+    {
+        "name": "",
+        "englishName": "Sinhala; Sinhalese",
+        "isoCode": "si",
+        "iso6391": "si",
+        "iso6392": "sin"
+    },
+    {
+        "name": "",
+        "englishName": "Siouan languages",
+        "isoCode": "sio",
+        "iso6391": null,
+        "iso6392": "sio"
+    },
+    {
+        "name": "",
+        "englishName": "Sino-Tibetan languages",
+        "isoCode": "sit",
+        "iso6391": null,
+        "iso6392": "sit"
+    },
+    {
+        "name": "",
+        "englishName": "Slavic languages",
+        "isoCode": "sla",
+        "iso6391": null,
+        "iso6392": "sla"
+    },
+    {
+        "name": "",
+        "englishName": "Slovak",
+        "isoCode": "sk",
+        "iso6391": "sk",
+        "iso6392": "slo"
+    },
+    {
+        "name": "",
+        "englishName": "Slovenian",
+        "isoCode": "sl",
+        "iso6391": "sl",
+        "iso6392": "slv"
+    },
+    {
+        "name": "",
+        "englishName": "Southern Sami",
+        "isoCode": "sma",
+        "iso6391": null,
+        "iso6392": "sma"
+    },
+    {
+        "name": "",
+        "englishName": "Northern Sami",
+        "isoCode": "se",
+        "iso6391": "se",
+        "iso6392": "sme"
+    },
+    {
+        "name": "",
+        "englishName": "Sami languages",
+        "isoCode": "smi",
+        "iso6391": null,
+        "iso6392": "smi"
+    },
+    {
+        "name": "",
+        "englishName": "Lule Sami",
+        "isoCode": "smj",
+        "iso6391": null,
+        "iso6392": "smj"
+    },
+    {
+        "name": "",
+        "englishName": "Inari Sami",
+        "isoCode": "smn",
+        "iso6391": null,
+        "iso6392": "smn"
+    },
+    {
+        "name": "",
+        "englishName": "Samoan",
+        "isoCode": "sm",
+        "iso6391": "sm",
+        "iso6392": "smo"
+    },
+    {
+        "name": "",
+        "englishName": "Skolt Sami",
+        "isoCode": "sms",
+        "iso6391": null,
+        "iso6392": "sms"
+    },
+    {
+        "name": "",
+        "englishName": "Shona",
+        "isoCode": "sn",
+        "iso6391": "sn",
+        "iso6392": "sna"
+    },
+    {
+        "name": "",
+        "englishName": "Sindhi",
+        "isoCode": "sd",
+        "iso6391": "sd",
+        "iso6392": "snd"
+    },
+    {
+        "name": "",
+        "englishName": "Soninke",
+        "isoCode": "snk",
+        "iso6391": null,
+        "iso6392": "snk"
+    },
+    {
+        "name": "",
+        "englishName": "Sogdian",
+        "isoCode": "sog",
+        "iso6391": null,
+        "iso6392": "sog"
+    },
+    {
+        "name": "",
+        "englishName": "Somali",
+        "isoCode": "so",
+        "iso6391": "so",
+        "iso6392": "som"
+    },
+    {
+        "name": "",
+        "englishName": "Songhai languages",
+        "isoCode": "son",
+        "iso6391": null,
+        "iso6392": "son"
+    },
+    {
+        "name": "",
+        "englishName": "Sotho, Southern",
+        "isoCode": "st",
+        "iso6391": "st",
+        "iso6392": "sot"
+    },
+    {
+        "name": "",
+        "englishName": "Spanish; Castilian",
+        "isoCode": "es",
+        "iso6391": "es",
+        "iso6392": "spa"
+    },
+    {
+        "name": "",
+        "englishName": "Sardinian",
+        "isoCode": "sc",
+        "iso6391": "sc",
+        "iso6392": "srd"
+    },
+    {
+        "name": "",
+        "englishName": "Sranan Tongo",
+        "isoCode": "srn",
+        "iso6391": null,
+        "iso6392": "srn"
+    },
+    {
+        "name": "",
+        "englishName": "Serbian",
+        "isoCode": "sr",
+        "iso6391": "sr",
+        "iso6392": "srp"
+    },
+    {
+        "name": "",
+        "englishName": "Serer",
+        "isoCode": "srr",
+        "iso6391": null,
+        "iso6392": "srr"
+    },
+    {
+        "name": "",
+        "englishName": "Nilo-Saharan languages",
+        "isoCode": "ssa",
+        "iso6391": null,
+        "iso6392": "ssa"
+    },
+    {
+        "name": "",
+        "englishName": "Swati",
+        "isoCode": "ss",
+        "iso6391": "ss",
+        "iso6392": "ssw"
+    },
+    {
+        "name": "",
+        "englishName": "Sukuma",
+        "isoCode": "suk",
+        "iso6391": null,
+        "iso6392": "suk"
+    },
+    {
+        "name": "",
+        "englishName": "Sundanese",
+        "isoCode": "su",
+        "iso6391": "su",
+        "iso6392": "sun"
+    },
+    {
+        "name": "",
+        "englishName": "Susu",
+        "isoCode": "sus",
+        "iso6391": null,
+        "iso6392": "sus"
+    },
+    {
+        "name": "",
+        "englishName": "Sumerian",
+        "isoCode": "sux",
+        "iso6391": null,
+        "iso6392": "sux"
+    },
+    {
+        "name": "",
+        "englishName": "Swahili",
+        "isoCode": "sw",
+        "iso6391": "sw",
+        "iso6392": "swa"
+    },
+    {
+        "name": "",
+        "englishName": "Swedish",
+        "isoCode": "sv",
+        "iso6391": "sv",
+        "iso6392": "swe"
+    },
+    {
+        "name": "",
+        "englishName": "Classical Syriac",
+        "isoCode": "syc",
+        "iso6391": null,
+        "iso6392": "syc"
+    },
+    {
+        "name": "",
+        "englishName": "Syriac",
+        "isoCode": "syr",
+        "iso6391": null,
+        "iso6392": "syr"
+    },
+    {
+        "name": "",
+        "englishName": "Tahitian",
+        "isoCode": "ty",
+        "iso6391": "ty",
+        "iso6392": "tah"
+    },
+    {
+        "name": "",
+        "englishName": "Tai languages",
+        "isoCode": "tai",
+        "iso6391": null,
+        "iso6392": "tai"
+    },
+    {
+        "name": "",
+        "englishName": "Tamil",
+        "isoCode": "ta",
+        "iso6391": "ta",
+        "iso6392": "tam"
+    },
+    {
+        "name": "",
+        "englishName": "Tatar",
+        "isoCode": "tt",
+        "iso6391": "tt",
+        "iso6392": "tat"
+    },
+    {
+        "name": "",
+        "englishName": "Telugu",
+        "isoCode": "te",
+        "iso6391": "te",
+        "iso6392": "tel"
+    },
+    {
+        "name": "",
+        "englishName": "Timne",
+        "isoCode": "tem",
+        "iso6391": null,
+        "iso6392": "tem"
+    },
+    {
+        "name": "",
+        "englishName": "Tereno",
+        "isoCode": "ter",
+        "iso6391": null,
+        "iso6392": "ter"
+    },
+    {
+        "name": "",
+        "englishName": "Tetum",
+        "isoCode": "tet",
+        "iso6391": null,
+        "iso6392": "tet"
+    },
+    {
+        "name": "",
+        "englishName": "Tajik",
+        "isoCode": "tg",
+        "iso6391": "tg",
+        "iso6392": "tgk"
+    },
+    {
+        "name": "",
+        "englishName": "Tagalog",
+        "isoCode": "tl",
+        "iso6391": "tl",
+        "iso6392": "tgl"
+    },
+    {
+        "name": "",
+        "englishName": "Thai",
+        "isoCode": "th",
+        "iso6391": "th",
+        "iso6392": "tha"
+    },
+    {
+        "name": "",
+        "englishName": "Afar",
+        "isoCode": "aa",
+        "iso6391": "aa",
+        "iso6392": "aar"
+    },
+    {
+        "name": "",
+        "englishName": "Tigre",
+        "isoCode": "tig",
+        "iso6391": null,
+        "iso6392": "tig"
+    },
+    {
+        "name": "",
+        "englishName": "Tigrinya",
+        "isoCode": "ti",
+        "iso6391": "ti",
+        "iso6392": "tir"
+    },
+    {
+        "name": "",
+        "englishName": "Tiv",
+        "isoCode": "tiv",
+        "iso6391": null,
+        "iso6392": "tiv"
+    },
+    {
+        "name": "",
+        "englishName": "Tokelau",
+        "isoCode": "tkl",
+        "iso6391": null,
+        "iso6392": "tkl"
+    },
+    {
+        "name": "",
+        "englishName": "Klingon; tlhIngan-Hol",
+        "isoCode": "tlh",
+        "iso6391": null,
+        "iso6392": "tlh"
+    },
+    {
+        "name": "",
+        "englishName": "Tlingit",
+        "isoCode": "tli",
+        "iso6391": null,
+        "iso6392": "tli"
+    },
+    {
+        "name": "",
+        "englishName": "Tamashek",
+        "isoCode": "tmh",
+        "iso6391": null,
+        "iso6392": "tmh"
+    },
+    {
+        "name": "",
+        "englishName": "Tonga (Nyasa)",
+        "isoCode": "tog",
+        "iso6391": null,
+        "iso6392": "tog"
+    },
+    {
+        "name": "",
+        "englishName": "Tonga (Tonga Islands)",
+        "isoCode": "to",
+        "iso6391": "to",
+        "iso6392": "ton"
+    },
+    {
+        "name": "",
+        "englishName": "Tok Pisin",
+        "isoCode": "tpi",
+        "iso6391": null,
+        "iso6392": "tpi"
+    },
+    {
+        "name": "",
+        "englishName": "Tsimshian",
+        "isoCode": "tsi",
+        "iso6391": null,
+        "iso6392": "tsi"
+    },
+    {
+        "name": "",
+        "englishName": "Tswana",
+        "isoCode": "tn",
+        "iso6391": "tn",
+        "iso6392": "tsn"
+    },
+    {
+        "name": "",
+        "englishName": "Tsonga",
+        "isoCode": "ts",
+        "iso6391": "ts",
+        "iso6392": "tso"
+    },
+    {
+        "name": "",
+        "englishName": "Turkmen",
+        "isoCode": "tk",
+        "iso6391": "tk",
+        "iso6392": "tuk"
+    },
+    {
+        "name": "",
+        "englishName": "Tumbuka",
+        "isoCode": "tum",
+        "iso6391": null,
+        "iso6392": "tum"
+    },
+    {
+        "name": "",
+        "englishName": "Tupi languages",
+        "isoCode": "tup",
+        "iso6391": null,
+        "iso6392": "tup"
+    },
+    {
+        "name": "",
+        "englishName": "Turkish",
+        "isoCode": "tr",
+        "iso6391": "tr",
+        "iso6392": "tur"
+    },
+    {
+        "name": "",
+        "englishName": "Altaic languages",
+        "isoCode": "tut",
+        "iso6391": null,
+        "iso6392": "tut"
+    },
+    {
+        "name": "",
+        "englishName": "Tuvalu",
+        "isoCode": "tvl",
+        "iso6391": null,
+        "iso6392": "tvl"
+    },
+    {
+        "name": "",
+        "englishName": "Twi",
+        "isoCode": "tw",
+        "iso6391": "tw",
+        "iso6392": "twi"
+    },
+    {
+        "name": "",
+        "englishName": "Tuvinian",
+        "isoCode": "tyv",
+        "iso6391": null,
+        "iso6392": "tyv"
+    },
+    {
+        "name": "",
+        "englishName": "Udmurt",
+        "isoCode": "udm",
+        "iso6391": null,
+        "iso6392": "udm"
+    },
+    {
+        "name": "",
+        "englishName": "Ugaritic",
+        "isoCode": "uga",
+        "iso6391": null,
+        "iso6392": "uga"
+    },
+    {
+        "name": "",
+        "englishName": "Uighur; Uyghur",
+        "isoCode": "ug",
+        "iso6391": "ug",
+        "iso6392": "uig"
+    },
+    {
+        "name": "",
+        "englishName": "Ukrainian",
+        "isoCode": "uk",
+        "iso6391": "uk",
+        "iso6392": "ukr"
+    },
+    {
+        "name": "",
+        "englishName": "Umbundu",
+        "isoCode": "umb",
+        "iso6391": null,
+        "iso6392": "umb"
+    },
+    {
+        "name": "",
+        "englishName": "Undetermined",
+        "isoCode": "und",
+        "iso6391": null,
+        "iso6392": "und"
+    },
+    {
+        "name": "",
+        "englishName": "Urdu",
+        "isoCode": "ur",
+        "iso6391": "ur",
+        "iso6392": "urd"
+    },
+    {
+        "name": "",
+        "englishName": "Uzbek",
+        "isoCode": "uz",
+        "iso6391": "uz",
+        "iso6392": "uzb"
+    },
+    {
+        "name": "",
+        "englishName": "Vai",
+        "isoCode": "vai",
+        "iso6391": null,
+        "iso6392": "vai"
+    },
+    {
+        "name": "",
+        "englishName": "Venda",
+        "isoCode": "ve",
+        "iso6391": "ve",
+        "iso6392": "ven"
+    },
+    {
+        "name": "",
+        "englishName": "Vietnamese",
+        "isoCode": "vi",
+        "iso6391": "vi",
+        "iso6392": "vie"
+    },
+    {
+        "name": "",
+        "englishName": "Volapük",
+        "isoCode": "vo",
+        "iso6391": "vo",
+        "iso6392": "vol"
+    },
+    {
+        "name": "",
+        "englishName": "Votic",
+        "isoCode": "vot",
+        "iso6391": null,
+        "iso6392": "vot"
+    },
+    {
+        "name": "",
+        "englishName": "Wakashan languages",
+        "isoCode": "wak",
+        "iso6391": null,
+        "iso6392": "wak"
+    },
+    {
+        "name": "",
+        "englishName": "Walamo",
+        "isoCode": "wal",
+        "iso6391": null,
+        "iso6392": "wal"
+    },
+    {
+        "name": "",
+        "englishName": "Waray",
+        "isoCode": "war",
+        "iso6391": null,
+        "iso6392": "war"
+    },
+    {
+        "name": "",
+        "englishName": "Washo",
+        "isoCode": "was",
+        "iso6391": null,
+        "iso6392": "was"
+    },
+    {
+        "name": "",
+        "englishName": "Welsh",
+        "isoCode": "cy",
+        "iso6391": "cy",
+        "iso6392": "wel"
+    },
+    {
+        "name": "",
+        "englishName": "Sorbian languages",
+        "isoCode": "wen",
+        "iso6391": null,
+        "iso6392": "wen"
+    },
+    {
+        "name": "",
+        "englishName": "Walloon",
+        "isoCode": "wa",
+        "iso6391": "wa",
+        "iso6392": "wln"
+    },
+    {
+        "name": "",
+        "englishName": "Wolof",
+        "isoCode": "wo",
+        "iso6391": "wo",
+        "iso6392": "wol"
+    },
+    {
+        "name": "",
+        "englishName": "Kalmyk; Oirat",
+        "isoCode": "xal",
+        "iso6391": null,
+        "iso6392": "xal"
+    },
+    {
+        "name": "",
+        "englishName": "Xhosa",
+        "isoCode": "xh",
+        "iso6391": "xh",
+        "iso6392": "xho"
+    },
+    {
+        "name": "",
+        "englishName": "Yao",
+        "isoCode": "yao",
+        "iso6391": null,
+        "iso6392": "yao"
+    },
+    {
+        "name": "",
+        "englishName": "Yapese",
+        "isoCode": "yap",
+        "iso6391": null,
+        "iso6392": "yap"
+    },
+    {
+        "name": "",
+        "englishName": "Yiddish",
+        "isoCode": "yi",
+        "iso6391": "yi",
+        "iso6392": "yid"
+    },
+    {
+        "name": "",
+        "englishName": "Yoruba",
+        "isoCode": "yo",
+        "iso6391": "yo",
+        "iso6392": "yor"
+    },
+    {
+        "name": "",
+        "englishName": "Yupik languages",
+        "isoCode": "ypk",
+        "iso6391": null,
+        "iso6392": "ypk"
+    },
+    {
+        "name": "",
+        "englishName": "Zapotec",
+        "isoCode": "zap",
+        "iso6391": null,
+        "iso6392": "zap"
+    },
+    {
+        "name": "",
+        "englishName": "Blissymbols; Blissymbolics; Bliss",
+        "isoCode": "zbl",
+        "iso6391": null,
+        "iso6392": "zbl"
+    },
+    {
+        "name": "",
+        "englishName": "Zenaga",
+        "isoCode": "zen",
+        "iso6391": null,
+        "iso6392": "zen"
+    },
+    {
+        "name": "",
+        "englishName": "Standard Moroccan Tamazight",
+        "isoCode": "zgh",
+        "iso6391": null,
+        "iso6392": "zgh"
+    },
+    {
+        "name": "",
+        "englishName": "Zhuang; Chuang",
+        "isoCode": "za",
+        "iso6391": "za",
+        "iso6392": "zha"
+    },
+    {
+        "name": "",
+        "englishName": "Zande languages",
+        "isoCode": "znd",
+        "iso6391": null,
+        "iso6392": "znd"
+    },
+    {
+        "name": "",
+        "englishName": "Zulu",
+        "isoCode": "zu",
+        "iso6391": "zu",
+        "iso6392": "zul"
+    },
+    {
+        "name": "",
+        "englishName": "Zuni",
+        "isoCode": "zun",
+        "iso6391": null,
+        "iso6392": "zun"
+    },
+    {
+        "name": "",
+        "englishName": "No linguistic content; Not applicable",
+        "isoCode": "zxx",
+        "iso6391": null,
+        "iso6392": "zxx"
+    },
+    {
+        "name": "",
+        "englishName": "Zaza; Dimili; Dimli; Kirdki; Kirmanjki; Zazaki",
+        "isoCode": "zza",
+        "iso6391": null,
+        "iso6392": "zza"
+    },
+    {
+        "name": "",
+        "englishName": "Tibetan",
+        "isoCode": "bo",
+        "iso6391": "bo",
+        "iso6392": "tib"
+    },
+    {
+        "name": "",
+        "englishName": "Abkhazian",
+        "isoCode": "ab",
+        "iso6391": "ab",
+        "iso6392": "abk"
+    }
+]
