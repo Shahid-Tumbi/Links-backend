@@ -8,7 +8,7 @@ export const apiValidators = {
 	entity: validateSchema(Joi.object({
 		id: JString.length(24).required(),
 	}), 'params'),
-	syncData: validateSchema(Joi.object(Object.values(CONSTANT.DATABASE.ENTITY).reduce((schema, entity) => {
+	syncData: validateSchema(Joi.object(Object.values(CONSTANT.DATABASE.ENTITY).reduce((schema:any, entity:any) => {
 		schema[entity] = Joi.boolean().default(true);
 		return schema;
 	}, {})), 'query'),

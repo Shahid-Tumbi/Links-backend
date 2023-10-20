@@ -1,10 +1,17 @@
-import { SmsCred } from "@src/app/constants";
 // import request = require("request");
 
 
 
 export const smsUtil = (phoneNumber: string, otpNumber: string) => {
   try {
+    const SmsCred = {
+      // AccountPhone = '+919016181332',
+      Sid:'',
+      authToken:'',
+      messagingSid:''
+      // BaseUrl = 'https://api-app2.simpletexting.com/v2/api/messages'
+      
+     }
     const accountSid = SmsCred.Sid;
     const authToken = SmsCred.authToken;
     const client = require('twilio')(accountSid, authToken);
