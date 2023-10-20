@@ -24,5 +24,7 @@
         "host": "localhost",
         "port": 6379,
         "password": "602bb776d497b4cc5d688caa7b0e3ee29db4d289a65dcc0757c54b147743505b"
-    }
+    },
+    "OPENAI_API_KEY":"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",
+    "MODEL_NAME":"gpt-3.5-turbo-16k"
 }

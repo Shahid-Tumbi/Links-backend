@@ -1,9 +1,10 @@
 import { MODERATION_URL } from "@src/app/api/post/post.constants";
 import { PostModel } from "@src/app/api/post/post.model";
+import { environment } from "./env.util";
 const axios = require('axios');
 const cheerio = require('cheerio');
 const openai = require('openai');
-const client = new openai({ apiKey: process.env.OPENAI_API_KEY });
+const client = new openai({ apiKey: environment.OPENAI_API_KEY });
 const gptWorker = async (data:any) => {
   try {
     const html = data.postData;
@@ -18,7 +19,7 @@ const gptWorker = async (data:any) => {
       url: MODERATION_URL,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`
+        'Authorization': `Bearer ${environment.OPENAI_API_KEY}`
       },
       data: { input: content }
     };
@@ -31,7 +32,7 @@ const gptWorker = async (data:any) => {
     if (moderationResult.results[0].flagged === false) {
       
       const tagsRequest = await client.chat.completions.create({
-          model: process.env.MODEL_NAME,
+          model: environment.MODEL_NAME,
           messages: [
             { role: 'user', content: `Generate 6 one words tags like what is content about from this content: ${content} ` }
           ]
@@ -41,7 +42,7 @@ const gptWorker = async (data:any) => {
         const stringArray = tags.split('\n');
         const trimmedArray = stringArray.map((item: string) => item.replace(/^\d+\.\s*/, '').trim());
         const summary = await client.chat.completions.create({
-          model: process.env.MODEL_NAME,
+          model: environment.MODEL_NAME,
           messages: [{ role: 'user', content: `Summarize this content  ${content}` }],
         });
   
