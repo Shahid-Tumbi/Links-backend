@@ -8,7 +8,7 @@ dotenv.config({ path:'.env' });
  * @description A utility function to load environment config variables.
  * @param {string} env name of environment config file inside the environments directory.
  */
-export const environment = ((env: 'development' | 'testing' | 'staging' | 'local') => {
+export const environment = ((env: 'development' | 'testing' | 'staging' | 'local' | 'production') => {
 	Console.info('Environment Configuration Started : ' + env);
 	const envPath = join(process.cwd(), 'environments', `${env}.json`);
 	try {

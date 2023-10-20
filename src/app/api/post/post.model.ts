@@ -1,7 +1,6 @@
 import { model, Schema } from 'mongoose';
 import { COLLECTION_NAME } from './post.constants';
 import { IPost } from './post.interface';
-import { ratingRange } from '@src/app/constants';
 
 const postSchema = new Schema(
   {
@@ -26,6 +25,17 @@ const postSchema = new Schema(
     gpt_summary: {
       type: String,
     },
+    tags : {
+      type: Array
+    },
+    likes: {
+      type: Number,
+    },
+    dislikes: {
+      type: Number,
+    },
+    mod_review : { type: Boolean, default: false },
+    commentsEnable : { type: Boolean, default: false },
     is_deleted: { type: Boolean, default: false },
   },
   { timestamps: true });
@@ -43,15 +53,24 @@ const likeSchema = new Schema(
       required: true,
       index:true
     },
-    rating: {
-      type: Number,
-      enum: Object.values(ratingRange),
-      required: true,
-    },
-    is_deleted: { type: Boolean, default: false },
   },
   { timestamps: true });
 export const LikeModel = model<IPost.Like>(COLLECTION_NAME.like, likeSchema);
+const dislikeSchema = new Schema(
+  {
+    userId: {
+      type: Schema.Types.ObjectId,
+      required: true,
+      index:true
+    },
+    postId: {
+      type: Schema.Types.ObjectId,
+      required: true,
+      index:true
+    },
+  },
+  { timestamps: true });
+export const DislikeModel = model<IPost.Like>(COLLECTION_NAME.dislike, dislikeSchema);
 
 const commentSchema = new Schema(
   {

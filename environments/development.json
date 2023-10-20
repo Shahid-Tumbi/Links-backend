@@ -1,5 +1,5 @@
 {
-    "name": "local",
+    "name": "development",
     "port": 4024,
     "url": "http://localhost:4024",
     "mongodb": {
@@ -12,12 +12,12 @@
     "GMAIL_PASS": "dlxjugviiityuqkj",
     "secrets": {
         "2": {
-            "authToken": "aHR0cDovL2xvY2FsaG9zdDozMDAwL3NlY3JldHMvc3VwZXJfYWRtaW4vYXV0aFRva21391",
-            "passwordMailToken": "aHR0cDovL2xvY2FsaG9zdDozMDAwL3NlY3JldHMvc3VwZXJfYWRtaW4vcGFzc3dvcmRNYWlsVG9123190823"
+            "authToken": "R3JlYXQgYWdhaW5zdCBkYXRhIHRvIGdhaW4gYnJva2Ugb24gdGhpcyBzdHJpbmc=",
+            "passwordMailToken": "sN7EzQpXBkWL4utZu1AVmxGuHNkSuSJQ5ozXBFGLOH5s8Epy4PitR4xbnepTwqIYcoHLiPeC"
         },
         "1": {
-            "authToken": "aHR0cDovL2xvY2FsaG9zdDozMDAwL3NlY3JldHMvcmVwcmVzZW50YXRpdmUvYXV0aFRva2Vu",
-            "passwordMailToken": "aHR0cDovL2xvY2FsaG9zdDozMDAwL3NlY3JldHMvcmVwcmVzZW50YXRpdmUvcGFzc3dvcmRNYWlsVG9rZW4="
+            "authToken": "fCQpmN3a1UYFGjY5lgO7NAxvS7Z3uhHkOU1JtyX6aVCRsksUHdjjjvDLQQ9avmH1j8QHpnm3",
+            "passwordMailToken": "zzvMkdmNpDx1JmLnantSKkpK5i2opTgo1TB4GIXYG7IhDo9Erg4kIH4uAAXNyouHQLTwBKUk="
         }
     },
     "redis": {

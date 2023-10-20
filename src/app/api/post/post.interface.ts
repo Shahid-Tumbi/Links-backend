@@ -10,7 +10,6 @@ export namespace IPost {
     export interface Like {
         userId: string,
         postId: string,
-        rating: number
     }
     export interface Comment {
         userId: string,
@@ -29,6 +28,8 @@ export interface ICreatePostData {
     content: string;
     img: string;
     gpt_summary: string;
+    link: string;
+    commentsEnable: boolean
 }
 export interface IUpdatePostData {
     _id: string;
