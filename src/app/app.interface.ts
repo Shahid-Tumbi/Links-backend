@@ -1,5 +1,5 @@
 import * as express from 'express';
-import { UserType, DeviceType } from './constants/user.constants';
+import { UserType } from './constants/user.constants';
 
 export namespace App {
 	export interface SessionUser {
