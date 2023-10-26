@@ -46,6 +46,7 @@ jobs:
         passphrase: ${{ secrets.PASS_PHRASE }}
         script: |
           cd /var/www/html/linksbynk/public_html
+          whoami
           npm install --production
           pm2 reload links-server
         
