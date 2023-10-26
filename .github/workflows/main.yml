@@ -25,20 +25,30 @@ jobs:
       run: npm run build # Assuming this command generates the production-ready "dist" folder.
 
     - name: Deploy to GCP instance
-      env:
-        INSTANCE_IP: ${{ secrets.GCP_INSTANCE_IP }}
-        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-      run: |
-        echo "$SSH_PRIVATE_KEY" > $HOME/.ssh/id_rsa
-        chmod 600 $HOME/.ssh/id_rsa
-        scp -i $HOME/.ssh/id_rsa -r ./dist shahidtumbi@35.207.208.226:/var/www/html/linksbynk/public_html/
-        ssh -i $HOME/.ssh/id_rsa shahidtumbi@35.207.208.226 "cd /var/www/html/linksbynk/public_html/ && npm install"
-        
-    - name: Reload the Node.js application using PM2
-      env:
-        INSTANCE_IP: ${{ secrets.GCP_INSTANCE_IP }}
-        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-      run: |
-        ssh -i $HOME/.ssh/id_rsa shahidtumbi@35.207.208.226 "cd /var/www/html/linksbynk/public_html/ && pm2 reload links-server"
+      uses: appleboy/scp-action@v0.1.3
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        port: ${{ secrets.PORT }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        passphrase: ${{ secrets.PASS_PHRASE }}
+        source: 'dist/*,environments/development.json,package.json'
+        target: /var/www/html/linksbynk/public_html/
 
+
+    - name: Reload the Node.js application using PM2
+      uses: appleboy/ssh-action@v1.0.0
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        port: ${{ secrets.PORT }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        passphrase: ${{ secrets.PASS_PHRASE }}
+        script: |
+          cd /var/www/html/linksbynk/public_html
+          npm install --production
+          pm2 restart all
+         
+        
+    
   # Add more steps for testing, database migrations, etc. as needed.
