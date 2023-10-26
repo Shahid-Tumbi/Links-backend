@@ -25,14 +25,14 @@ jobs:
       run: npm run build # Assuming this command generates the production-ready "dist" folder.
 
     - name: Deploy to GCP instance
-      env:
-        INSTANCE_IP: ${{ secrets.GCP_INSTANCE_IP }}
-        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-      run: |
-        echo "$SSH_PRIVATE_KEY" > $HOME/.ssh/linksbynk_rsa
-        chmod 600 $HOME/.ssh/linksbynk_rsa
-        scp -i $HOME/.ssh/linksbynk_rsa -r ./dist shahidtumbi@35.207.208.226:/var/www/html/linksbynk/public_html/
-        ssh -i $HOME/.ssh/linksbynk_rsa shahidtumbi@35.207.208.226 "cd /var/www/html/linksbynk/public_html/ && npm install"
+      uses: appleboy/scp-action@v0.1.3
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        port: ${{ secrets.PORT }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        source: 'dist'
+        target: /var/www/html/linksbynk/public_html/
         
     - name: Reload the Node.js application using PM2
       env:
