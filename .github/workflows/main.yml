@@ -32,7 +32,7 @@ jobs:
         port: ${{ secrets.PORT }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         passphrase: ${{ secrets.PASS_PHRASE }}
-        source: 'dist/*,environments/development.json,package.json'
+        source: 'dist/*,environments/development.json,public/*,package.json'
         target: /var/www/html/linksbynk/public_html/
 
 
