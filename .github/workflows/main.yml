@@ -47,8 +47,7 @@ jobs:
         script: |
           cd /var/www/html/linksbynk/public_html
           whoami
-          /usr/local/nvm/versions/node/v18.18.2/bin/npm install --production
-          pm2 reload links-server
+         
         
     
   # Add more steps for testing, database migrations, etc. as needed.
