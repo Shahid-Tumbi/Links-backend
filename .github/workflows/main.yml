@@ -1,0 +1,44 @@
+name: Development CI/CD
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: latest # You can specify the Node.js version you are using.
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build TypeScript code
+      run: npm run build # Assuming this command generates the production-ready "dist" folder.
+
+    - name: Deploy to GCP instance
+      env:
+        INSTANCE_IP: ${{ secrets.GCP_INSTANCE_IP }}
+        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      run: |
+        echo "$SSH_PRIVATE_KEY" > $HOME/.ssh/id_rsa
+        chmod 600 $HOME/.ssh/id_rsa
+        scp -i $HOME/.ssh/id_rsa -r ./dist shahidtumbi@35.207.208.226:/var/www/html/linksbynk/public_html/
+        ssh -i $HOME/.ssh/id_rsa shahidtumbi@35.207.208.226 "cd /var/www/html/linksbynk/public_html/ && npm install"
+        
+    - name: Reload the Node.js application using PM2
+      env:
+        INSTANCE_IP: ${{ secrets.GCP_INSTANCE_IP }}
+        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      run: |
+        ssh -i $HOME/.ssh/id_rsa shahidtumbi@35.207.208.226 "cd /var/www/html/linksbynk/public_html/ && pm2 reload links-server"
+
+  # Add more steps for testing, database migrations, etc. as needed.
