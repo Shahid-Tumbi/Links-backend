@@ -32,7 +32,7 @@ jobs:
         port: ${{ secrets.PORT }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         passphrase: ${{ secrets.PASS_PHRASE }}
-        source: 'dist'
+        source: 'dist/*,environments/*,package.json'
         target: /var/www/html/linksbynk/public_html/
         
     - name: Reload the Node.js application using PM2
