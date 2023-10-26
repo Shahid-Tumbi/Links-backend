@@ -29,16 +29,16 @@ jobs:
         INSTANCE_IP: ${{ secrets.GCP_INSTANCE_IP }}
         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
       run: |
-        echo "$SSH_PRIVATE_KEY" > $HOME/.ssh/authorized_keys
-        chmod 600 $HOME/.ssh/authorized_keys
-        scp -i $HOME/.ssh/authorized_keys -r ./dist shahidtumbi@35.207.208.226:/var/www/html/linksbynk/public_html/
-        ssh -i $HOME/.ssh/authorized_keys shahidtumbi@35.207.208.226 "cd /var/www/html/linksbynk/public_html/ && npm install"
+        echo "$SSH_PRIVATE_KEY" > $HOME/.ssh/linksbynk_rsa
+        chmod 600 $HOME/.ssh/linksbynk_rsa
+        scp -i $HOME/.ssh/linksbynk_rsa -r ./dist shahidtumbi@35.207.208.226:/var/www/html/linksbynk/public_html/
+        ssh -i $HOME/.ssh/linksbynk_rsa shahidtumbi@35.207.208.226 "cd /var/www/html/linksbynk/public_html/ && npm install"
         
     - name: Reload the Node.js application using PM2
       env:
         INSTANCE_IP: ${{ secrets.GCP_INSTANCE_IP }}
         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
       run: |
-        ssh -i $HOME/.ssh/authorized_keys shahidtumbi@35.207.208.226 "cd /var/www/html/linksbynk/public_html/ && pm2 reload links-server"
+        ssh -i $HOME/.ssh/linksbynk_rsa shahidtumbi@35.207.208.226 "cd /var/www/html/linksbynk/public_html/ && pm2 reload links-server"
 
   # Add more steps for testing, database migrations, etc. as needed.
