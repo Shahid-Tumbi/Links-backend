@@ -49,6 +49,11 @@ jobs:
           whoami
           npm install --production
           pm2 reload links-server
+
+    - name: Debug Info
+      run: |
+          echo "npm version: $(npm -v)"
+          echo "PATH: $PATH"
         
     
   # Add more steps for testing, database migrations, etc. as needed.
