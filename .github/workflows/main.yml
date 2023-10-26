@@ -37,7 +37,7 @@ jobs:
 
 
     - name: Reload the Node.js application using PM2
-      uses: appleboy/ssh-action@1.0.0
+      uses: appleboy/ssh-action@v1.0.0
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
