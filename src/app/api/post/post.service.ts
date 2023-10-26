@@ -126,10 +126,28 @@ class PostService {
       const page = parseInt(req.query.page?.toString()) || 1;
       const limit = parseInt(req.query.limit?.toString()) || 10;
   
-      const pipeline = [
-        { $match: { is_deleted: false } },
-        { $sort: { createdAt: -1 } },
-      ];
+        const pipeline = [
+          { $match: { is_deleted: false } },
+          { $sort: { createdAt: -1 } },
+          {
+            $lookup: {
+              from: "user",         
+              localField: "userId", 
+              foreignField: "_id",
+              pipeline: [
+                { $project: { _id: 0, name: 1 } },
+              ],
+              as: "user_info"        
+            },
+          },
+          { $unwind: "$user_info" }, 
+          {
+            $project: {
+              gpt_summary: 0,
+              tags: 0,
+            },
+          },
+        ];
   
       return await DAO.paginateWithNextHit(this.Model, pipeline, limit, page);
       } 

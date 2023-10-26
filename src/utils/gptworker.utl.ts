@@ -30,27 +30,32 @@ const gptWorker = async (data:any) => {
     const moderationResult = moderation.data;
     console.log('Moderation Result:', JSON.stringify(moderationResult));
     if (moderationResult.results[0].flagged === false) {
-      
+      //tags generation
       const tagsRequest = await client.chat.completions.create({
           model: environment.MODEL_NAME,
           messages: [
             { role: 'user', content: `Generate 6 one words tags like what is content about from this content: ${content} ` }
           ]
         });
-  
         const tags = tagsRequest.choices[0]?.message?.content;
+        //Summary generation
         const stringArray = tags.split('\n');
         const trimmedArray = stringArray.map((item: string) => item.replace(/^\d+\.\s*/, '').trim());
         const summary = await client.chat.completions.create({
           model: environment.MODEL_NAME,
           messages: [{ role: 'user', content: `Summarize this content  ${content}` }],
         });
-  
+        // Read time 
+        const wordsArray = content.split(' ');
+        const wordCount = wordsArray.length;
+        const wordsPerMinute = 265;
+        const readTime = Math.ceil(wordCount / wordsPerMinute);
         const result = PostModel.findByIdAndUpdate(
           { _id: data.postId },{
           gpt_summary: summary.choices[0].message.content,
           tags: trimmedArray,
-          mod_review: true          
+          mod_review: true,
+          readingTime:readTime        
         });
         return result
       

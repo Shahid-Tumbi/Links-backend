@@ -36,6 +36,7 @@ const postSchema = new Schema(
     },
     mod_review : { type: Boolean, default: false },
     commentsEnable : { type: Boolean, default: false },
+    readingTime: { type: Schema.Types.Number , default: 0},
     is_deleted: { type: Boolean, default: false },
   },
   { timestamps: true });

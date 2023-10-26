@@ -271,7 +271,8 @@ export const USER_MESSAGES = {
     SEND: defineMessage('Follow request send'),
   },
   REFERRAL:{
-    USAGE_LIMIT : "Refferal code usage limit has been reached."
+    USAGE_LIMIT : "Refferal code usage limit has been reached.",
+    CODE_NOT_EXIST : "Refferal code not matched!"
   }
 };
 

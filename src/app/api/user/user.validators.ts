@@ -34,7 +34,7 @@ const JUser = Joi.object({
 	deviceToken: JString.optional().allow(""),
 	latitude: JNumber.optional().allow(""),
 	longitude: JNumber.optional().allow(""),
-	userName: JUserName.required(),
+	userName: JUserName.optional().allow(""),
 	referralCode: JString.optional().allow(""),
 	referrer: JString.optional().allow("")
 });
@@ -106,7 +106,8 @@ export const userValidators = {
 		profileImage:JString.optional(),
 		deviceToken:JString.optional(),
 		address:JString.optional(),
-		isPrivate:Joi.boolean().optional()
+		isPrivate:Joi.boolean().optional(),
+		referrer: JString.optional().allow("")
 	}),'body'),
 	updateUserDataSchemas:validateSchema(Joi.object({
 		_id: JString.required()

@@ -45,8 +45,8 @@ class UserService {
 			const data = req.data
 			Console.info(`partial ${JSON.stringify(req.client)}`);
 			// @TODO set limit to 1 to count
-			const { email, phoneNumber, countryCode, userName } = data;
-			const [isEmailExists, isPhoneExists, isUserNameExists] = await Promise.all([
+			const { email, phoneNumber, countryCode } = data;
+			const [isEmailExists, isPhoneExists] = await Promise.all([
 				this.UserModel.exists({
 					email,
 					status: { $ne: UserStatus.Deleted },
@@ -54,10 +54,6 @@ class UserService {
 				this.UserModel.exists({
 					phoneNumber,
 					countryCode,
-					status: { $ne: UserStatus.Deleted },
-				}),
-				this.UserModel.exists({
-					userName,
 					status: { $ne: UserStatus.Deleted },
 				}),
 			]);
@@ -71,20 +67,8 @@ class UserService {
 					new ResponseError(422, USER_MESSAGES.REGISTER.PHONE_EXISTS)
 				);
 			}
-			if (isUserNameExists) {
-				return Promise.reject(
-					new ResponseError(422, USER_MESSAGES.USER_NAME.TAKEN)
-				);
-			}
 			if(data.referrer){
-				const countRefferUsage = await this.Model.countDocuments({
-					referrer : data.referrer
-				});
-				if(countRefferUsage >= CONSTANT.REFERRAL_USAGE_COUNT.COUNT){
-					return Promise.reject(
-						new ResponseError(422, USER_MESSAGES.REFERRAL.USAGE_LIMIT)
-					);
-				}
+				await this.referrerProcess(data.referrer)
 			}
 			const password = await passwordUtil.hash(data.password);
 			const otpNumber = randomNumberStringGenerator(6);
@@ -135,10 +119,23 @@ class UserService {
 			return { profile: UserDataFormat(auth, profile), token, otpNumber };
 		} catch (error) {
 			Console.error('Error in regsiteration service', error);
-			return Promise.reject(new ResponseError(422, error));
+			return Promise.reject(new ResponseError(422, error.message || error));
 		}
 	}
-
+	async referrerProcess(referrerCode:any): Promise<void>{
+		const findReffaralCode = await this.Model.countDocuments({
+			referralCode : referrerCode
+		});
+		if(findReffaralCode == 0){
+			throw new Error(USER_MESSAGES.REFERRAL.CODE_NOT_EXIST)
+		}
+		const countRefferUsage = await this.Model.countDocuments({
+			referrer : referrerCode
+		});				
+		if(countRefferUsage >= CONSTANT.REFERRAL_USAGE_COUNT.COUNT){
+				throw new Error(USER_MESSAGES.REFERRAL.USAGE_LIMIT)
+		}
+	}
 	async verifyOtp(data: VerifyOtpData, { id }: App.User): Promise<any> {
 		try {
 			const result: IUser.User | null = await this.UserModel.findOne(
@@ -309,14 +306,23 @@ class UserService {
 	}
 	async updateUserData(payload: IUser.User, client: Partial<App.Client>) {
 		try {
+			if(payload.referrer){
+				await this.referrerProcess(payload.referrer)
+			}
+			await this.Model.findOneAndUpdate({userId: payload._id},{
+				referrer: payload.referrer
+			});
 			return await this.UserModel.findByIdAndUpdate(
 				{ _id: payload._id },
-				{ $set: payload },
+				{ $set: {
+					...payload,
+					status: payload.referrer ? UserStatus.Active : UserStatus.New
+				 }},
 				{ projection: { password: 0 }, new: true }
 			);
 		} catch (error) {
 			Console.error('Error in user UpdateData service', error);
-			return Promise.reject(new ResponseError(422, error));
+			return Promise.reject(new ResponseError(422, error?.message || error));
 		}
 	}
 
