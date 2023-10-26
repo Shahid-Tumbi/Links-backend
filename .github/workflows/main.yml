@@ -47,7 +47,7 @@ jobs:
         script: |
           cd /var/www/html/linksbynk/public_html
           whoami
-          npm install --production
+          /usr/local/nvm/versions/node/v18.18.2/bin/npm install --production
           pm2 reload links-server
         
     
