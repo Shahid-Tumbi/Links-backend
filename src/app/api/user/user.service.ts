@@ -256,7 +256,7 @@ class UserService {
 		} else if (data.user.includes('@' && '.')) {
 			where = {
 				status: { $ne: UserStatus.Deleted },
-				email: data.user,
+				email: data.user.toLowerCase(),
 			};
 		} else {
 			where = {
@@ -308,10 +308,11 @@ class UserService {
 		try {
 			if(payload.referrer){
 				await this.referrerProcess(payload.referrer)
+			
+				await this.Model.findOneAndUpdate({userId: payload._id},{
+					referrer: payload.referrer
+				});
 			}
-			await this.Model.findOneAndUpdate({userId: payload._id},{
-				referrer: payload.referrer
-			});
 			return await this.UserModel.findByIdAndUpdate(
 				{ _id: payload._id },
 				{ $set: {

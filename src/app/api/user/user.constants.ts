@@ -283,7 +283,7 @@ export const COLLECTION_NAME = {
   followRequest : 'followRequest'
 };
 
-export const BY_PASS_OTP = '1234';
+export const BY_PASS_OTP = '123456';
 
 export const passwordKey = '_p';
 

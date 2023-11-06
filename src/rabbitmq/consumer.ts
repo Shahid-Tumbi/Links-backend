@@ -17,7 +17,7 @@ async function taskConsume(queueName:string) {
      await notificationUtil(message)
      }
      if(queueName == QueueName.follow){
-       console.log('Received ',message);
+      //  console.log('Received ',message);
        await  UserDetailModel.findOneAndUpdate(
         { userId: message.followerId.toString()},
         { $inc: { totalFollowings: 1} },) // Increment the totalFollowers field by 1

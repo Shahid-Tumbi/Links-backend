@@ -13,6 +13,12 @@ const gptWorker = async (data:any) => {
     if (!content) {
       throw new Error('No content found in the HTML');
     }
+    const title = $("meta[property='og:title']").attr("content");
+    const description = $("meta[property='og:description']").attr("content");
+    const image = $("meta[property='og:image']").attr("content");
+    if (!title || !description || !image) {
+        console.log('No OG title ,description or image found in the HTML');
+    }
     let config = {
       method: 'post',
       maxBodyLength: Infinity,
@@ -55,7 +61,10 @@ const gptWorker = async (data:any) => {
           gpt_summary: summary.choices[0].message.content,
           tags: trimmedArray,
           mod_review: true,
-          readingTime:readTime        
+          readingTime:readTime,
+          title,
+          description,
+          image    
         });
         return result
       

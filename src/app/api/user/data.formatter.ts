@@ -22,6 +22,7 @@ export const UserDataFormat = (data: any,authData: any) => {
 		userName:data.userName || '',
 		isPrivate: data.isPrivate || false,
 		referrer: authData?.referrer || '',
-		referralCode: authData?.referralCode || ''
+		referralCode: authData?.referralCode || '',
+		bio:data?.bio || '',
 	};
 };
