@@ -107,7 +107,8 @@ export const userValidators = {
 		deviceToken:JString.optional(),
 		address:JString.optional(),
 		isPrivate:Joi.boolean().optional(),
-		referrer: JString.optional().allow("")
+		referrer: JString.optional().allow(""),
+		bio: JString.optional().allow("")
 	}),'body'),
 	updateUserDataSchemas:validateSchema(Joi.object({
 		_id: JString.required()

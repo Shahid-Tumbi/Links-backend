@@ -12,11 +12,11 @@ const postSchema = new Schema(
     title: {
       type: String,
     },
-    content: {
+    description: {
       type: String,
       max: 500,
     },
-    img: {
+    image: {
       type: String,
     },
     link: {

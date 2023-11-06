@@ -125,26 +125,50 @@ class PostService {
       try{
       const page = parseInt(req.query.page?.toString()) || 1;
       const limit = parseInt(req.query.limit?.toString()) || 10;
-  
+        const todayStart = new Date();
+        todayStart.setHours(0, 0, 0, 0);
+
+        const todayEnd = new Date();
+        todayEnd.setHours(23, 59, 59, 999);
+
         const pipeline = [
-          { $match: { is_deleted: false } },
-          { $sort: { createdAt: -1 } },
           {
-            $lookup: {
-              from: "user",         
-              localField: "userId", 
-              foreignField: "_id",
-              pipeline: [
-                { $project: { _id: 0, name: 1 } },
+            $match: {
+              is_deleted: false,
+              $or: [
+                { createdAt: { $gte: todayStart, $lte: todayEnd } },
+                { createdAt: { $lt: todayStart } },
               ],
-              as: "user_info"        
             },
           },
-          { $unwind: "$user_info" }, 
+          {
+            $addFields: {
+              isToday: { $gte: ["$createdAt", todayStart] },
+            },
+          },
+          { $sort: { isToday: -1, likes: -1, createdAt: -1 } },
+          {
+            $lookup: {
+              from: "user",
+              localField: "userId",
+              foreignField: "_id",
+              pipeline: [
+                {
+                  '$project': {
+                    _id: 0,
+                    name: 1
+                  }
+                }
+              ],
+              as: "user_info",
+            },
+          },
+          { $unwind: "$user_info" },
           {
             $project: {
               gpt_summary: 0,
               tags: 0,
+              isToday: 0,
             },
           },
         ];

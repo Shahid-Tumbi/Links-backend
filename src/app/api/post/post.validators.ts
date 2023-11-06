@@ -12,7 +12,7 @@ export const postValidators = {
     create: validateSchema(Joi.object({
         userId: JString.required(),
         title: JString,
-        content: JString,
+        description: JString,
         link: JString,
         gpt_summary: JString,
         commentsEnable: Joi.boolean().optional().default(false)
@@ -25,7 +25,7 @@ export const postValidators = {
     
     updatePost: validateSchema(Joi.object({
         title: JString,
-        content: JString,
+        description: JString,
         link: JString,
         gpt_summary: JString,
     }),'body'),
