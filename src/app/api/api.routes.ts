@@ -5,6 +5,7 @@ import { App } from '../app.interface';
 import { userV1Routes } from './user/user.routes';
 import { apiDebugger } from '@utils/debug.util';
 import { postV1Routes } from './post/post.routes'
+import { apiController } from './api.controller';
 
 // create Router
 const router: Router = Router();
@@ -19,6 +20,7 @@ router.get('/timeout', (req, res, next) => {
 router.get('/privacy-policy', (req: App.Request, res: App.Response) => {
 	res.render('TermsofService.html');
 });
+router.get('/config',apiController.config)
 
 router.use(userV1Routes.path, userV1Routes.router);
 router.use(postV1Routes.path,postV1Routes.router);

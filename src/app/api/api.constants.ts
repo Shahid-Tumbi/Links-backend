@@ -334,3 +334,10 @@ Object.defineProperties(CONSTANT.DATABASE.USER.GENDER, {
 	2: { value: 'Female' },
 	3: { value: 'Other' },
 });
+export const COLLECTION_NAME = {
+	configSchema: 'config'
+  };
+export const AppConfig = {
+	firebase : 1,
+	SMS: 0
+  }
