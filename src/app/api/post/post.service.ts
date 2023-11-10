@@ -11,6 +11,8 @@ import { User } from '../user';
 import { QueueName, USER_MESSAGES } from '../user/user.constants';
 import { ObjectId } from 'mongodb';
 import { consumer, producer } from '@src/rabbitmq';
+import { NotificationModel } from '../notification';
+import { NOTIFICATION_MESSAGES } from '../notification/notification.constants';
 const axios = require('axios');
 const contentTypeParser = require('content-type');
 
@@ -199,6 +201,33 @@ class PostService {
         const result = await LikeModel.create(req.body);
         producer({ postId, userId },QueueName.like)
         consumer(QueueName.like)
+        const postOwnerData = await PostModel.findOne({_id:postId})
+        const userData = await this.UserModel.findOne({_id:userId})
+        
+        NotificationModel.create({
+          fromUser: userId,
+          toUser: postOwnerData.userId,
+          notificationType: 0,
+          content: userData.name + ' ' +
+          NOTIFICATION_MESSAGES.POST.LIKED.MESSAGE,
+          title: NOTIFICATION_MESSAGES.POST.LIKED.TITLE,
+        });
+        try {
+          producer({
+            token: userData.deviceToken,
+  
+            notification: {
+              title: NOTIFICATION_MESSAGES.POST.LIKED.TITLE,
+              body: 
+              userData.name + ' ' +
+              NOTIFICATION_MESSAGES.POST.LIKED.MESSAGE,
+            },
+            id: postId,             
+          },QueueName.notification);
+          consumer(QueueName.notification);
+        } catch (err) {
+          return err;
+        }
         return result;
       } catch (error) {
           console.error('Error in post like service', error);
@@ -237,7 +266,34 @@ class PostService {
        */
       async commentPost(req: App.Request<IPost.Comment>): Promise<IPost.Comment> {
         try {
+          const { postId, userId } = req.body;
           const result = await CommentModel.create(req.body);
+          const postOwnerData = await PostModel.findOne({_id:postId})
+          const userData = await this.UserModel.findOne({_id:userId})
+          NotificationModel.create({
+            fromUser: userId,
+            toUser: postOwnerData.userId,
+            notificationType: 0,
+            content: userData.name + ' ' +
+            NOTIFICATION_MESSAGES.POST.COMMENT.MESSAGE,
+            title: NOTIFICATION_MESSAGES.POST.COMMENT.TITLE,
+          });
+          try {
+            producer({
+              token: userData.deviceToken,
+    
+              notification: {
+                title: NOTIFICATION_MESSAGES.POST.COMMENT.TITLE,
+                body: 
+                userData.name + ' ' +
+                NOTIFICATION_MESSAGES.POST.COMMENT.MESSAGE,
+              },
+              id: postId,             
+            },QueueName.notification);
+            consumer(QueueName.notification);
+          } catch (err) {
+            return err;
+          }
           return result;
         } catch (error) {
           console.error('Error in post create service', error);

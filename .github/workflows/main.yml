@@ -33,7 +33,7 @@ jobs:
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         passphrase: ${{ secrets.PASS_PHRASE }}
         source: 'dist/*,environments/development.json,public/*,swagger/*,package.json'
-        target: /var/www/html/linksbynk/public_html/
+        target: /var/www/html/wtfclubapp/public_html/
 
 
     - name: Reload the Node.js application using PM2
@@ -45,7 +45,7 @@ jobs:
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         passphrase: ${{ secrets.PASS_PHRASE }}
         script: |
-          cd /var/www/html/linksbynk/public_html
+          cd /var/www/html/wtfclubapp/public_html/
           npm install --production
           pm2 restart all
          

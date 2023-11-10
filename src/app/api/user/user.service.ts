@@ -2,6 +2,7 @@ import { App } from '@src/app/app.interface';
 import { LoginType, UserStatus, UserType } from '@src/app/constants';
 import {
 	Console,
+	generateFromEmail,
 	passwordUtil,
 	randomNumberStringGenerator,
 	randomStringGenerator,
@@ -73,10 +74,12 @@ class UserService {
 			const password = await passwordUtil.hash(data.password);
 			const otpNumber = randomNumberStringGenerator(6);
 			const otpExpireTime = Date.now() + CONSTANT.OTP.EXP_TIME * 1000;
-			const referralCode = randomStringGenerator(6);			
+			const referralCode = randomStringGenerator(6);
+			const userName = generateFromEmail(email,4)			
 			const auth: IUser.User = await this.UserModel.create({
 				...data,
 				password,
+				userName,
 				otp: {
 					otpCode: otpNumber,
 					expireTime: otpExpireTime,
@@ -177,13 +180,14 @@ class UserService {
 					new ResponseError(400, USER_MESSAGES.VERIFY_OTP.INVALID)
 				);
 			}
-
+			if(data.otp !== BY_PASS_OTP){
 			// @ts-ignore
 			if (<unknown>result.otp.expireTime <= Date.now()) {
 				// time is milisecond // 45 second
 				return Promise.reject(
 					new ResponseError(400, USER_MESSAGES.VERIFY_OTP.EXPIRED)
 				);
+			}
 			}
 			let message = USER_MESSAGES.VERIFY_OTP.PHONE_VERIFIED;
 			await this.UserModel.updateOne(
