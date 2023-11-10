@@ -6,6 +6,7 @@ import { userV1Routes } from './user/user.routes';
 import { apiDebugger } from '@utils/debug.util';
 import { postV1Routes } from './post/post.routes'
 import { apiController } from './api.controller';
+import { notificationRoutes } from './notification/notification.routes';
 
 // create Router
 const router: Router = Router();
@@ -24,6 +25,7 @@ router.get('/config',apiController.config)
 
 router.use(userV1Routes.path, userV1Routes.router);
 router.use(postV1Routes.path,postV1Routes.router);
+router.use(notificationRoutes.path, notificationRoutes.router);
 
 router.use((req: App.Request, res: App.Response, next: NextFunction) => {
 	next(new ResponseError(404, 'Not Found'));

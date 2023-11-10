@@ -1,3 +1,4 @@
+import { environment } from '@src/utils';
 import { defineMessage } from '@utils/common.util';
 
 export const USER_MESSAGES = {
@@ -288,8 +289,8 @@ export const BY_PASS_OTP = '123456';
 export const passwordKey = '_p';
 
 export const GMAIL_SERVICE = {
-  EMAIL_USER: 'dev@nksqr.com',
-  EMAIL_PASS: 'gbxoquqepcjlerty',
+  EMAIL_USER: environment.GMAIL_ACCOUNT,
+  EMAIL_PASS: environment.GMAIL_PASS,
   SUBJECT: 'Forget Password',
   WELCOME_SUBJECT: 'Welcome to Links',
   WELCOME_HTML: `<p><h1><b>Welcome to Links</b></h1></p>

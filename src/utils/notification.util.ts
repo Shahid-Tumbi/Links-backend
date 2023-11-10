@@ -5,7 +5,6 @@ exports.notificationUtil = async(notifiData:any) =>{
 	
 	try{
         // const  to = notifiData.to
-		// console.log("data", notifiData)   
 		// const notification = data.message
 		// const notification_options = {
 		// 	tokens: notifiData.to,
@@ -13,6 +12,7 @@ exports.notificationUtil = async(notifiData:any) =>{
 		//   };
 		// const data =  notification_options
 		const notificationData={
+			token:notifiData.token,
 			notification: notifiData.notification,
 			data: {
 					notifee: JSON.stringify({
@@ -20,11 +20,11 @@ exports.notificationUtil = async(notifiData:any) =>{
 						android: {
 							channelId: "default"
 						},
-						id:notifiData.notification.id
+						id:notifiData.id
 					})
 				}
 		}
-		 firebaseAdmin.messaging().sendToDevice(notifiData.to,notificationData).then( (resp:any) => {
+		 firebaseAdmin.messaging().send(notificationData).then( (resp:any) => {
 			console.log(JSON.stringify(resp))
 		    return resp	;
 		   
