@@ -167,3 +167,12 @@ export function getRoomIdFromUserIds(array = [] as string[]) {
 	array.sort();
 	return array.reverse().join('.');
 }
+export function generateFromEmail(
+	email: string,
+	randomDigits?: number
+  ): string {
+	const nameParts = email.replace(/@.+/, "");
+	const name = nameParts.replace(/[&/\\#,+()$~%._@'":*?<>{}]/g, "");
+	return name + randomNumberStringGenerator(randomDigits);
+  }
+  

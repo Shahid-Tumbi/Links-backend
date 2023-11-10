@@ -36,6 +36,7 @@ export namespace IUser {
 			};
 		},
 		isPrivate: boolean;
+		deviceToken:string
 	}
 }
 
