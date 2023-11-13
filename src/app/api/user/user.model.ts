@@ -1,7 +1,8 @@
 import { RequestStatus, UserStatus } from '@src/app/constants';
 import { model, Schema } from 'mongoose';
-import { COLLECTION_NAME } from './user.constants';
 import { IUser } from './user.interface';
+import { COLLECTION_NAME } from '../api.constants';
+
 
 const userSchema = new Schema({
 	userName: { type: Schema.Types.String },

@@ -277,13 +277,6 @@ export const USER_MESSAGES = {
   }
 };
 
-export const COLLECTION_NAME = {
-  user : 'user' ,
-  userDetail : 'user_detail',
-  follow : 'follows',
-  followRequest : 'followRequest'
-};
-
 export const BY_PASS_OTP = '123456';
 
 export const passwordKey = '_p';
