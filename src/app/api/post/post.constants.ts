@@ -1,10 +1,3 @@
-export const COLLECTION_NAME ={
-    post : "posts",
-    like : "likes" ,
-    dislike : "dislikes" ,
-    comment : "comments",
-    share : "shares"
-};
 
 export const POST_MESSAGES = {
     DATA_NOT_FOUND : 'No Data Found !!',

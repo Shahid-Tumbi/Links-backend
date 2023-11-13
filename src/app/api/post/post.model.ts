@@ -1,6 +1,6 @@
 import { model, Schema } from 'mongoose';
-import { COLLECTION_NAME } from './post.constants';
 import { IPost } from './post.interface';
+import { COLLECTION_NAME } from '../api.constants';
 
 const postSchema = new Schema(
   {

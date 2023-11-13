@@ -335,7 +335,17 @@ Object.defineProperties(CONSTANT.DATABASE.USER.GENDER, {
 	3: { value: 'Other' },
 });
 export const COLLECTION_NAME = {
-	configSchema: 'config'
+	configSchema: 'config',
+	user : 'user' ,
+	userDetail : 'user_detail',
+	follow : 'follows',
+	followRequest : 'followRequest', 
+	post : "posts",
+    like : "likes" ,
+    dislike : "dislikes" ,
+    comment : "comments",
+    share : "shares",
+	notification:'notification'
   };
 export const AppConfig = {
 	firebase : 1,

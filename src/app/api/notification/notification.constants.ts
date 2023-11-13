@@ -6,4 +6,3 @@ export const NOTIFICATION_MESSAGES = {
     }
 };
 
-export const COLLECTION_NAME = 'notification';
