@@ -36,14 +36,33 @@ export class ResendOtpData {
 })
 export class ForgotPasswordData {
 	@ApiModelProperty({
-		description: 'user',
+		description: 'users email,phone or username',
 		required: true,
 		type: SwaggerDefinitionConstant.STRING,
-		example: 'test@yopmail.com' as any,
+		example: 'test@yopmail.com || 9879279897 || test123'  as any,
 	})
-	email: string;
+	user: string;
 }
-
+@ApiModel({
+	name: 'ResetPassword',
+	description: 'reset password',
+})
+export class ResetPassword {
+	@ApiModelProperty({
+		description: 'auth token',
+		required: true,
+		type: SwaggerDefinitionConstant.STRING,
+		example: 'authToken'  as any,
+	})
+	token: string;
+	@ApiModelProperty({
+		description: 'password',
+		required: true,
+		type: SwaggerDefinitionConstant.STRING,
+		example: 'test@123'  as any,
+	})
+	password: string;
+}
 @ApiModel({
 	description: 'Change Password',
 	name: 'ChangePasswordData',

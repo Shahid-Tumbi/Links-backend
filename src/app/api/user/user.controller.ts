@@ -178,6 +178,38 @@ class UserController {
       })
       .catch(next);
   }
+  @ApiOperationPost({
+    description: 'reset password',
+    summary: 'reset password',
+    path: '/reset-password',
+    parameters: {
+      body: {
+        description: 'reset password',
+        required: true,
+        model: 'resetPassword',
+      },
+    },
+    security: {
+      bearerAuth: [],
+    },
+    responses: {
+      200: {
+        description: 'Success',
+        type: 'String',
+      },
+    },
+  })
+  resetPassword(req: App.Request<FollowData>, res: App.Response, next: NextFunction) {
+    // console.info("req",req)
+    userService
+      .resetPassword(req)
+      .then((result) => {
+        // console.info("res",res)
+
+        res.success('Success', result);
+      })
+      .catch(next);
+  }
 
   @ApiOperationPost({
     description: 'Change Password',

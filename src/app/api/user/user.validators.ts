@@ -133,7 +133,7 @@ export const userValidators = {
 	userNameAvailable: validateSchema(Joi.object({
 		user_name: JUserName.required().error(JMessages.userNameError),
 	}), 'params'),
-	forgotPassword: validateSchema(Joi.object({ email: JEmail.required() }), 'body'),
+	forgotPassword: validateSchema(Joi.object({ user: JString.required() }), 'body'),
 	forgotPasswordOtp: validateSchema(Joi.object({
 		otp: JOtp.required(),
 		token: JToken.required(),
@@ -198,6 +198,7 @@ export const userValidators = {
 	}), 'params'),
 	logout : validateSchema(Joi.object({
 		deviceToken: JString.optional(),
+		token:JToken.required(),
 		userId: JString.required()
 	}),'body'),
 	follow : validateSchema(Joi.object({

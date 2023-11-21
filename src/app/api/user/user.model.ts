@@ -3,7 +3,6 @@ import { model, Schema } from 'mongoose';
 import { IUser } from './user.interface';
 import { COLLECTION_NAME } from '../api.constants';
 
-
 const userSchema = new Schema({
 	userName: { type: Schema.Types.String },
 	name: { type: Schema.Types.String, required: true, index: true },
