@@ -339,7 +339,7 @@ export const COLLECTION_NAME = {
 	user : 'user' ,
 	userDetail : 'user_detail',
 	follow : 'follows',
-	followRequest : 'followRequest', 
+	followRequest : 'followRequest',
 	post : "posts",
     like : "likes" ,
     dislike : "dislikes" ,
