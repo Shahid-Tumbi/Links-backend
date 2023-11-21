@@ -17,8 +17,6 @@ export const UserDataFormat = (data: any,authData: any) => {
 		emailNotification:data.emailNotification || false,
 		profileImage:data.profileImage || '',
 		address:data.address || '',
-		customerId:data.customerId || '',
-		paymentMethod:data.paymentMethod || '',
 		userName:data.userName || '',
 		isPrivate: data.isPrivate || false,
 		referrer: authData?.referrer || '',

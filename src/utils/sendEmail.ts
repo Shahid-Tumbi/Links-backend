@@ -3,7 +3,7 @@ const fs = require('fs');
 
 import { GMAIL_SERVICE } from '../app/api/user/user.constants'
 import * as path from 'path'
-const sendEmail = async (email: string,name: string,sentPassword:string, welcomeEmail: boolean) => {
+const sendEmail = async (email: string,name: string,sentLink:string, welcomeEmail: boolean) => {
   const htmlRAW = fs.readFileSync(
     path.join(__dirname, "../../public/templates/welcome.html"),
     "utf8"
@@ -33,7 +33,7 @@ const sendEmail = async (email: string,name: string,sentPassword:string, welcome
       html: data,
     }
   } else {
-    let data = ForgetHtml.replace('sentPassword',sentPassword)
+    let data = ForgetHtml.replace(/\$\{sentLink\}/g,sentLink)
     message = {
       from: GMAIL_SERVICE.EMAIL_USER,
       to: email,

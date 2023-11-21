@@ -93,4 +93,9 @@ router.post('/unfollow',
  userValidators.follow,
  userController.unfollow
  );
+router.post('/reset-password',
+ session([UserType.Default]),
+ userValidators.resetPassword,
+ userController.resetPassword
+ );
 export const userV1Routes = { path: '/users', router };
