@@ -2,6 +2,7 @@ import { App } from '@src/app/app.interface';
 import { LoginType, UserStatus, UserType } from '@src/app/constants';
 import {
 	Console,
+	environment,
 	generateFromEmail,
 	passwordUtil,
 	randomNumberStringGenerator,
@@ -17,7 +18,6 @@ import sendEmail from '../../../utils/sendEmail';
 import {
 	LinksConstant,
 	USER_MESSAGES,
-	DEFAULT_PASSWORD,
 	BY_PASS_OTP,
 	QueueName
 } from './user.constants';
@@ -26,6 +26,7 @@ import {
 	IUser,
 	ILogoutData,
 	IChangePassword,
+	IAuthData,
 } from './user.interface';
 import { FollowModel, FollowRequestModel, User, UserDetailModel } from './user.model';
 import { VerifyOtpData } from './user.swagger';
@@ -331,14 +332,21 @@ class UserService {
 		}
 	}
 
-	async forgotPassword(payload: IUser.User): Promise<any> {
+	async forgotPassword(payload: IAuthData,client?: Partial<App.Client>): Promise<any> {
 		try {
-			let sentPassword = DEFAULT_PASSWORD;
-			const password = await passwordUtil.hash(DEFAULT_PASSWORD);
-			let result = await this.UserModel.findOneAndUpdate(
-				{ email: payload.email },
-				{ $set: { password: password } }
-			);
+			let result;
+			const emailRegex = CONSTANT.REGEX.EMAIL;
+			if (emailRegex.test(payload.user)) {
+				result = await this.UserModel.findOne({ email: payload.user.toLowerCase() });
+			} else {
+				const usernameOrPhoneRegex = new RegExp(`^${payload.user}$`, 'i');
+				result = await this.UserModel.findOne({
+					$or: [
+						{ userName: usernameOrPhoneRegex }, 
+						{ phoneNumber: usernameOrPhoneRegex } 
+					]
+				});
+			}
 			if (result == null) {
 				return Promise.reject(
 					new ResponseError(
@@ -347,7 +355,13 @@ class UserService {
 					)
 				);
 			} else {
-				sendEmail(payload.email,'',sentPassword, false);
+				const token = await tokenUtil.generateAuthToken({
+					id: result._id,
+					session: result._id,
+					type: UserType.User,
+				}, UserType.User, '1d')
+				const resetLink = `${environment.url}/v1/users/reset-password?token=${token}`;
+				sendEmail(result.email,'',resetLink, false);
 			}
 		} catch (error) {
 			Console.error('Error in verifyOtp service', error);
@@ -513,6 +527,39 @@ class UserService {
 					new ResponseError(401,USER_MESSAGES.UNFOLLOW.ALREADY)
 				);
 			  }
+		} catch (error) {
+			Console.error('Error in  service', error);
+			return Promise.reject(new ResponseError(422, error));
+		}
+	}
+	async resetPassword(req:App.Request){
+		try {
+			const { password,token } = req.body;
+			const user = await tokenUtil.verifyAuthToken(token,UserType.User)
+			console.log('USER',user);
+			
+			if (!user) {
+				throw new ResponseError(401, USER_MESSAGES.RESEND_OTP.INVALID_TOKEN);
+			}
+			const newPassword = await passwordUtil.hash(password);
+			const profile = await this.UserModel.findOneAndUpdate({ _id: user.id }, { $set: { password: newPassword }},{new:true});
+			
+			const newToken = await sessionService.create(
+				profile._id,
+				{
+					ipAddress: req.ip,
+					deviceType: useragent.isMobile ? 'mobile' : 'desktop',
+					deviceModel: useragent?.device ? useragent?.device : req.headers['user-agent'],
+					deviceToken: profile.deviceToken,
+					signType: LoginType.Normal,
+					userType: UserType.User,
+				},
+				{
+					name: profile.name,
+				}
+			);
+			tokenUtil.expireToken(token, UserType.User)
+			return { profile: UserDataFormat(profile,user), token:newToken }
 		} catch (error) {
 			Console.error('Error in  service', error);
 			return Promise.reject(new ResponseError(422, error));

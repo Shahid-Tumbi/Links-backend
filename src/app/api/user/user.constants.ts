@@ -215,7 +215,7 @@ export const USER_MESSAGES = {
       'Oops! $$ is not verified yet, please verify first',
       '¡Uy! $$ aún no está verificado, verifíquelo primero'
     ),
-    SEND: defineMessage('Default password sent to your email'),
+    SEND: defineMessage('Reset password link has been sent to your email'),
   },
   CHANGE_PASSWORD: {
     INVALID: defineMessage(
