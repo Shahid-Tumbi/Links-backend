@@ -360,7 +360,7 @@ class UserService {
 					session: result._id,
 					type: UserType.User,
 				}, UserType.User, '1d')
-				const resetLink = `${environment.url}/v1/users/reset-password?token=${token}`;
+				const resetLink = `${environment.resetPasswordURL}${token}`;
 				sendEmail(result.email,'',resetLink, false);
 			}
 		} catch (error) {
