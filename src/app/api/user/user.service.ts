@@ -317,12 +317,17 @@ class UserService {
 				await this.Model.findOneAndUpdate({userId: payload._id},{
 					referrer: payload.referrer
 				});
+				return await this.UserModel.findByIdAndUpdate(
+					{ _id: payload._id },
+					{ $set: {
+						usertype: payload.referrer ? UserType.Curator : UserType.User
+					 }},
+				);
 			}
 			return await this.UserModel.findByIdAndUpdate(
 				{ _id: payload._id },
 				{ $set: {
 					...payload,
-					usertype: payload.referrer ? UserType.Curator : UserType.User
 				 }},
 				{ projection: { password: 0 }, new: true }
 			);
@@ -560,6 +565,26 @@ class UserService {
 			);
 			tokenUtil.expireToken(token, UserType.User)
 			return { profile: UserDataFormat(profile,user), token:newToken }
+		} catch (error) {
+			Console.error('Error in  service', error);
+			return Promise.reject(new ResponseError(422, error));
+		}
+	}
+	async getCuratorList(req:App.Request){
+		try {
+			const page = parseInt(req.query.page?.toString()) || 1;
+			const limit = parseInt(req.query.limit?.toString()) || 10;
+			
+			  const pipeline = [
+				{
+				  $match: {
+					usertype: UserType.Curator,
+				  },
+				},
+				 { $sort: { createdAt: -1 } },
+			  ];
+		
+			return await DAO.paginateWithNextHit(this.UserModel, pipeline, limit, page);
 		} catch (error) {
 			Console.error('Error in  service', error);
 			return Promise.reject(new ResponseError(422, error));

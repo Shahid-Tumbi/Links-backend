@@ -468,6 +468,27 @@ class PostController {
     summary: 'Get Users wise Post List',
     path: '/userWiseList/{_id}',
     parameters: {
+      path: {
+        _id: {
+          required: true,
+          type: SwaggerDefinitionConstant.STRING,
+          description: 'mongoID',
+        },
+      },
+      query: {
+        page: {
+          required: false,
+          type: SwaggerDefinitionConstant.NUMBER,
+          description: 'Page No',
+          default: 1,
+        },
+        limit: {
+          required: false,
+          type: SwaggerDefinitionConstant.NUMBER,
+          description: 'Limit',
+          default: 5,
+        },
+      },
     },
     security: {
         bearerAuth: [],

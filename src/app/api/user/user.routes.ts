@@ -98,4 +98,8 @@ router.post('/reset-password',
  userValidators.resetPassword,
  userController.resetPassword
  );
+ router.get('/curatorList',
+ session([UserType.User]),
+ userController.getCuratorList
+ );
 export const userV1Routes = { path: '/users', router };
