@@ -560,6 +560,47 @@ class UserController {
       })
       .catch(next);
   }
+  @ApiOperationGet({
+    description: 'Get Curator  List',
+    summary: 'Get Curator  List',
+    path: '/curatorList',
+    parameters: {
+      query: {
+        page: {
+          required: false,
+          type: SwaggerDefinitionConstant.NUMBER,
+          description: 'Page No',
+          default: 1,
+        },
+        limit: {
+          required: false,
+          type: SwaggerDefinitionConstant.NUMBER,
+          description: 'Limit',
+          default: 5,
+        },
+      },
+    },
+    security: {
+        bearerAuth: [],
+    },
+    responses: {
+      200: {
+        description: 'Success',
+        type: 'String',
+      },
+    },
+  })
+  getCuratorList(req: App.Request<FollowData>, res: App.Response, next: NextFunction) {
+    // console.info("req",req)
+    userService
+      .getCuratorList(req)
+      .then((result) => {
+        // console.info("res",res)
+
+        res.success('Success', result);
+      })
+      .catch(next);
+  }
 }
 
 export const userController = new UserController();
