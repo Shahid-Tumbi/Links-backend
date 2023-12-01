@@ -175,4 +175,11 @@ export function generateFromEmail(
 	const name = nameParts.replace(/[&/\\#,+()$~%._@'":*?<>{}]/g, "");
 	return name + randomNumberStringGenerator(randomDigits);
   }
-  
+  export function isValidURL(string: string) {
+	try {
+	  new url.URL(string);
+	  return true;
+	} catch (_) {
+	  return false;  
+	}
+  }

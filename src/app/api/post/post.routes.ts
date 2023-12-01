@@ -81,5 +81,11 @@ router.put(
     postValidators.sharePost,
     postController.sharePost
   );
+  router.get(
+    '/userWiseList/:_id',
+    session([UserType.User]),
+    postValidators.idParamsSchema,
+    postController.getUserWiseList,
+  );
 
 export const postV1Routes = { path: '/posts', router };

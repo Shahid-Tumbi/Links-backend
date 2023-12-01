@@ -2,6 +2,7 @@ import { App } from '@src/app/app.interface';
 import {
   DbLogger,
 	ResponseError,
+  isValidURL,
 } from '@src/utils';
 import { CommentModel, DislikeModel, LikeModel, PostModel, ShareModel } from './post.model';
 import { ICreatePostData, IDeletePostData,  IPost,  IPostDetail,  IUpdatePostData } from './post.interface';
@@ -33,6 +34,9 @@ class PostService {
             new ResponseError(422, USER_MESSAGES.USER_NOT_FOUND)
           )
         }
+        if (!isValidURL(data.link)) {
+          return Promise.reject(new ResponseError(422, POST_MESSAGES.INVALID_LINK_TYPE));
+        }
         const response = await axios.get(data.link).catch((error: any) => {
           console.error('An error occurred:', error);
           throw error;
@@ -44,7 +48,7 @@ class PostService {
             ...data
           });
           DbLogger.info('Gpt process start')
-          producer({postId:postCreated._id,postData:response.data},QueueName.gptprocess)
+          producer({postId:postCreated._id,postData:response.data,link:data.link},QueueName.gptprocess)
           consumer(QueueName.gptprocess)
           return postCreated;
         } else {
@@ -151,16 +155,30 @@ class PostService {
           { $sort: { isToday: -1, likes: -1, createdAt: -1 } },
           {
             $lookup: {
+              from: "comments",
+              localField: "_id", 
+              foreignField: "postId",
+              as: "post_comments",
+            },
+          },
+          {
+            $addFields: {
+              totalComments: { $size: "$post_comments" }, // Calculate total comments for each post
+            },
+          },
+          {
+            $lookup: {
               from: "user",
               localField: "userId",
               foreignField: "_id",
               pipeline: [
                 {
-                  '$project': {
+                  $project: {
                     _id: 0,
-                    name: 1
-                  }
-                }
+                    name: 1,
+                    profileImage: 1
+                  },
+                },
               ],
               as: "user_info",
             },
@@ -168,9 +186,9 @@ class PostService {
           { $unwind: "$user_info" },
           {
             $project: {
-              gpt_summary: 0,
               tags: 0,
               isToday: 0,
+              post_comments: 0,
             },
           },
         ];
@@ -388,6 +406,48 @@ class PostService {
           return Promise.reject(new ResponseError(422, error));
         }
       }
+      async getUserWiseList(req: App.Request) {
+        try{
+        const { _id } = req.params
+        const page = parseInt(req.query.page?.toString()) || 1;
+        const limit = parseInt(req.query.limit?.toString()) || 10;
+        
+          const pipeline = [
+            {
+              $match: {
+                userId: new ObjectId(_id),
+                is_deleted: false,
+              },
+            },
+             { $sort: { createdAt: -1 } },
+             {
+              $lookup: {
+                from: "comments",
+                localField: "_id", 
+                foreignField: "postId",
+                as: "post_comments",
+              },
+            },
+            {
+              $addFields: {
+                totalComments: { $size: "$post_comments" }, // Calculate total comments for each post
+              },
+            },
+            {
+              $project: {
+                tags: 0,
+                post_comments: 0,
+              },
+            },
+          ];
+    
+        return await DAO.paginateWithNextHit(this.Model, pipeline, limit, page);
+        } 
+          catch (error) {
+            console.error('Error in post list service', error);
+            return Promise.reject(new ResponseError(422, error));
+          }
+        }
   }
 
 export const postService = new PostService();
