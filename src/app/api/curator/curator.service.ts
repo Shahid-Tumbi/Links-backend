@@ -514,6 +514,66 @@ class UserService {
 			return Promise.reject(new ResponseError(422, error));
 		}
 	}
+
+    async postList(req: App.Request) {
+        try{
+        const page = parseInt(req.query.page?.toString()) || 1;
+        const limit = parseInt(req.query.limit?.toString()) || 10;
+          const givenDate = req.query.givenDate ? new Date(req.query.givenDate.toString()) : new Date();
+          givenDate.setHours(0, 0, 0, 0);
+  
+          const nextDay = new Date(givenDate);
+          nextDay.setDate(givenDate.getDate() + 1)
+          nextDay.setMilliseconds(nextDay.getMilliseconds() - 1);
+  
+          const pipeline = [
+            {
+              $match: {
+                is_deleted: false,
+                createdAt: { $gte: givenDate, $lt: nextDay } ,
+
+              },
+            },
+            {
+              $addFields: {
+                likesDesc: { $multiply: ["$likes", -1] },
+              },
+            },
+            { $sort: { likesDesc: 1, createdAt: -1 } },
+            {
+              $lookup: {
+                from: "user",
+                localField: "userId",
+                foreignField: "_id",
+                pipeline: [
+                  {
+                    '$project': {
+                      _id: 0,
+                      name: 1
+                    }
+                  }
+                ],
+                as: "user_info",
+              },
+            },
+            { $unwind: "$user_info" },
+            {
+              $project: {
+                gpt_summary: 0,
+                tags: 0,
+                likesDesc: 0,
+              },
+            },
+          ];
+    
+        return await DAO.paginateWithNextHit(this.Model, pipeline, limit, page);
+        } 
+          catch (error) {
+            console.error('Error in post list service', error);
+            return Promise.reject(new ResponseError(422, error));
+          }
+        }
+  
 }
 
 export const userService = new UserService();

@@ -93,4 +93,10 @@ router.post('/unfollow',
  userValidators.follow,
  userController.unfollow
  );
+
+ router.get(
+    '/topPosts',
+    session([UserType.User]),
+    userController.getTopList
+  );
 export const userV1Routes = { path: '/users', router };

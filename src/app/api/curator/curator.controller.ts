@@ -528,6 +528,49 @@ class UserController {
       })
       .catch(next);
   }
+
+  @ApiOperationGet({
+    description: 'Top Post List',
+    summary: 'Top Post List',
+    path: '/topPosts',
+    parameters: {
+      query: {
+        page: {
+          required: false,
+          type: SwaggerDefinitionConstant.NUMBER,
+          description: 'Page No',
+          default: 1,
+        },
+        limit: {
+          required: false,
+          type: SwaggerDefinitionConstant.NUMBER,
+          description: 'Limit',
+          default: 5,
+        },
+      },
+    },
+    security: {
+        bearerAuth: [],
+    },
+    responses: {
+      200: {
+        description: 'Success',
+        type: 'String',
+      },
+    },
+  })
+  getTopList(
+    req: App.Request,
+    res: App.Response,
+    next: NextFunction
+  ) {        
+    userService
+      .postList(req)
+      .then((result) => {
+        res.success('Success', result);
+      })
+      .catch(next);
+  }
 }
 
 export const userController = new UserController();
