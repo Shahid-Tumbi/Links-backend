@@ -1,4 +1,4 @@
-import { RequestStatus, UserStatus } from '@src/app/constants';
+import { RequestStatus, UserStatus, UserType } from '@src/app/constants';
 import { model, Schema } from 'mongoose';
 import { IUser } from './user.interface';
 import { COLLECTION_NAME } from '../api.constants';
@@ -30,6 +30,11 @@ const userSchema = new Schema({
 	address:{ type: Schema.Types.String },
 	bio:{ type: Schema.Types.String },
 	isPrivate: { type: Schema.Types.Boolean, default: false },
+	usertype:{
+		type: Schema.Types.String,
+		enum: Object.values(UserType),
+		default: UserType.User,
+	}
   },
   {
 	  timestamps: true,
@@ -44,7 +49,8 @@ const userSchema = new Schema({
 		totalFollowers :  { type: Schema.Types.Number , default: 0},
 		totalFollowings :  { type: Schema.Types.Number , default: 0},
 		referralCode: {type: Schema.Types.String},
-		referrer: {type: Schema.Types.String}
+		referrer: {type: Schema.Types.String},
+		score:{type: Schema.Types.Number , default: 0}
 	},
 	{
 		timestamps: true,

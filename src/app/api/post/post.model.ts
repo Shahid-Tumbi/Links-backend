@@ -34,10 +34,18 @@ const postSchema = new Schema(
     dislikes: {
       type: Number,
     },
+    pinComment: {
+      type: String,
+      max:60
+    },
+    discription: {
+      type: String,
+    },
     mod_review : { type: Boolean, default: false },
     commentsEnable : { type: Boolean, default: false },
     readingTime: { type: Schema.Types.Number , default: 0},
     is_deleted: { type: Boolean, default: false },
+    postPublished: {type: Schema.Types.Date}
   },
   { timestamps: true });
 export const PostModel = model<IPost.Doc>(COLLECTION_NAME.post, postSchema);
