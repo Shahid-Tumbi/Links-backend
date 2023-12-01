@@ -54,7 +54,7 @@ class UserController {
   }
 
   @ApiOperationPost({
-    description: 'Verify your OTP sent to provided phone nunber',
+    description: 'Verify your OTP sent to provided phone number',
     summary: 'Verify Phone Number with OTP',
     path: '/verify-otp',
     parameters: {
@@ -88,7 +88,7 @@ class UserController {
   }
 
   @ApiOperationPost({
-    description: 'Resend OTP code to provided email/phone nunber',
+    description: 'Resend OTP code to provided email/phone number',
     path: '/resend-otp',
     summary: 'Resend OTP Code',
     parameters: {
