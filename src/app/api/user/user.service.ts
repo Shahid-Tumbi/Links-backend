@@ -86,7 +86,7 @@ class UserService {
 					expireTime: otpExpireTime,
 				},
 				name: data.name,
-				status: data.referrer ? UserStatus.Active : UserStatus.New
+				usertype: data.referrer ? UserType.Curator : UserType.User
 			});
 			const profile: IUser.Doc = await this.Model.create({
 				userId: auth._id,
@@ -322,7 +322,7 @@ class UserService {
 				{ _id: payload._id },
 				{ $set: {
 					...payload,
-					status: payload.referrer ? UserStatus.Active : UserStatus.New
+					usertype: payload.referrer ? UserType.Curator : UserType.User
 				 }},
 				{ projection: { password: 0 }, new: true }
 			);
@@ -360,7 +360,7 @@ class UserService {
 					session: result._id,
 					type: UserType.User,
 				}, UserType.User, '1d')
-				const resetLink = `${environment.url}/v1/users/reset-password?token=${token}`;
+				const resetLink = `${environment.resetPasswordURL}${token}`;
 				sendEmail(result.email,'',resetLink, false);
 			}
 		} catch (error) {

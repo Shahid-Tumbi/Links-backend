@@ -463,6 +463,34 @@ class PostController {
       })
       .catch(next);
   }
+  @ApiOperationPost({
+    description: 'Get Users wise Post List',
+    summary: 'Get Users wise Post List',
+    path: '/userWiseList/{_id}',
+    parameters: {
+    },
+    security: {
+        bearerAuth: [],
+    },
+    responses: {
+      200: {
+        description: 'Success',
+        type: 'String',
+      },
+    },
+  })
+  getUserWiseList(
+    req: App.Request,
+    res: App.Response,
+    next: NextFunction
+  ) {        
+    postService
+      .getUserWiseList(req)
+      .then((result) => {
+        res.success('Success', result);
+      })
+      .catch(next);
+  }
 }
 
 export const postController = new PostController();

@@ -22,5 +22,7 @@ export const UserDataFormat = (data: any,authData: any) => {
 		referrer: authData?.referrer || '',
 		referralCode: authData?.referralCode || '',
 		bio:data?.bio || '',
+		usertype:data?.usertype || '',
+		score:authData?.usertype || '',
 	};
 };

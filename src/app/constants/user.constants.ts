@@ -1,15 +1,16 @@
 export enum UserType {
 	Guest = '0',
-	User = '1',
+	User = '1',	// Audience User
 	Admin = '2',
 	Default = '3',
+	Curator = '4',	// Curator User
 }
 
 export enum UserStatus {
-	Active = '1',  // Creator User
+	Active = '1',  
 	InActive = '2',
 	Deleted = '3',
-	New = '4',     // Audience User
+	New = '4',     
 	Block = '5'
 }
 
