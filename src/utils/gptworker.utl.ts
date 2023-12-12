@@ -1,6 +1,9 @@
 import { MODERATION_URL } from "@src/app/api/post/post.constants";
 import { PostModel } from "@src/app/api/post/post.model";
 import { environment } from "./env.util";
+import { consumer, producer } from "@src/rabbitmq";
+import { QueueName } from "@src/app/api/user/user.constants";
+import { User } from "@src/app/api/user";
 const axios = require('axios');
 const cheerio = require('cheerio');
 const openai = require('openai');
@@ -12,6 +15,18 @@ const gptWorker = async (data: any) => {
     const $ = cheerio.load(html);
     const content = $('p').text();
     if (!content) {
+      const userData = await User.findOne({_id:data.userId})
+      producer({
+        token: userData.deviceToken,
+
+        notification: {
+          title: 'Posting failed',
+          body: 
+          'Recent published post rejected',
+        },
+        id: data.postId,             
+      },QueueName.notification);
+      consumer(QueueName.notification);
       throw new Error('No content found in the HTML');
     }
     const title = $("meta[property='og:title']").attr("content");
@@ -55,7 +70,7 @@ const gptWorker = async (data: any) => {
     try {
       const summary = await client.chat.completions.create({
         model: environment.MODEL_NAME,
-        messages: [{ role: 'user', content: `Summarize this content ${content}` }],
+        messages: [{ role: 'user', content: `Summarize this content ${data.link}.content sould be based on main article.` }],
       });
       summaryResult = summary.choices[0].message.content;
     } catch (error) {
@@ -73,12 +88,12 @@ const gptWorker = async (data: any) => {
       { _id: data.postId },
       {
         gpt_summary: summaryResult || '', // If summary generation fails, set an empty string
-        mod_review: true,
+        mod_review: moderationResult?.results[0]?.flagged === false ? true : false,
         readingTime: readTime,
         title,
         description,
         image,
-        postPublished: postdate?.data['estimated-creation-date']
+        postPublished: postdate?.data['estimated-creation-date'] || new Date()
       }
     );
 

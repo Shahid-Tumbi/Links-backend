@@ -1,5 +1,5 @@
 import { App } from '@src/app/app.interface';
-import { Console, ResponseError } from '@src/utils';
+import { Console, DbLogger, ResponseError } from '@src/utils';
 import { INotification } from './notification.interface';
 import { NotificationModel } from './notification.model';
 import { DAO } from '@src/database';
@@ -64,6 +64,7 @@ class NotificationService {
 	}
 	async pushNotification() {
 		try {
+			DbLogger.info(`Notification Cron job called ${new Date()}`)
 			const pipeline = [
 				{
 				  $match: {

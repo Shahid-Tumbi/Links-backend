@@ -29,10 +29,13 @@ const postSchema = new Schema(
       type: Array
     },
     likes: {
-      type: Number,
+      type: Number, default: 0
     },
     dislikes: {
-      type: Number,
+      type: Number, default: 0
+    },
+    totalComments: {
+      type: Number, default: 0
     },
     pinComment: {
       type: String,
@@ -45,7 +48,10 @@ const postSchema = new Schema(
     commentsEnable : { type: Boolean, default: false },
     readingTime: { type: Schema.Types.Number , default: 0},
     is_deleted: { type: Boolean, default: false },
-    postPublished: {type: Schema.Types.Date}
+    postPublished: {type: Schema.Types.Date},
+    is_liked: { type: Boolean, default: false },
+    is_disliked: { type: Boolean, default: false },
+
   },
   { timestamps: true });
 export const PostModel = model<IPost.Doc>(COLLECTION_NAME.post, postSchema);

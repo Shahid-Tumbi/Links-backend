@@ -48,7 +48,7 @@ class PostService {
             ...data
           });
           DbLogger.info('Gpt process start')
-          producer({postId:postCreated._id,postData:response.data,link:data.link},QueueName.gptprocess)
+          producer({postId:postCreated._id,postData:response.data,link:data.link,userId:postCreated.userId},QueueName.gptprocess)
           consumer(QueueName.gptprocess)
           return postCreated;
         } else {
@@ -68,13 +68,36 @@ class PostService {
      */
     async postDetail(req:App.Request<IPostDetail>, client: Partial<App.Client>){
       try {
-        const post = await this.Model.findById({_id:req.params._id})        
-        if(!post){
-            return Promise.reject(
-                new ResponseError(422,POST_MESSAGES.DATA_NOT_FOUND)
-            );
+        const post =await this.Model.aggregate([
+          {
+            $match: {
+              _id: new ObjectId(req.params._id)
+            }
+          },
+          {
+            $lookup: {
+              from: "user",
+              localField: "userId",
+              foreignField: "_id",
+              pipeline: [
+                {
+                  $project: {
+                    _id: 0,
+                    name: 1,
+                    profileImage: 1
+                  },
+                },
+              ],
+              as: "user_info",
+            },
+          },
+          { $unwind: "$user_info" },
+        ]);
+    
+        if (post.length === 0) {
+          return Promise.reject(new ResponseError(404, POST_MESSAGES.DATA_NOT_FOUND));
         }
-        return post 
+        return post[0]; 
       } catch (error) {
         console.error('Error in post detail service', error);
         return Promise.reject(new ResponseError(422, error));
@@ -127,7 +150,7 @@ class PostService {
      * @param req - The request object containing the pagination options.
      * @returns The paginated list of posts from the database.
      */
-    async postList(req: App.Request) {
+    async postList(req: App.Request,{ id }: App.User) {
       try{
       const page = parseInt(req.query.page?.toString()) || 1;
       const limit = parseInt(req.query.limit?.toString()) || 10;
@@ -141,6 +164,7 @@ class PostService {
           {
             $match: {
               is_deleted: false,
+              mod_review: true,
               $or: [
                 { createdAt: { $gte: todayStart, $lte: todayEnd } },
                 { createdAt: { $lt: todayStart } },
@@ -153,19 +177,6 @@ class PostService {
             },
           },
           { $sort: { isToday: -1, likes: -1, createdAt: -1 } },
-          {
-            $lookup: {
-              from: "comments",
-              localField: "_id", 
-              foreignField: "postId",
-              as: "post_comments",
-            },
-          },
-          {
-            $addFields: {
-              totalComments: { $size: "$post_comments" }, // Calculate total comments for each post
-            },
-          },
           {
             $lookup: {
               from: "user",
@@ -185,10 +196,57 @@ class PostService {
           },
           { $unwind: "$user_info" },
           {
+            $lookup: {
+              from: "likes",
+              let: { postId: "$_id", userId: new ObjectId(id) },
+              pipeline: [
+                {
+                  $match: {
+                    $expr: {
+                      $and: [
+                        { $eq: ["$postId", "$$postId"] },
+                        { $eq: ["$userId", "$$userId"] }
+                      ]
+                    }
+                  }
+                },
+                { $count: "liked" } // Count the number of likes for the user and post
+              ],
+              as: "userLikes"
+            }
+          },
+          {
+            $lookup: {
+              from: "dislikes",
+              let: { postId: "$_id", userId: new ObjectId(id) },
+              pipeline: [
+                {
+                  $match: {
+                    $expr: {
+                      $and: [
+                        { $eq: ["$postId", "$$postId"] },
+                        { $eq: ["$userId", "$$userId"] }
+                      ]
+                    }
+                  }
+                },
+                { $count: "disliked" } // Count the number of dislikes for the user and post
+              ],
+              as: "userDislikes"
+            }
+          },
+          {
+            $addFields: {
+              isLikedByUser: { $gt: [{ $size: "$userLikes" }, 0] },
+              isDislikedByUser: { $gt: [{ $size: "$userDislikes" }, 0] }
+            }
+          },
+          {
             $project: {
+              userLikes: 0, // Remove the userLikes array from the result
+              userDislikes: 0 ,
               tags: 0,
               isToday: 0,
-              post_comments: 0,
             },
           },
         ];
@@ -220,8 +278,8 @@ class PostService {
         producer({ postId, userId },QueueName.like)
         consumer(QueueName.like)
         const postOwnerData = await PostModel.findOne({_id:postId})
-        const userData = await this.UserModel.findOne({_id:userId})
-        
+        const userData = await this.UserModel.findOne({_id:postOwnerData.userId})
+        if(userId != postOwnerData.userId){
         NotificationModel.create({
           fromUser: userId,
           toUser: postOwnerData.userId,
@@ -246,6 +304,7 @@ class PostService {
         } catch (err) {
           return err;
         }
+      }
         return result;
       } catch (error) {
           console.error('Error in post like service', error);
@@ -286,8 +345,11 @@ class PostService {
         try {
           const { postId, userId } = req.body;
           const result = await CommentModel.create(req.body);
+          producer({ postId, userId },QueueName.comment)
+          consumer(QueueName.comment)
           const postOwnerData = await PostModel.findOne({_id:postId})
           const userData = await this.UserModel.findOne({_id:userId})
+          if(userId != postOwnerData.userId){
           NotificationModel.create({
             fromUser: userId,
             toUser: postOwnerData.userId,
@@ -312,6 +374,7 @@ class PostService {
           } catch (err) {
             return err;
           }
+        }
           return result;
         } catch (error) {
           console.error('Error in post create service', error);
@@ -383,6 +446,24 @@ class PostService {
               },
             },
             { $sort: { createdAt: -1 } },
+            {
+              $lookup: {
+                from: 'user',
+                localField: 'userId', 
+                foreignField: '_id',
+                as: 'user_info', 
+              },
+            },
+            {
+              $project: {
+                'user_info.name': 1,
+                'user_info.profileImage': 1,
+                'postId': 1,
+                'createdAt': 1,
+                'content': 1,
+                'userId':1
+              },
+            },
           ];
   
           return await DAO.paginateWithNextHit(CommentModel, pipeline, limit, page);
