@@ -56,6 +56,10 @@ async function taskConsume(queueName:string) {
         }
         await PostModel.findByIdAndUpdate({ _id: postId }, { $inc: { dislikes: 1 } })
      }
+     if (queueName == QueueName.comment) {
+       const postId = message.postId       
+       await PostModel.findByIdAndUpdate({ _id: postId }, { $inc: { totalComments: 1 } })        
+     }
      channel.ack(payload);
    });
    console.log(`Waiting for messages...`);
