@@ -192,7 +192,7 @@ class PostController {
     next: NextFunction
   ) {        
     postService
-      .postList(req)
+      .postList(req, req.user)
       .then((result) => {
         res.success('Success', result);
       })

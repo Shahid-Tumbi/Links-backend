@@ -311,5 +311,6 @@ export const QueueName = {
   unfollow: "unfollow",
   gptprocess: "gpt-processing",
   like:'like',
-  dislike:'dislike'
+  dislike:'dislike',
+  comment:'comment'
 }
