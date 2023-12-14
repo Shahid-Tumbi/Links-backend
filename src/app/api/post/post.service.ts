@@ -14,6 +14,7 @@ import { ObjectId } from 'mongodb';
 import { consumer, producer } from '@src/rabbitmq';
 import { NotificationModel } from '../notification';
 import { NOTIFICATION_MESSAGES } from '../notification/notification.constants';
+import { NotificationType } from '@src/app/constants';
 const axios = require('axios');
 const contentTypeParser = require('content-type');
 
@@ -283,10 +284,11 @@ class PostService {
         NotificationModel.create({
           fromUser: userId,
           toUser: postOwnerData.userId,
-          notificationType: 0,
+          notificationType: NotificationType.Upvote,
           content: userData.name + ' ' +
           NOTIFICATION_MESSAGES.POST.LIKED.MESSAGE,
           title: NOTIFICATION_MESSAGES.POST.LIKED.TITLE,
+          postId
         });
         try {
           producer({
@@ -353,10 +355,11 @@ class PostService {
           NotificationModel.create({
             fromUser: userId,
             toUser: postOwnerData.userId,
-            notificationType: 0,
+            notificationType: NotificationType.Comment,
             content: userData.name + ' ' +
             NOTIFICATION_MESSAGES.POST.COMMENT.MESSAGE,
             title: NOTIFICATION_MESSAGES.POST.COMMENT.TITLE,
+            postId
           });
           try {
             producer({
