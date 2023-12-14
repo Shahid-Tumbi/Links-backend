@@ -79,3 +79,8 @@ export enum RequestStatus {
 	Pending = '1',
 	Archived = '2',
 }
+export enum NotificationType {
+	Default = '1',
+	Upvote  = '2',
+	Comment = '3'
+}
