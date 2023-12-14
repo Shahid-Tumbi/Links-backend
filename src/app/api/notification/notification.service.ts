@@ -10,6 +10,7 @@ import { consumer, producer } from '@src/rabbitmq';
 import { QueueName } from '../user/user.constants';
 import { NOTIFICATION_MESSAGES } from './notification.constants';
 import { User } from '../user';
+import { NotificationType } from '@src/app/constants';
 
 class NotificationService {
 	readonly Model = NotificationModel;
@@ -38,6 +39,30 @@ class NotificationService {
 						createdAt: -1,
 					},
 				},
+				{
+					$lookup: {
+					  from: 'posts',
+					  localField: 'postId',
+					  foreignField: '_id',
+					  as: 'postData',
+					},
+				},
+				{ $unwind: "$postData" },
+				{
+					$project: { 
+						"_id": 1,
+						"postId": 1,
+						"fromUser": 1,
+						"toUser": 1,
+						"content": 1,
+						"title": 1,
+						"createdAt": 1,
+						"updatedAt": 1,
+						"postData.title":1,
+						"notificationType":1
+
+				   }
+				  },
 			];
 
 			if (payload.toUser) {
@@ -99,10 +124,11 @@ class NotificationService {
 				  try {
 					NotificationModel.create({
 						toUser: post.userId,
-						notificationType: 0,
+						notificationType: NotificationType.Default,
 						content: post.likeCount + ' ' +
 						NOTIFICATION_MESSAGES.POST.LIKED.TOTAL,
 						title: NOTIFICATION_MESSAGES.POST.LIKED.TITLE,
+						postId: post._id
 					  });
 					producer({
 					  token: user.deviceToken,

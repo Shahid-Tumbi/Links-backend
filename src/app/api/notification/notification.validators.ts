@@ -12,6 +12,7 @@ const JNotification = Joi.object({
 	notificationType: JString.optional(),
 	content: JString.required(),
 	title: JString.required(),
+	postId: JString.optional()
 });
 
 export const notificationValidators = {
@@ -24,8 +25,7 @@ export const notificationValidators = {
 	listNotification: validateSchema(Joi.object({
 		page: JNumber.required(),
 		limit: JNumber.required(),
-		toUser: JString.optional(),
-		app: JString.required(),
+		toUser: JString.optional()
 	}), 'body'),
 	deleteNotification:validateSchema(Joi.object({
 		_id: JString.required()

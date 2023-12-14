@@ -32,7 +32,7 @@ export class NotificationModel {
 		description: 'notification type',
 		required: false,
 		type: SwaggerDefinitionConstant.STRING,
-		example: 'test@yopmail.com' as any,
+		example: '1' as any,
 	})
 	notificationType: string;
 	@ApiModelProperty({
