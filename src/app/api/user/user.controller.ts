@@ -601,6 +601,51 @@ class UserController {
       })
       .catch(next);
   }
+  @ApiOperationGet({
+    description: 'Get User Details',
+    summary: 'Get User Details',
+    path: '/userDetail/{_id}',
+    parameters: {
+      path: {
+        _id: {
+          required: true,
+          type: SwaggerDefinitionConstant.STRING,
+          description: 'mongoID',
+        },
+      },
+    },
+    security: {
+        bearerAuth: [],
+    },
+    responses: {
+      200: {
+        description: 'Success',
+        type: 'String',
+      },
+    },
+  })
+  getUserDetail(req: App.Request<FollowData>, res: App.Response, next: NextFunction) {
+    // console.info("req",req)
+    userService
+      .getUserDetail(req)
+      .then((result) => {
+        // console.info("res",res)
+
+        res.success('Success', result);
+      })
+      .catch(next);
+  }
+  searchCuratorList(req: App.Request<FollowData>, res: App.Response, next: NextFunction) {
+    // console.info("req",req)
+    userService
+      .searchCuratorList(req,req.user)
+      .then((result) => {
+        // console.info("res",res)
+
+        res.success('Success', result);
+      })
+      .catch(next);
+  }
 }
 
 export const userController = new UserController();

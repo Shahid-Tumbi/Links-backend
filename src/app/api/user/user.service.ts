@@ -34,6 +34,7 @@ import { producer, consumer } from '../../../rabbitmq';
 import getImageFromS3 from '@src/utils/getimage.util';
 import { ObjectId } from 'mongodb';
 import { DAO } from '@src/database';
+import { PostModel } from '../post/post.model';
 const useragent = require('express-useragent');
 
 class UserService {
@@ -587,6 +588,82 @@ class UserService {
 			return await DAO.paginateWithNextHit(this.UserModel, pipeline, limit, page);
 		} catch (error) {
 			Console.error('Error in  service', error);
+			return Promise.reject(new ResponseError(422, error));
+		}
+	}
+	async getUserDetail(req:App.Request){
+		try {			
+			const userId = req.params.id;
+			const result = await this.UserModel.findOne({ _id: userId });
+			if(!result) {
+				return Promise.reject(
+					new ResponseError(404, USER_MESSAGES.USER_NOT_FOUND)
+				);
+			}
+			const user:any = await this.Model.findOne({ userId: result._id });
+			const postCount = await PostModel.countDocuments({userId: result._id})
+			user.totalPosts = postCount;
+
+			return { profile: UserDataFormat(result,user)};
+		} catch (error) {
+			Console.error('Error in  service', error);
+			return Promise.reject(new ResponseError(422, error));
+		}
+	}
+	async searchCuratorList(req: App.Request,{ id }: App.User) {
+		try {
+			const page = parseInt(req.query.page?.toString()) || 1;
+			const limit = parseInt(req.query.limit?.toString()) || 10;
+			const searchString = req.query.searchString?.toString();
+			const regexPattern = new RegExp(searchString, 'i'); 
+			const pipeline = [
+				{
+					$match: {
+						usertype: UserType.Curator,
+						name:  { $regex: regexPattern }
+					},
+				},
+				{ $sort: { createdAt: -1 } },
+				{
+					$lookup: {
+					  from: "follows",
+					  let: { followingId: "$followingId", userId: new ObjectId(id) },
+					  pipeline: [
+						{
+						  $match: {
+							$expr: {
+							  $and: [
+								{ $eq: ["$followingId", "$$followingId"] },
+								{ $eq: ["$userId", "$$userId"] }
+							  ]
+							}
+						  }
+						},
+						{ $count: "followed" } 
+					  ],
+					  as: "userFollow"
+					}
+				},
+				{
+					$addFields: {
+					  isFollowed: { $gt: [{ $size: "$userFollow" }, 0] },
+					}
+				  },
+				{
+					$project: {
+					  _id: 1,
+					  name: 1,
+					  score: 1,
+					  profileImage: 1,
+					  isFollowed:1,
+					//   userFollow:0
+					},
+				  },
+			];
+	
+			return await DAO.paginateWithNextHit(this.UserModel, pipeline, limit, page);
+		} catch (error) {
+			Console.error('Error in service', error);
 			return Promise.reject(new ResponseError(422, error));
 		}
 	}
