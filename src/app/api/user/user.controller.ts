@@ -237,7 +237,6 @@ class UserController {
     res: App.Response,
     next: NextFunction
   ) {
-    console.info(req.data);
     userService
       .changePassword(req.data)
       .then((result) => {

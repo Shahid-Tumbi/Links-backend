@@ -518,9 +518,33 @@ class PostService {
               },
             },
             {
+            $lookup: {
+              from: "user",
+              localField: "userId",
+              foreignField: "_id",
+              as: "user_info",
+            },
+          },
+          { $unwind: "$user_info" },
+            {
               $project: {
-                tags: 0,
-                post_comments: 0,
+                'user_info.name': 1,
+                'user_info.profileImage': 1,
+                userId: 1,
+                title: 1,
+                description: 1,
+                image: 1,
+                link: 1,
+                gpt_summary: 1,
+                totalComments: 1,
+                pinComment: 1,
+                discription: 1,
+                readingTime: 1,
+                is_deleted: 1,
+                postPublished: 1,
+                is_liked: 1,
+                is_disliked: 1,
+                createdAt:1
               },
             },
           ];
