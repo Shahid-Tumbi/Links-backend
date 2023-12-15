@@ -149,8 +149,8 @@ export const userValidators = {
 		search: JString.default(''),
 		type: JNumber.valid(UserSearchType.User, UserSearchType.Pet, UserSearchType.Both).default(UserSearchType.Both),
 		limit: JNumber.default(25),
-		post_tag_search: Joi.boolean().optional().default(false),
 		page: JNumber.default(1),
+		post_tag_search: Joi.boolean().optional().default(false),
 	}), 'query'),
 	knownPeople: validateSchema(JList.keys({
 		start_date: JStartDate,
@@ -204,5 +204,10 @@ export const userValidators = {
 	follow : validateSchema(Joi.object({
 		followerId: JString.required(),
 		followingId: JString.required()
-	}),'body')
+	}),'body'),
+	searchCuratorList:validateSchema(Joi.object({
+		searchString:JString.required(),
+		limit: JNumber.default(10),
+		page: JNumber.default(1),
+	}),'query'),
 };

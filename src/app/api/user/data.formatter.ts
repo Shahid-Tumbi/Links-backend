@@ -23,6 +23,9 @@ export const UserDataFormat = (data: any,authData: any) => {
 		referralCode: authData?.referralCode || '',
 		bio:data?.bio || '',
 		usertype:data?.usertype || '',
-		score:authData?.usertype || '',
+		score:authData?.usertype || 0,
+		totalFollowings:authData?.totalFollowings || 0,
+		totalFollowers:authData?.totalFollowers || 0,
+		totalLinksUploaded:authData?.totalPosts || 0
 	};
 };
