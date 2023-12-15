@@ -1,0 +1,24 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.postV1Routes = void 0;
+const express_1 = require("express");
+const constants_1 = require("../../constants");
+const middlewares_1 = require("../../middlewares");
+const post_controller_1 = require("./post.controller");
+const post_validators_1 = require("./post.validators");
+// Create router
+const router = (0, express_1.Router)();
+router.post('/create', (0, middlewares_1.session)([constants_1.UserType.User]), post_validators_1.postValidators.create, post_controller_1.postController.create);
+router.get('/:_id', (0, middlewares_1.session)([constants_1.UserType.User]), post_validators_1.postValidators.idParamsSchema, post_controller_1.postController.getPostDetail);
+router.put('/update/:_id', (0, middlewares_1.session)([constants_1.UserType.User]), post_validators_1.postValidators.updatePost, post_validators_1.postValidators.idParamsSchema, post_controller_1.postController.update);
+router.delete('/delete/:_id', (0, middlewares_1.session)([constants_1.UserType.User]), post_validators_1.postValidators.idParamsSchema, post_controller_1.postController.delete);
+router.get('/', (0, middlewares_1.session)([constants_1.UserType.User]), post_controller_1.postController.getList);
+router.post('/like', (0, middlewares_1.session)([constants_1.UserType.User]), post_validators_1.postValidators.likePost, post_controller_1.postController.likePost);
+router.post('/dislike', (0, middlewares_1.session)([constants_1.UserType.User]), post_validators_1.postValidators.likePost, post_controller_1.postController.dislikePost);
+router.post('/comment', (0, middlewares_1.session)([constants_1.UserType.User]), post_validators_1.postValidators.commentPost, post_controller_1.postController.commentPost);
+router.put('/comment/:_id', (0, middlewares_1.session)([constants_1.UserType.User]), post_validators_1.postValidators.idParamsSchema, post_validators_1.postValidators.commentUpdate, post_controller_1.postController.commentUpdate);
+router.delete('/comment/:_id', (0, middlewares_1.session)([constants_1.UserType.User]), post_validators_1.postValidators.idParamsSchema, post_controller_1.postController.deleteComment);
+router.get('/comment/:_id', (0, middlewares_1.session)([constants_1.UserType.User]), post_controller_1.postController.getCommentList);
+router.post('/share', (0, middlewares_1.session)([constants_1.UserType.User]), post_validators_1.postValidators.sharePost, post_controller_1.postController.sharePost);
+router.get('/userWiseList/:_id', (0, middlewares_1.session)([constants_1.UserType.User]), post_validators_1.postValidators.idParamsSchema, post_controller_1.postController.getUserWiseList);
+exports.postV1Routes = { path: '/posts', router };

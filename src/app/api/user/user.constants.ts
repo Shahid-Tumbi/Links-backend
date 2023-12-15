@@ -284,7 +284,7 @@ export const passwordKey = '_p';
 export const GMAIL_SERVICE = {
   EMAIL_USER: environment.GMAIL_ACCOUNT,
   EMAIL_PASS: environment.GMAIL_PASS,
-  SUBJECT: 'Forget Password',
+  SUBJECT: 'Please reset your password!',
   WELCOME_SUBJECT: 'Welcome to Links',
   WELCOME_HTML: `<p><h1><b>Welcome to Links</b></h1></p>
 
