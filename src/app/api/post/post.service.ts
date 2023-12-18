@@ -243,11 +243,36 @@ class PostService {
             }
           },
           {
+            $lookup: {
+              from: "follows",
+              let: { userId: "$userId" },
+              pipeline: [
+                {
+                  $match: {
+                    $expr: {
+                      $and: [
+                        { $eq: ["$followerId", new ObjectId(id)] },
+                        { $eq: ["$followingId", "$$userId"] },
+                      ],
+                    },
+                  },
+                },
+              ],
+              as: "followData",
+            },
+          },
+          {
+            $addFields: {
+              isFollowed: { $gt: [{ $size: "$followData" }, 0] },
+            },
+          },
+          {
             $project: {
-              userLikes: 0, // Remove the userLikes array from the result
+              userLikes: 0,
               userDislikes: 0 ,
               tags: 0,
               isToday: 0,
+              followData: 0
             },
           },
         ];
@@ -495,6 +520,7 @@ class PostService {
         const { _id } = req.params
         const page = parseInt(req.query.page?.toString()) || 1;
         const limit = parseInt(req.query.limit?.toString()) || 10;
+        const currentUserId = req.user.id; 
         
           const pipeline = [
             {
@@ -527,6 +553,31 @@ class PostService {
             },
           },
           { $unwind: "$user_info" },
+
+          {
+            $lookup: {
+              from: "follows",
+              let: { userId: "$userId" },
+              pipeline: [
+                {
+                  $match: {
+                    $expr: {
+                      $and: [
+                        { $eq: ["$followerId", new ObjectId(currentUserId)] },
+                        { $eq: ["$followingId", "$$userId"] },
+                      ],
+                    },
+                  },
+                },
+              ],
+              as: "followData",
+            },
+          },
+          {
+            $addFields: {
+              isFollowed: { $gt: [{ $size: "$followData" }, 0] },
+            },
+          },
             {
               $project: {
                 'user_info.name': 1,
@@ -545,7 +596,8 @@ class PostService {
                 postPublished: 1,
                 is_liked: 1,
                 is_disliked: 1,
-                createdAt:1
+                createdAt:1,
+                isFollowed:1
               },
             },
           ];
