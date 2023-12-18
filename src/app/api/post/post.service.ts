@@ -501,6 +501,7 @@ class PostService {
               $match: {
                 userId: new ObjectId(_id),
                 is_deleted: false,
+                mod_review: true,
               },
             },
              { $sort: { createdAt: -1 } },
