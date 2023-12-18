@@ -575,6 +575,7 @@ class UserService {
 		try {
 			const page = parseInt(req.query.page?.toString()) || 1;
 			const limit = parseInt(req.query.limit?.toString()) || 10;
+			const currentUserId = req.user.id; 
 			
 			  const pipeline = [
 				{
@@ -583,6 +584,35 @@ class UserService {
 				  },
 				},
 				 { $sort: { createdAt: -1 } },
+				 {
+					$lookup: {
+						from: "follows",
+						let: { userId: "$_id" },
+						pipeline: [
+							{
+								$match: {
+									$expr: {
+										$and: [
+											{ $eq: ["$followerId", new ObjectId(currentUserId)] },
+											{ $eq: ["$followingId", "$$userId"] },
+										],
+									},
+								},
+							},
+						],
+						as: "followData",
+					},
+				},
+				{
+					$addFields: {
+						isFollowed: { $gt: [{ $size: "$followData" }, 0] },
+					},
+				},
+				{
+					$project: {
+						followData: 0,
+					},
+				},
 			  ];
 		
 			return await DAO.paginateWithNextHit(this.UserModel, pipeline, limit, page);
@@ -626,29 +656,28 @@ class UserService {
 				{ $sort: { createdAt: -1 } },
 				{
 					$lookup: {
-					  from: "follows",
-					  let: { followingId: "$followingId", userId: new ObjectId(id) },
-					  pipeline: [
-						{
-						  $match: {
-							$expr: {
-							  $and: [
-								{ $eq: ["$followingId", "$$followingId"] },
-								{ $eq: ["$userId", "$$userId"] }
-							  ]
-							}
-						  }
-						},
-						{ $count: "followed" } 
-					  ],
-					  as: "userFollow"
-					}
+						from: "follows",
+						let: { userId: "$_id" },
+						pipeline: [
+							{
+								$match: {
+									$expr: {
+										$and: [
+											{ $eq: ["$followerId", new ObjectId(id)] },
+											{ $eq: ["$followingId", "$$userId"] },
+										],
+									},
+								},
+							},
+						],
+						as: "followData",
+					},
 				},
 				{
 					$addFields: {
-					  isFollowed: { $gt: [{ $size: "$userFollow" }, 0] },
-					}
-				  },
+						isFollowed: { $gt: [{ $size: "$followData" }, 0] },
+					},
+				},
 				{
 					$project: {
 					  _id: 1,
@@ -656,7 +685,6 @@ class UserService {
 					  score: 1,
 					  profileImage: 1,
 					  isFollowed:1,
-					//   userFollow:0
 					},
 				  },
 			];
