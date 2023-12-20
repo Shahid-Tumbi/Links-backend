@@ -46,8 +46,18 @@ class PostService {
         const { type } = contentTypeParser.parse(contentType);
         if (type === 'text/html') {
           const postCreated = await this.Model.create({
-            ...data
+            ...data,
+            totalComments: data?.pinComment ? 1 : 0  
           });
+          if(data?.pinComment){
+            let comment = {
+              userId:data.userId,
+              postId:postCreated._id,
+              content: data?.pinComment,
+              is_pinned:true,
+            }
+            await CommentModel.create(comment);
+          }
           DbLogger.info('Gpt process start')
           producer({postId:postCreated._id,postData:response.data,link:data.link,userId:postCreated.userId},QueueName.gptprocess)
           consumer(QueueName.gptprocess)
@@ -166,18 +176,9 @@ class PostService {
             $match: {
               is_deleted: false,
               mod_review: true,
-              $or: [
-                { createdAt: { $gte: todayStart, $lte: todayEnd } },
-                { createdAt: { $lt: todayStart } },
-              ],
             },
           },
-          {
-            $addFields: {
-              isToday: { $gte: ["$createdAt", todayStart] },
-            },
-          },
-          { $sort: { isToday: -1, likes: -1, createdAt: -1 } },
+          { $sort: { createdAt: -1 } },
           {
             $lookup: {
               from: "user",
@@ -211,7 +212,7 @@ class PostService {
                     }
                   }
                 },
-                { $count: "liked" } // Count the number of likes for the user and post
+                { $count: "liked" }
               ],
               as: "userLikes"
             }
@@ -231,7 +232,7 @@ class PostService {
                     }
                   }
                 },
-                { $count: "disliked" } // Count the number of dislikes for the user and post
+                { $count: "disliked" }
               ],
               as: "userDislikes"
             }
@@ -244,35 +245,53 @@ class PostService {
           },
           {
             $lookup: {
-              from: "follows",
-              let: { userId: "$userId" },
+              from: "likes",
+              let: { postId: "$_id" },
               pipeline: [
                 {
                   $match: {
-                    $expr: {
-                      $and: [
-                        { $eq: ["$followerId", new ObjectId(id)] },
-                        { $eq: ["$followingId", "$$userId"] },
-                      ],
-                    },
+                    $expr: { $eq: ["$postId", "$$postId"] },
                   },
                 },
+                { $count: "likeCount" }
               ],
-              as: "followData",
+              as: "totalLikes",
+            },
+          },
+          {
+            $lookup: {
+              from: "dislikes",
+              let: { postId: "$_id" },
+              pipeline: [
+                {
+                  $match: {
+                    $expr: { $eq: ["$postId", "$$postId"] },
+                  },
+                },
+                { $count: "dislikeCount" }
+              ],
+              as: "totalDislikes",
             },
           },
           {
             $addFields: {
-              isFollowed: { $gt: [{ $size: "$followData" }, 0] },
+              likes: { $sum: "$totalLikes.likeCount" }, 
+              dislikes: { $sum: "$totalDislikes.dislikeCount" }, 
             },
           },
           {
+            $addFields: {
+              netReaction: { $subtract: ["$likes", "$dislikes"] },
+            },
+          },
+          { $sort: { netReaction: -1 } }, 
+          {
             $project: {
+              totalLikes: 0,
+              totalDislikes: 0,
               userLikes: 0,
-              userDislikes: 0 ,
+              userDislikes: 0,
               tags: 0,
-              isToday: 0,
-              followData: 0
             },
           },
         ];
@@ -298,7 +317,9 @@ class PostService {
         const { postId, userId } = req.body;
         const existingLike = await LikeModel.findOne({ postId, userId });
         if (existingLike) {
-          return Promise.reject(new ResponseError(422, POST_MESSAGES.ALREADY_LIKED));
+          producer({ postId, userId },QueueName.dislike)
+          consumer(QueueName.dislike)
+          return POST_MESSAGES.ALREADY_LIKED;
         }
         const result = await LikeModel.create(req.body);
         producer({ postId, userId },QueueName.like)
@@ -350,7 +371,9 @@ class PostService {
         const existingDislike = await DislikeModel.findOne({ postId, userId });
   
         if (existingDislike) {
-          return Promise.reject(new ResponseError(422, POST_MESSAGES.ALREADY_DISLIKED));
+          producer({ postId, userId },QueueName.like)
+          consumer(QueueName.like)
+          return POST_MESSAGES.ALREADY_DISLIKED;
         }
         const result = await DislikeModel.create(req.body);
         producer({ postId, userId },QueueName.dislike)
@@ -489,7 +512,8 @@ class PostService {
                 'postId': 1,
                 'createdAt': 1,
                 'content': 1,
-                'userId':1
+                'userId':1,
+                'is_pinned':1
               },
             },
           ];
@@ -589,7 +613,6 @@ class PostService {
                 link: 1,
                 gpt_summary: 1,
                 totalComments: 1,
-                pinComment: 1,
                 discription: 1,
                 readingTime: 1,
                 is_deleted: 1,
