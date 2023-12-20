@@ -29,7 +29,8 @@ export interface ICreatePostData {
     img: string;
     gpt_summary: string;
     link: string;
-    commentsEnable: boolean
+    commentsEnable: boolean,
+    pinComment: number,
 }
 export interface IUpdatePostData {
     _id: string;
