@@ -37,10 +37,6 @@ const postSchema = new Schema(
     totalComments: {
       type: Number, default: 0
     },
-    pinComment: {
-      type: String,
-      max:60
-    },
     discription: {
       type: String,
     },
@@ -108,6 +104,7 @@ const commentSchema = new Schema(
       max: 500,
     },
     is_deleted: { type: Boolean, default: false },
+    is_pinned: { type: Boolean, default: false },
   },
   { timestamps: true });
 export const CommentModel = model<IPost.Comment>(COLLECTION_NAME.comment, commentSchema);
