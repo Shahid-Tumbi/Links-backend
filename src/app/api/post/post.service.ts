@@ -286,12 +286,37 @@ class PostService {
           },
           { $sort: { netReaction: -1 } }, 
           {
+            $lookup: {
+              from: "follows",
+              let: { userId: "$userId" },
+              pipeline: [
+                {
+                  $match: {
+                    $expr: {
+                      $and: [
+                        { $eq: ["$followerId", new ObjectId(id)] },
+                        { $eq: ["$followingId", "$$userId"] },
+                      ],
+                    },
+                  },
+                },
+              ],
+              as: "followData",
+            },
+          },
+          {
+            $addFields: {
+              isFollowed: { $gt: [{ $size: "$followData" }, 0] },
+            },
+          },
+          {
             $project: {
               totalLikes: 0,
               totalDislikes: 0,
               userLikes: 0,
               userDislikes: 0,
               tags: 0,
+              followData:0,
             },
           },
         ];
