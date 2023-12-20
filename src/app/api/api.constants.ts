@@ -317,7 +317,7 @@ export const CONSTANT = {
 		FOLLOWING: 'case when u.id = ANY (select c.following_id from connections c where c.follower_id = :id and c.status = :status and following_pet_id is null ) then true else false end as following',
 	},
 	REFERRAL_USAGE_COUNT : {
-		COUNT: 1
+		COUNT: 20
 	}
 };
 
