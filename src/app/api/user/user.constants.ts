@@ -3,31 +3,31 @@ import { defineMessage } from '@utils/common.util';
 
 export const USER_MESSAGES = {
   USER_NOT_FOUND: defineMessage(
-    'Oops! This user is not registered with Us',
+    'Oops! This user is not registered with us',
     '¡Uy! Este usuario no está registrado con nosotros',
     '糟糕！该用户未在我们注册',
     '糟糕！該用戶未在我們註冊'
   ),
   SOMETHING_WENT_WRONG: defineMessage(
-    'Oops! We encountered an error. Let us look into it',
+    'Oops! We encountered an error and are working on it',
     '¡Uy! Este usuario no está registrado con nosotros',
     '糟糕！该用户未在我们注册',
     '糟糕！該用戶未在我們註冊'
   ),
   EMAIL_NOT_FOUND: defineMessage(
-    'Oops! This Email ID isn’t registered with Us',
+    'Oops! This email ID is not registered with us',
     '¡Uy! Esta ID de correo electrónico no está registrada con nosotros',
     '糟糕！此电子邮件ID未向我们注册',
     '糟糕！此電子郵件ID未向我們註冊'
   ),
   PHONE_NOT_FOUND: defineMessage(
-    'Oops! This Phone no isn’t registered with Us',
+    'Oops! This phone no is not registered with us',
     '¡Uy! Este teléfono no está registrado con nosotros',
     '糟糕！此电话号码未在我们注册',
     '糟糕！此電話號碼未在我們註冊'
   ),
   USERNAME_EXISTS: defineMessage(
-    'Oops! This username is already registered with Us',
+    'Oops! This username is already registered with us',
     '¡Uy! Este nombre de usuario ya está registrado con nosotros',
     '糟糕！此用户名已在我们注册',
     '糟糕！此用戶名已在我們註冊'
@@ -39,25 +39,25 @@ export const USER_MESSAGES = {
     '糟糕！帳戶被管理員阻止，請聯繫管理員'
   ),
   EMAIL_ALREADY_LINKED: defineMessage(
-    'Oops! This Email ID is linked with another account',
+    'Oops! This email ID is linked with another account',
     '¡Uy! Esta identificación de correo electrónico está vinculada con otra cuenta',
     '糟糕！此电子邮件ID已与另一个帐户关联',
     '糟糕！此電子郵件ID已與另一個帳戶關聯'
   ),
   PHONE_ALREADY_LINKED: defineMessage(
-    'Oops! This Phone no is linked with another account',
+    'Oops! This phone no is linked with another account',
     '¡Uy! Este teléfono no está vinculado con otra cuenta',
     '糟糕！ 该电话号码已与另一个帐户关联',
     '糟糕！ 該電話號碼已與另一個帳戶關聯'
   ),
   EMAIL_ALREADY_VERIFIED: defineMessage(
-    'Oops! This Email ID is already verified',
+    'Oops! This email ID is already verified',
     '¡Uy! Esta ID de correo electrónico ya está verificada',
     '糟糕！ 此电子邮件ID已通过验证',
     '糟糕！ 此電子郵件ID已通過驗證'
   ),
   PHONE_ALREADY_VERIFIED: defineMessage(
-    'Oops! This Phone Number is already verified',
+    'Oops! This phone number is already verified',
     '¡Uy! Este número de teléfono ya está verificado',
     '糟糕！ 该电话号码已通过验证',
     '糟糕！ 該電話號碼已通過驗證'
@@ -96,13 +96,13 @@ export const USER_MESSAGES = {
       '您已成功註冊'
     ),
     EMAIL_EXISTS: defineMessage(
-      'Oops! This Email ID is already registered with Us',
+      'Oops! This email ID is already registered with us',
       '¡Uy! Esta identificación de correo electrónico ya está registrada con nosotros',
       '糟糕！ 此电子邮件ID已向我们注册',
       '糟糕！ 此電子郵件ID已向我們註冊'
     ),
     PHONE_EXISTS: defineMessage(
-      'Oops! This Phone no is already registered with Us',
+      'Oops! This phone no is already registered with us',
       '¡Uy! Este número de teléfono ya está registrado con nosotros',
       '糟糕！ 该电话号码已在我们注册',
       '糟糕！ 該電話號碼已在我們註冊'
@@ -150,7 +150,7 @@ export const USER_MESSAGES = {
   },
   INVALID_CREDENTIAL: {
     INVALID: defineMessage(
-      'Credential does not match',
+      'Credentials do not match',
       'La credencial no coincide',
       '凭据不匹配',
       '憑據不匹配'
@@ -206,7 +206,7 @@ export const USER_MESSAGES = {
   },
   FORGET_PASSWORD: {
     SUCCESS: defineMessage(
-      'Password Reset is Successfully',
+      'Password is reset successfully',
       'La contraseña de un solo uso se envía correctamente',
       '一次密码发送成功',
       '一次密碼發送成功'
@@ -219,7 +219,7 @@ export const USER_MESSAGES = {
   },
   CHANGE_PASSWORD: {
     INVALID: defineMessage(
-      'Oops! Old password doesn’t seem like a correct password'
+      'Oops! Old password is incorrect'
     ),
     SUCCESS: defineMessage('Password changed successfully'),
   },
@@ -231,13 +231,13 @@ export const USER_MESSAGES = {
       '一次密碼發送成功'
     ),
     YOUR_EMAIL: defineMessage(
-      'Oops! This Email ID is already added in your account',
+      'Oops! This email ID is already added in your account',
       '¡Uy! Esta ID de correo electrónico ya está agregada en su cuenta',
       '糟糕！ 此电子邮件ID已添加到您的帐户中',
       '糟糕！ 此電子郵件ID已添加到您的帳戶中'
     ),
     YOUR_PHONE: defineMessage(
-      'Oops! This Phone Number is already added in your account',
+      'Oops! This phone number is already added in your account',
       '¡Uy! Este número de teléfono ya está agregado en su cuenta',
       '糟糕！ 此电话号码已添加到您的帐户中',
       '糟糕！ 此電話號碼已添加到您的帳戶中'
@@ -249,7 +249,7 @@ export const USER_MESSAGES = {
   },
   UNFOLLOW: {
     ALREADY: defineMessage('Oops! You are not following this user'),
-    SUCCESS: defineMessage('You unfollowed this user successfully.'),
+    SUCCESS: defineMessage('You unfollowed this user.'),
   },
   PROFILE: {
     COMPLETED: defineMessage('Profile setup completed successfully'),
@@ -257,23 +257,23 @@ export const USER_MESSAGES = {
   },
   REPORT: {
     ALREADY: defineMessage('User is already reported'),
-    SUCCESS: defineMessage('User is reported successfully'),
+    SUCCESS: defineMessage('User is reported'),
   },
 
   ACCOUNT_NOT_DELETED: {
 		NOT_DELETED: defineMessage(
-			'Some Error occured while deleteing the USer Account',
-			'Some Error occured while deleteing the USer Account',
-			'Some Error occured while deleteing the USer Account',
-			'Some Error occured while deleteing the USer Account'
+			'Some error occured while deleting the user account',
+			'Some error occured while deleting the user account',
+			'Some error occured while deleting the user account',
+			'Some error occured while deleting the user account'
 		),
 	},
   REQUEST:{
-    SEND: defineMessage('Follow request send'),
+    SEND: defineMessage('Follow request sent'),
   },
   REFERRAL:{
-    USAGE_LIMIT : "Refferal code usage limit has been reached.",
-    CODE_NOT_EXIST : "Refferal code not matched!"
+    USAGE_LIMIT : "Referral code usage limit has been reached.",
+    CODE_NOT_EXIST : "Referral code is incorrect!"
   }
 };
 
@@ -285,18 +285,18 @@ export const GMAIL_SERVICE = {
   EMAIL_USER: environment.GMAIL_ACCOUNT,
   EMAIL_PASS: environment.GMAIL_PASS,
   SUBJECT: 'Please reset your password!',
-  WELCOME_SUBJECT: 'Welcome to Links',
-  WELCOME_HTML: `<p><h1><b>Welcome to Links</b></h1></p>
+  WELCOME_SUBJECT: 'Welcome to WTF Club',
+  WELCOME_HTML: `<p><h1><b>Welcome to WTF CLub</b></h1></p>
 
     <p>Thanks for signing up! We are excited to have you join us and start your journey with us.</p>
 
     <p>Regards<br>
-    Links Team</p>
+    WTF CLub Team</p>
 
     <p></p>`,
 };
 
-export const DEFAULT_PASSWORD = `Links@${Math.floor(
+export const DEFAULT_PASSWORD = `WTF Club@${Math.floor(
   Math.random() * (999 - 100 + 1) + 100
 ).toString()}`;
 
