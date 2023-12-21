@@ -34,8 +34,8 @@ export const API_MESSAGES = {
 
 export const SMS_MESSAGE_TEMPLATE = {
 	SIGN_UP_OTP: `<#> Dear Name,\
-	\nUse OTP OTP_NUMBER to verify your mobile number on Links.\
-	\nLinks doesn't ask for OTP or Mobile number to be shared with any one including Links team.\
+	\nUse OTP OTP_NUMBER to verify your mobile number on WTF Club.\
+	\nWTF Club doesn't ask for OTP or Mobile number to be shared with any one including WTF Club team.\
 	\nGeuTgRpfx+y`,
 	RESEND_OTP: `<#> Hello Name!\
 	 \nUse this as OTP OTP_NUMBER\
@@ -45,11 +45,11 @@ export const SMS_MESSAGE_TEMPLATE = {
 };
 
 export const ADMIN_NOTIFICATION_TITLE = {
-	PIC: `Links removed your pic because it doesn't follow our guidelines.Read our guidelines for posting content. Tap to see pic.`,
-	KLIP: `Links removed your klip because it doesn't follow our guidelines.Read our guidelines for posting content. Tap to see klip.`,
-	STORY: `Links removed your story because it doesn't follow our guidelines.Read our guidelines for posting content. Tap to see story.`,
-	EVENT: `Links removed your event because it has been reported multiple times.Tap to see event.`,
+	PIC: `WTF Club removed your pic because it doesn't follow our guidelines.Read our guidelines for posting content. Tap to see pic.`,
+	KLIP: `WTF CLub removed your klip because it doesn't follow our guidelines.Read our guidelines for posting content. Tap to see klip.`,
+	STORY: `WTF CLub removed your story because it doesn't follow our guidelines.Read our guidelines for posting content. Tap to see story.`,
+	EVENT: `WTF CLub removed your event because it has been reported multiple times.Tap to see event.`,
 	COMMENT: (comment: string) => {
-		return `Links removed your comment ${comment} because it doesn't pass our community guidelines. Tap to see the comment.`;
+		return `WTF CLub removed your comment ${comment} because it doesn't pass our community guidelines. Tap to see the comment.`;
 	}
 };

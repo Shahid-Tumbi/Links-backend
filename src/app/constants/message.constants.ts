@@ -1,25 +1,25 @@
 
 export const ACCOUNT = {
 	CREATED: 'Account created successfully.',
-	DETAILS: 'Account details fetch successful.',
-	NOT_FOUND: 'Account does not exists.',
+	DETAILS: 'Account details fetched successfully.',
+	NOT_FOUND: 'Account does not exist.',
 	BLOCKED: 'Account is blocked',
 };
 
 export const LOGIN = {
 	FAILED: 'Invalid credentials.',
-	SUCCESS: 'Logined Successfully.',
+	SUCCESS: 'Logged in successfully.',
 };
 
 export const ERROR = {
 	INTERNAL: 'Internal server error.',
-	ACCESS_FORBIDDEN: 'Not authorized to access.',
+	ACCESS_FORBIDDEN: 'Unauthorized access.',
 };
 
 export const AUTHORIZATION = {
 	VALID: 'Authorization is verified.',
-	EXPIRED: 'Authorization is expired.',
-	INVALID: 'Authorization is not valid',
+	EXPIRED: 'Authorization expired, you\'re logged in with same credentials on another device',
+	INVALID: 'Authorization is invalid',
 	REQUIRED: 'Authorization is required',
 	NO_ACCESS: 'You are not authorized to access',
 	INVALID_MEHTOD: 'Invalid authorization method',

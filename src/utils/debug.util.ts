@@ -21,7 +21,7 @@ export class ApiDebugger {
 		if (error.name !== 'ResponseError' && !environment.isLocal && !environment.isDev) {
 			// send email to look into
 			const body = {
-				subject: `Links Social Error: ${error.message}`,
+				subject: `WTF Club Social Error: ${error.message}`,
 				text: JSON.stringify(data),
 				html: ''
 			};
