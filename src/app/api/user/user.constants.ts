@@ -285,18 +285,18 @@ export const GMAIL_SERVICE = {
   EMAIL_USER: environment.GMAIL_ACCOUNT,
   EMAIL_PASS: environment.GMAIL_PASS,
   SUBJECT: 'Please reset your password!',
-  WELCOME_SUBJECT: 'Welcome to Links',
-  WELCOME_HTML: `<p><h1><b>Welcome to Links</b></h1></p>
+  WELCOME_SUBJECT: 'Welcome to WTF Club',
+  WELCOME_HTML: `<p><h1><b>Welcome to WTF CLub</b></h1></p>
 
     <p>Thanks for signing up! We are excited to have you join us and start your journey with us.</p>
 
     <p>Regards<br>
-    Links Team</p>
+    WTF CLub Team</p>
 
     <p></p>`,
 };
 
-export const DEFAULT_PASSWORD = `Links@${Math.floor(
+export const DEFAULT_PASSWORD = `WTF Club@${Math.floor(
   Math.random() * (999 - 100 + 1) + 100
 ).toString()}`;
 
