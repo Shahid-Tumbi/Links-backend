@@ -185,7 +185,7 @@ class Application {
 			{
 				definition: {
 					info: {
-						title: 'Links',
+						title: 'WTF Club',
 						version: '1.0',
 					},
 					basePath: '/v1',

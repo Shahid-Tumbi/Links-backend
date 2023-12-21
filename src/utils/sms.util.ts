@@ -18,7 +18,7 @@ export const smsUtil = (phoneNumber: string, otpNumber: string) => {
 
     client.messages
       .create({
-        body: `Links: Your Security Code is ${otpNumber}. Please do not share with anyone.`,
+        body: `WTF Club: Your Security Code is ${otpNumber}. Please do not share with anyone.`,
         messagingServiceSid: SmsCred.messagingSid,
         to: `${phoneNumber}`
       })
