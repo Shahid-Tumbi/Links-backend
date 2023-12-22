@@ -35,7 +35,7 @@ class Mailer {
 		const options = {
 			from: environment.mailer.from,
 			html: await this.genTemplate(`${name}.html`, data),
-			subject: 'Forgot Password: Links App',
+			subject: 'Forgot Password: WTF Club App',
 			to,
 		};
 		const info = await this.transporter.sendMail(options);

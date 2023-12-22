@@ -30,10 +30,10 @@ const gptWorker = async (data: any) => {
       throw new Error('No content found in the HTML');
     }
     const title = $("meta[property='og:title']").attr("content");
-    const description = $("meta[property='og:description']").attr("content");
+    const description = $("meta[property='og:description']").attr("content"); /*TODO: extract function */
     const image = $("meta[property='og:image']").attr("content");
     if (!title || !description || !image) {
-      console.log('No OG title, description, or image found in the HTML');
+      console.error('No OG title, description, or image found in the HTML');
     }
 
     let postdate;

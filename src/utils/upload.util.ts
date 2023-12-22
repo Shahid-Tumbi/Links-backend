@@ -1,8 +1,10 @@
-const fs = require('fs');
+import { environment } from "./env.util";
+// const fs = require('fs');
 const path = require('path');
 const formidable = require('formidable');
-const AWS = require('aws-sdk');
-const sharp = require('sharp');
+// const AWS = require('aws-sdk');
+// const sharp = require('sharp');
+const { Storage } = require('@google-cloud/storage');
 
 let allowedFileTypes = ['png', 'jpeg', 'jpg', 'gif', 'webp'];
 // let allowedFileTypes = [
@@ -89,72 +91,109 @@ const fileUpload = async (req: any, userUpload: string) => {
         fields.fileName + '-' + fileCount + path.extname(file.originalFilename);
     }
     if (imageFileTypes.includes(extension)) {
-      const sharpData = await sharp(file.filepath)
-        .webp({ lossless: false })
-        .toBuffer();
+      // const sharpData = await sharp(file.filepath)
+      //   .webp({ lossless: false })
+      //   .toBuffer();
       const convertedFileName = fileName.split('.')[0] + '.webp';
       const response = await new Promise(async (resolve, reject) => {
-        resolve(await uploadToS3(sharpData, convertedFileName, true));
+        resolve(await uploadToGCS(file, convertedFileName, false));
       });
 
       return response;
     } else {
       const response = await new Promise(async (resolve, reject) => {
-        resolve(await uploadToS3(file, fileName, false));
+        resolve(await uploadToGCS(file, fileName, false));
       });
 
       return response;
     }
   }
-
-  async function uploadToS3(file: any, fileName: any, compressFlag: any) {
-    let S3Config = {
-      AWS_S3_ACCESS_KEY_ID: process.env.AWS_S3_ACCESS_KEY_ID,
-      AWS_S3_SECRET_ACCESS_KEY: process.env.AWS_S3_SECRET_ACCESS_KEY,
-      AWS_S3_REGION: process.env.AWS_S3_REGION,
-      AWS_S3_PUBLIC_BUCKET_NAME:
-        process.env.AWS_S3_PUBLIC_BUCKET_NAME + `/${userUpload}`,
-    };
-    console.log(S3Config);
-
-    const s3 = await new AWS.S3({
-      region: S3Config.AWS_S3_REGION,
-      accessKeyId: S3Config.AWS_S3_ACCESS_KEY_ID,
-      secretAccessKey: S3Config.AWS_S3_SECRET_ACCESS_KEY,
+  async function uploadToGCS(file: any, fileName: any, compressFlag: any) {
+    
+    const storage = new Storage({
+      projectId: environment.GOOGLE_CLOUD_PROJECT_ID,
     });
+    
+    const bucketName = environment.GOOGLE_CLOUD_BUCKET_NAME;
+    const bucket = storage.bucket(bucketName);
+    await storage.bucket(bucketName).setMetadata({
+      versioning:{
+        enabled:true
+      }
+    })
+    try {
+      const options = {
+        metadata: {
+          contentType: 'image/webp',
+          cacheControl: 'no-cache, no-store, max-age=0',
 
-    let fileBody = !compressFlag ? fs.createReadStream(file.filepath) : file;
-    let params = {
-      Bucket: S3Config.AWS_S3_PUBLIC_BUCKET_NAME,
-      Body: fileBody,
-      Key: fileName,
-      ACL: 'public-read',
-    };
+        },
+      };
 
-    const response = await new Promise(async (resolve, reject) => {
-      s3.putObject(params, (err: any, data: any) => {
-        if (err) {
-          console.log('err', err);
-          reject({
-            status: false,
-            message: err.message,
-          });
-        } else {
-          resolve({
-            status: true,
-            data:
-              'https://' +
-              process.env.AWS_S3_PUBLIC_BUCKET_NAME +
-              `.s3.amazonaws.com/${userUpload}/` +
-              fileName,
-            fileName: fileName,
-          });
-        }
+      await bucket.upload(file.filepath, {
+        destination: `${environment.GOOGLE_CLOUD_BUCKET_FOLDER_NAME}/${fileName}`,
+        metadata: options.metadata,
+        predefinedAcl: 'publicRead', 
       });
-    }).catch((error) => {
-      return error;
-    });
-    return response;
+      console.log('Image uploaded to Google Cloud Storage successfully.');
+      const publicUrl = `https://storage.googleapis.com/${bucketName}/${environment.GOOGLE_CLOUD_BUCKET_FOLDER_NAME}/${fileName}`;
+      return {
+        status: true,
+        data: publicUrl,
+        fileName: fileName,
+      };
+    } catch (uploadErr) {
+      console.error('Error uploading image:', uploadErr);
+    }
   }
+  // async function uploadToS3(file: any, fileName: any, compressFlag: any) {
+  //   let S3Config = {
+  //     AWS_S3_ACCESS_KEY_ID: process.env.AWS_S3_ACCESS_KEY_ID,
+  //     AWS_S3_SECRET_ACCESS_KEY: process.env.AWS_S3_SECRET_ACCESS_KEY,
+  //     AWS_S3_REGION: process.env.AWS_S3_REGION,
+  //     AWS_S3_PUBLIC_BUCKET_NAME:
+  //       process.env.AWS_S3_PUBLIC_BUCKET_NAME + `/${userUpload}`,
+  //   };
+  //   console.log(S3Config);
+
+  //   const s3 = await new AWS.S3({
+  //     region: S3Config.AWS_S3_REGION,
+  //     accessKeyId: S3Config.AWS_S3_ACCESS_KEY_ID,
+  //     secretAccessKey: S3Config.AWS_S3_SECRET_ACCESS_KEY,
+  //   });
+
+  //   let fileBody = !compressFlag ? fs.createReadStream(file.filepath) : file;
+  //   let params = {
+  //     Bucket: S3Config.AWS_S3_PUBLIC_BUCKET_NAME,
+  //     Body: fileBody,
+  //     Key: fileName,
+  //     ACL: 'public-read',
+  //   };
+
+  //   const response = await new Promise(async (resolve, reject) => {
+  //     s3.putObject(params, (err: any, data: any) => {
+  //       if (err) {
+  //         console.log('err', err);
+  //         reject({
+  //           status: false,
+  //           message: err.message,
+  //         });
+  //       } else {
+  //         resolve({
+  //           status: true,
+  //           data:
+  //             'https://' +
+  //             process.env.AWS_S3_PUBLIC_BUCKET_NAME +
+  //             `.s3.amazonaws.com/${userUpload}/` +
+  //             fileName,
+  //           fileName: fileName,
+  //         });
+  //       }
+  //     });
+  //   }).catch((error) => {
+  //     return error;
+  //   });
+  //   return response;
+  // }
 };
 export default fileUpload;
