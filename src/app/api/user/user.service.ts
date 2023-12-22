@@ -425,8 +425,8 @@ class UserService {
 	}
 	async upload(req: any, res: any) {
 		try {
-			let userUpload = 'LinksUser';
-			return fileUpload(req, userUpload);
+			let folderPath = req.query.folderName;
+			return fileUpload(req, folderPath);
 		} catch (error) {
 			console.log('error', error);
 			return error;

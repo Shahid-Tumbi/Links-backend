@@ -15,9 +15,6 @@ import { consumer, producer } from '@src/rabbitmq';
 import { NotificationModel } from '../notification';
 import { NOTIFICATION_MESSAGES } from '../notification/notification.constants';
 import { NotificationType } from '@src/app/constants';
-const axios = require('axios');
-const contentTypeParser = require('content-type');
-
 class PostService {
 	readonly Model = PostModel;
 	readonly UserModel = User;
@@ -38,13 +35,6 @@ class PostService {
         if (!isValidURL(data.link)) {
           return Promise.reject(new ResponseError(422, POST_MESSAGES.INVALID_LINK_TYPE));
         }
-        const response = await axios.get(data.link).catch((error: any) => {
-          console.error('An error occurred:', error);
-          throw error;
-        });
-        const contentType = response.headers['content-type'];
-        const { type } = contentTypeParser.parse(contentType);
-        if (type === 'text/html') {
           const postCreated = await this.Model.create({
             ...data,
             totalComments: data?.pinComment ? 1 : 0  
@@ -59,13 +49,9 @@ class PostService {
             await CommentModel.create(comment);
           }
           DbLogger.info('Gpt process start')
-          producer({postId:postCreated._id,postData:response.data,link:data.link,userId:postCreated.userId},QueueName.gptprocess)
+          producer({postId:postCreated._id,postData:data?.content,link:data.link,userId:postCreated.userId},QueueName.gptprocess)
           consumer(QueueName.gptprocess)
           return postCreated;
-        } else {
-          console.log('URL does not point to an HTML page');
-          return Promise.reject(new ResponseError(422, POST_MESSAGES.INVALID_LINK_TYPE));
-        }
       } catch (error) {
         console.error('Error in post create service', error);
         return Promise.reject(new ResponseError(422, error));

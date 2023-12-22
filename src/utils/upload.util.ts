@@ -19,7 +19,7 @@ let allowedFileTypes = ['png', 'jpeg', 'jpg', 'gif', 'webp'];
 // ];
 let imageFileTypes = ['png', 'jpeg', 'jpg', 'gif', 'webp'];
 let maxFileSize = 2; //In Megabyte
-const fileUpload = async (req: any, userUpload: string) => {
+const fileUpload = async (req: any, folderPath: string) => {
   try {
     const form = formidable({ multiples: true });
     form.maxFileSize = 400 * 1024 * 1024; //300 MB
@@ -41,7 +41,7 @@ const fileUpload = async (req: any, userUpload: string) => {
         }
 
         for (let file of files['file[]']) {
-          const response = await uploadFiles(file, fields, fileCount++);
+          const response = await uploadFiles(file, fields, fileCount++,folderPath);
           // console.log("response", response)
 
           filePaths.push(response);
@@ -56,7 +56,7 @@ const fileUpload = async (req: any, userUpload: string) => {
     return error;
   }
 
-  async function uploadFiles(file: any, fields: any, fileCount: any) {
+  async function uploadFiles(file: any, fields: any, fileCount: any,folderPath:any) {
     // console.log('---path----',file)
     let extension = path.extname(file.originalFilename);
     extension = extension.split('.').pop();
@@ -96,19 +96,19 @@ const fileUpload = async (req: any, userUpload: string) => {
       //   .toBuffer();
       const convertedFileName = fileName.split('.')[0] + '.webp';
       const response = await new Promise(async (resolve, reject) => {
-        resolve(await uploadToGCS(file, convertedFileName, false));
+        resolve(await uploadToGCS(file, convertedFileName, false,folderPath));
       });
 
       return response;
     } else {
       const response = await new Promise(async (resolve, reject) => {
-        resolve(await uploadToGCS(file, fileName, false));
+        resolve(await uploadToGCS(file, fileName, false,folderPath));
       });
 
       return response;
     }
   }
-  async function uploadToGCS(file: any, fileName: any, compressFlag: any) {
+  async function uploadToGCS(file: any, fileName: any, compressFlag: any,folderPath:any) {
     
     const storage = new Storage({
       projectId: environment.GOOGLE_CLOUD_PROJECT_ID,
@@ -131,12 +131,12 @@ const fileUpload = async (req: any, userUpload: string) => {
       };
 
       await bucket.upload(file.filepath, {
-        destination: `${environment.GOOGLE_CLOUD_BUCKET_FOLDER_NAME}/${fileName}`,
+        destination: `${folderPath}/${fileName}`,
         metadata: options.metadata,
         predefinedAcl: 'publicRead', 
       });
       console.log('Image uploaded to Google Cloud Storage successfully.');
-      const publicUrl = `https://storage.googleapis.com/${bucketName}/${environment.GOOGLE_CLOUD_BUCKET_FOLDER_NAME}/${fileName}`;
+      const publicUrl = `https://storage.googleapis.com/${bucketName}/${folderPath}/${fileName}`;
       return {
         status: true,
         data: publicUrl,
