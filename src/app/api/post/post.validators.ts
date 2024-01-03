@@ -11,8 +11,10 @@ export const postValidators = {
 	 */
     create: validateSchema(Joi.object({
         userId: JString.required(),
-        title: JString,
-        description: JString,
+        title: JString.allow(''),
+        image: JString.allow(''),
+        description: JString.allow(''),
+        content: JString.allow(''),
         link: JString,
         gpt_summary: JString,
         commentsEnable: Joi.boolean().optional().default(false),
