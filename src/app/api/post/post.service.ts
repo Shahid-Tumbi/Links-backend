@@ -65,6 +65,7 @@ class PostService {
      */
     async postDetail(req:App.Request<IPostDetail>, client: Partial<App.Client>){
       try {
+        const currentUserId = req.user.id;
         const post =await this.Model.aggregate([
           {
             $match: {
@@ -89,6 +90,35 @@ class PostService {
             },
           },
           { $unwind: "$user_info" },
+          {
+          $lookup: {
+            from: "follows",
+            let: { postUserId: "$userId" },
+            pipeline: [
+              {
+                $match: {
+                  $expr: {
+                    $and: [
+                      { $eq: ["$followerId", new ObjectId(currentUserId)] },
+                      { $eq: ["$followingId", "$$postUserId"] },
+                    ],
+                  },
+                },
+              },
+            ],
+            as: "followData",
+          },
+        },
+        {
+          $addFields: {
+            isFollowed: { $gt: [{ $size: "$followData" }, 0] },
+          },
+        },
+        {
+          $project: {
+            followData: 0, // Exclude followData from the final result
+          },
+        },
         ]);
     
         if (post.length === 0) {
