@@ -625,12 +625,46 @@ class UserService {
 		try {			
 			const userId = req.params.id;
 			const result = await this.UserModel.findOne({ _id: userId });
+			const currentUserId = req.user.id;
 			if(!result) {
 				return Promise.reject(
 					new ResponseError(404, USER_MESSAGES.USER_NOT_FOUND)
 				);
 			}
-			const user:any = await this.Model.findOne({ userId: result._id });
+			const user:any = await this.Model.aggregate([
+				{ $match: { userId: result._id} },
+				{
+					$lookup: {
+						from: "follows",
+						let: { userId: "$userId" },
+						pipeline: [
+							{
+								$match: {
+									$expr: {
+										$and: [
+											{ $eq: ["$followerId", new ObjectId(currentUserId)]},
+											{ $eq: ["$followingId", "$$userId"] }
+										],
+									},
+								},
+							},
+						],
+						as:  "followData",
+					},
+				},
+				{
+					$addFields: {
+						isFollowed: { $gt : [{ $size: "$followData" }, 0]},
+
+					},
+
+				},
+				{
+					$project: {
+						followData: 0,
+					},
+				},
+			]).exec();
 			const postCount = await PostModel.countDocuments({userId: result._id})
 			user.totalPosts = postCount;
 
