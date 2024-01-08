@@ -87,5 +87,11 @@ router.put(
     postValidators.idParamsSchema,
     postController.getUserWiseList,
   );
+  router.post(
+    '/getVideoInfo/extraction',
+    session([UserType.User]),
+    postValidators.getVideoInfo,
+    postController.getVideoInfo,
+  );
 
 export const postV1Routes = { path: '/posts', router };
