@@ -52,6 +52,9 @@ export const postValidators = {
     sharePost: validateSchema(Joi.object({
         userId: JString.required(),
         postId: JString.required(),
+    }),'body'),
+    getVideoInfo:validateSchema(Joi.object({
+        url: JString.required(),
     }),'body')
 
 };
