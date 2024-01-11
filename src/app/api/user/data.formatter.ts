@@ -26,6 +26,7 @@ export const UserDataFormat = (data: any,authData: any) => {
 		score:authData?.usertype || 0,
 		totalFollowings:authData?.totalFollowings || 0,
 		totalFollowers:authData?.totalFollowers || 0,
-		totalLinksUploaded:authData?.totalPosts || 0
+		totalLinksUploaded:authData?.totalPosts || 0,
+		isFollowed: authData?.isFollowed || false
 	};
 };

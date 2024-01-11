@@ -625,16 +625,49 @@ class UserService {
 		try {			
 			const userId = req.params.id;
 			const result = await this.UserModel.findOne({ _id: userId });
+			const currentUserId = req.user.id;
 			if(!result) {
 				return Promise.reject(
 					new ResponseError(404, USER_MESSAGES.USER_NOT_FOUND)
 				);
 			}
-			const user:any = await this.Model.findOne({ userId: result._id });
-			const postCount = await PostModel.countDocuments({userId: result._id})
-			user.totalPosts = postCount;
+			const user:any = await this.Model.aggregate([
+				{ $match: { userId: req.params.id} },
+				{
+					$lookup: {
+						from: "follows",
+						let: { userId: result._id },
+						pipeline: [
+							{
+								$match: {
+									$expr: {
+										$and: [
+											{ $eq: ["$followerId", new ObjectId(currentUserId)]},
+											{ $eq: ["$followingId", "$$userId"] }
+										],
+									},
+								},
+							},
+						],
+						as:  "followData",
+					},
+				},
+				{
+					$addFields: {
+						isFollowed: { $gt : [{ $size: "$followData" }, 0]},
 
-			return { profile: UserDataFormat(result,user)};
+					},
+
+				},
+				{
+					$project: {
+						followData: 0,
+					},
+				},
+			]).exec();
+			const postCount = await PostModel.countDocuments({userId: result._id})
+			user[0].totalPosts = postCount;
+			return { profile: UserDataFormat(result,user[0])};
 		} catch (error) {
 			Console.error('Error in  service', error);
 			return Promise.reject(new ResponseError(422, error));
