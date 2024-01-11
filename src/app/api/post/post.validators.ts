@@ -11,10 +11,10 @@ export const postValidators = {
 	 */
     create: validateSchema(Joi.object({
         userId: JString.required(),
-        title: JString,
-        image: JString,
-        description: JString,
-        content: JString,
+        title: JString.allow(''),
+        image: JString.allow(''),
+        description: JString.allow(''),
+        content: JString.allow(''),
         link: JString,
         gpt_summary: JString,
         commentsEnable: Joi.boolean().optional().default(false),
@@ -52,6 +52,9 @@ export const postValidators = {
     sharePost: validateSchema(Joi.object({
         userId: JString.required(),
         postId: JString.required(),
+    }),'body'),
+    getVideoInfo:validateSchema(Joi.object({
+        url: JString.required(),
     }),'body')
 
 };

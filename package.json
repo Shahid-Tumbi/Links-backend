@@ -66,6 +66,7 @@
     "force": "0.0.3",
     "formidable": "^2.0.1",
     "fs": "0.0.1-security",
+    "googleapis": "^130.0.0",
     "grapheme-splitter": "^1.0.4",
     "handlebars": "^4.7.7",
     "https": "^1.0.0",

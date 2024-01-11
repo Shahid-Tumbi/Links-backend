@@ -1,12 +1,13 @@
 import { App } from '@src/app/app.interface';
 import {
   DbLogger,
-	ResponseError,
+  ResponseError,
+  environment,
   isValidURL,
 } from '@src/utils';
 import { CommentModel, DislikeModel, LikeModel, PostModel, ShareModel } from './post.model';
-import { ICreatePostData, IDeletePostData,  IPost,  IPostDetail,  IUpdatePostData } from './post.interface';
-import { POST_MESSAGES } from './post.constants';
+import { ICreatePostData, IDeletePostData, IPost, IPostDetail, IUpdatePostData } from './post.interface';
+import { POST_MESSAGES, YTUBE_VIDEO_REGEX } from './post.constants';
 import { DAO } from '@src/database';
 import { User } from '../user';
 import { QueueName, USER_MESSAGES } from '../user/user.constants';
@@ -15,6 +16,7 @@ import { consumer, producer } from '@src/rabbitmq';
 import { NotificationModel } from '../notification';
 import { NOTIFICATION_MESSAGES } from '../notification/notification.constants';
 import { NotificationType } from '@src/app/constants';
+const { google } = require('googleapis');
 class PostService {
 	readonly Model = PostModel;
 	readonly UserModel = User;
@@ -367,12 +369,13 @@ class PostService {
         consumer(QueueName.like)
         const postOwnerData = await PostModel.findOne({_id:postId})
         const userData = await this.UserModel.findOne({_id:postOwnerData.userId})
+        const fromUserName = await this.UserModel.findOne({_id:userId})
         if(userId != postOwnerData.userId){
         NotificationModel.create({
           fromUser: userId,
           toUser: postOwnerData.userId,
           notificationType: NotificationType.Upvote,
-          content: userData.name + ' ' +
+          content: fromUserName.name + ' ' +
           NOTIFICATION_MESSAGES.POST.LIKED.MESSAGE,
           title: NOTIFICATION_MESSAGES.POST.LIKED.TITLE,
           postId
@@ -439,6 +442,7 @@ class PostService {
           producer({ postId, userId },QueueName.comment)
           consumer(QueueName.comment)
           const postOwnerData = await PostModel.findOne({_id:postId})
+          const toSentNotification = await this.UserModel.findOne({_id:postOwnerData.userId})
           const userData = await this.UserModel.findOne({_id:userId})
           if(userId != postOwnerData.userId){
           NotificationModel.create({
@@ -452,7 +456,7 @@ class PostService {
           });
           try {
             producer({
-              token: userData.deviceToken,
+              token: toSentNotification.deviceToken,
     
               notification: {
                 title: NOTIFICATION_MESSAGES.POST.COMMENT.TITLE,
@@ -673,6 +677,59 @@ class PostService {
             return Promise.reject(new ResponseError(422, error));
           }
         }
-  }
+        async getVideoInfo(req: App.Request<any>) {
+          const fullUrl = req.body.url;
+
+          try {
+            const youtubeLiveRegex = YTUBE_VIDEO_REGEX;
+            const match = fullUrl.match(youtubeLiveRegex);
+            if (match && (match[1] || match[2])) {
+              const youtube = google.youtube({
+                version: 'v3',
+                auth: environment.GOOGLE_API_KEY,
+              });
+
+              const result = await new Promise((resolve, reject) => {
+                youtube.videos.list(
+                  {
+                    part: 'snippet',
+                    id: match[1] || match[2],
+                  },
+                  (err: any, res: { data: { items: string | any[]; }; }) => {
+                    if (err) {
+                      console.error('Error: ', err);
+                      reject(err);
+                      return;
+                    }
+
+                    if (res.data.items.length > 0) {
+                      const video = res.data.items[0];
+                      const title = video.snippet.title;
+                      const description = video.snippet.description;
+                      const thumbnailURL = video.snippet.thumbnails.standard.url;
+                      const content = description;
+                      const sentences = description.split('.');
+                      const firstParagraph = sentences.slice(0, 4).join('.') + '.';
+                      const extractedData = { title, description: firstParagraph, image: thumbnailURL, content };
+                      resolve(extractedData);
+                    } else {
+                      reject(new ResponseError(422, 'Video not found.'));
+                    }
+                  }
+                );
+              });
+              return result;
+            } else {
+              throw new ResponseError(422, 'Invalid YouTube URL.');
+            }
+          } catch (error) {
+            console.error('Error generating summary:', error);
+            DbLogger.error('Error generating summary:', error);
+            // You can choose to handle this error or ignore it if required
+            throw error;
+          }
+        }
+  
+}
 
 export const postService = new PostService();

@@ -7,4 +7,5 @@ export const POST_MESSAGES = {
     ALREADY_DISLIKED : 'Your downvote remove This post'
 }
 
-export const MODERATION_URL = "https://api.openai.com/v1/moderations"
+export const MODERATION_URL = "https://api.openai.com/v1/moderations";
+export const YTUBE_VIDEO_REGEX = /^(?:(?:https|http):\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be).*(?<=\/|v\/|u\/|embed\/|shorts\/|live\/|watch\?v=)(?<!\/user\/)(?<id>[\w\-]{11})(?=\?|&|$)/;

@@ -512,6 +512,18 @@ class PostController {
       })
       .catch(next);
   }
+  getVideoInfo(
+    req: App.Request,
+    res: App.Response,
+    next: NextFunction
+  ) {        
+    postService
+      .getVideoInfo(req)
+      .then((result) => {
+        res.success('Success', result);
+      })
+      .catch(next);
+  }
 }
 
 export const postController = new PostController();

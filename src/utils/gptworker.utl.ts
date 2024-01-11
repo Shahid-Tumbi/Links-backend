@@ -48,7 +48,7 @@ const gptWorker = async (data: any) => {
     try {
       const summary = await client.chat.completions.create({
         model: environment.MODEL_NAME,
-        messages: [{ role: 'user', content: `Summarize this content ${data.link}.content sould be based on main article.` }],
+        messages: [{ role: 'user', content: `Summarize this content ${data.link.includes('youtube.com') || data.link.includes('youtu.be') ? data?.postData : data.link}.content sould be based on main article.` }],
       });
       summaryResult = summary.choices[0].message.content;
     } catch (error) {
