@@ -632,11 +632,11 @@ class UserService {
 				);
 			}
 			const user:any = await this.Model.aggregate([
-				{ $match: { userId: result._id} },
+				{ $match: { userId: req.params.id} },
 				{
 					$lookup: {
 						from: "follows",
-						let: { userId: "$userId" },
+						let: { userId: result._id },
 						pipeline: [
 							{
 								$match: {
@@ -666,9 +666,8 @@ class UserService {
 				},
 			]).exec();
 			const postCount = await PostModel.countDocuments({userId: result._id})
-			user.totalPosts = postCount;
-
-			return { profile: UserDataFormat(result,user)};
+			user[0].totalPosts = postCount;
+			return { profile: UserDataFormat(result,user[0])};
 		} catch (error) {
 			Console.error('Error in  service', error);
 			return Promise.reject(new ResponseError(422, error));
