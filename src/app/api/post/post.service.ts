@@ -387,7 +387,7 @@ class PostService {
             notification: {
               title: NOTIFICATION_MESSAGES.POST.LIKED.TITLE,
               body: 
-              userData.name + ' ' +
+              fromUserName.name + ' ' +
               NOTIFICATION_MESSAGES.POST.LIKED.MESSAGE,
             },
             id: postId,             
